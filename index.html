@@ -62,8 +62,27 @@
 <details>
 <summary>What is Mixlist?</summary>
 <p>
-text
+Mixlist is a collaborative music application designed to generate playlists 
+that reflect the combined musical tastes of a group. 
+<br> <br> While music streaming 
+services provide personalized recommendations for individuals, they offer 
+limited tools for creating playlists that adapt to the preferences of multiple 
+listeners in shared environments such as social gatherings, workplaces, or 
+small businesses.
+<br> <br>  Mixlist addresses this challenge by allowing users to 
+authenticate through Spotify, join a shared session, and contribute their 
+listening preferences to a dynamically generated group playlist. The system 
+aggregates listener taste profiles and assigns weighted values to songs in order 
+to construct playlists that balance the preferences of all participants. 
+<br> <br> By 
+leveraging Spotify’s API and real-time session management, Mixlist creates a 
+shared listening experience that adapts as participants join or leave the session.
 </p>
+</details>
+
+<details>
+<summary>User Stories</summary>
+<img class="responsive-image" src=".\assets\userstories.png" style="--img-size:70%;">
 </details>
 
 <details>
@@ -81,14 +100,45 @@ text
 </details>
 
 <details>
-<summary>Title</summary>
+<summary>System Diagram</summary>
 <p>
-text
+  <img class="responsive-image" src=".\assets\systemDiagram.png" style="--img-size:70%;">
 </p>
 </details>
 
 <details>
-<summary>Title</summary>
+<summary>Tech Stack</summary>
+<p>
+<b><ul>Frontend:</b></ul>
+<b>React JS, Tailwind CSS :</b> React's design allows Mixlist's UI to update
+automatically as session data changes. Tailwind CSS provides a consistent user 
+experience across the platform. 
+<br>
+
+<b><ul>Backend:</b></ul>
+<b>Web server (Node.js + Express JS): </b>- Mixlist uses Node.js with Express to 
+handle API requests, manage sessions, and communicate with the Spotify API and 
+OAuth services. This architecture allows multiple users to participate in a session 
+while keeping API usage efficient and within Spotify’s rate limits. 
+<br>
+
+<b><ul>Application Logic:</b></ul>
+<b>Web server (Node.js): </b>- Node.js processes listener taste profiles and combines 
+them into a shared group preference. This enables Mixlist to dynamically generate and 
+update playlists as users join or leave a session.
+<br>
+
+<b><ul>Database:</b></ul>
+<b>MySQLite </b>- Mixlist uses SQLite to store lightweight session metadata such as 
+session IDs, listener references, and playlist identifiers. Music files and personal 
+user data are not stored locally, as playlists are created and managed through the 
+Spotify API.
+</p>
+</details>
+
+<details>
+<summary>Development Plan</summary>
+<img class="responsive-image" src=".\assets\Gnatt.png" style="--img-size:70%;">
 <p>
 text
 </p>

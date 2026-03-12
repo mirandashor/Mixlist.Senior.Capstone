@@ -135,3 +135,11 @@ summary::after{
     opacity:1;
     transform:scale(1.1);
 }
+
+.responsive-image{
+    width:var(--img-size, 100%);
+    max-width:100%;
+    height:auto;
+    display:block;
+    margin:20px auto;
+}
