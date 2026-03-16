@@ -81,23 +81,21 @@ shared listening experience that adapts as participants join or leave the sessio
 </details>
 
 <details>
+<summary>How it works</summary>
+<p>
+  <img class="responsive-image" src=".\assets\algoflow.png" style="--img-size:70%;">
+</p>
+</details>
+
+<details>
 <summary>User Stories</summary>
 <img class="responsive-image" src=".\assets\userstories.png" style="--img-size:70%;">
 </details>
 
 <details>
-<summary>Title</summary>
-<p>
-text
-</p>
-</details>
-
-<details>
-<summary>Title</summary>
-<p>
-text
-</p>
-</details>
+<summary>User Flow</summary> <a href="https://www.figma.com/design/6YUN1TS55cY4GSLbt0ZuLY/Mixlist?node-id=0-1&t=TD7KIytFSQ9TVsSS-1">
+<img class="responsive-image" src=".\assets\userflow.png"  alt="https://www.figma.com/proto/6YUN1TS55cY4GSLbt0ZuLY/Mixlist?node-id=0-1&t=TD7KIytFSQ9TVsSS-1" style="--img-size:70%;">
+</a></details>
 
 <details>
 <summary>System Diagram</summary>
@@ -137,10 +135,66 @@ Spotify API.
 </details>
 
 <details>
+<summary>Frontend Mapping</summary>
+<img class="responsive-image" src=".\assets\frontend.png" style="--img-size:70%;">
+<p>
+text
+</p>
+</details>
+
+<details>
+<summary>Backend Mapping</summary>
+<img class="responsive-image" src=".\assets\backend.png" style="--img-size:70%;">
+<p>
+text
+</p>
+</details>
+
+<details>
 <summary>Development Plan</summary>
 <img class="responsive-image" src=".\assets\Gnatt.png" style="--img-size:70%;">
 <p>
 text
+</p>
+</details>
+
+<details>
+<summary>Ethics & Governance</summary>
+<p>
+  IRB/CITI Status:
+  <br><br>
+Music preferences can be very personal and may sometimes 
+reveal sensitive information about a person. For example, 
+certain genres, artists, or podcasts might reflect someone’s 
+beliefs, emotional state, or interests. Because Mixlist 
+uses Spotify listening data to generate a collaborative playlist,
+ it is important that users understand how their information
+  is being used during a session. <br> <br>
+To address this, users must log in and authorize access through 
+Spotify OAuth before they can join a Mixlist session. This 
+authorization allows the system to temporarily access the 
+user’s music preferences in order to generate the shared playlist. 
+Only the data necessary to create the playlist is used, 
+and the application does not access unrelated personal information. <br> <br>
+When creating a collaborative playlist from multiple participants,
+ recommendation systems can sometimes favor more popular songs
+  or genres. This could result in certain users’ preferences
+   being underrepresented if their music taste is less common. <br> <br>
+Mixlist attempts to reduce this issue by combining the music 
+preferences of all participants and assigning weights to tracks 
+based on the group’s overall listening preferences. By aggregating 
+taste profiles from each participant, the system aims to represent 
+everyone in the session rather than prioritizing only the most popular songs. <br> <br>
+Another important ethical consideration is how long participant 
+data should remain accessible. Users may not expect their listening 
+data to remain available after the collaborative session ends. <br> <br>
+To protect user privacy, Mixlist stores listening data and Spotify 
+access tokens only for the duration of an active session. If a
+ listener leaves the session or the host ends the Mixlist,
+  the associated listener data and tokens are removed from the 
+  system. This approach ensures that participant data is only
+   used temporarily for the purpose of generating the playlist.
+
 </p>
 </details>
 
