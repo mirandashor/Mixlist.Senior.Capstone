@@ -61,11 +61,14 @@ router.get("/callback", async (req, res) => {
       }
     );
 
-res.json(
-  topTracks.data.items.map((track: any) => ({
-    name: track.name,
-    artist: track.artists[0].name
-  }))
+const tracks = topTracks.data.items.map((track: any) => ({
+  name: track.name,
+  artist: track.artists[0].name
+}));
+
+// redirect to frontend with data
+res.redirect(
+  `http://localhost:5173/?tracks=${encodeURIComponent(JSON.stringify(tracks))}`
 );
 
   } catch (error: any) {
