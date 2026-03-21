@@ -32,7 +32,8 @@ router.get("/callback", async (req, res) => {
   const code = req.query.code as string;
 
   try {
-    const response = await axios.post(
+    // access token
+    const tokenResponse = await axios.post(
       "https://accounts.spotify.com/api/token",
       new URLSearchParams({
         grant_type: "authorization_code",
@@ -48,15 +49,29 @@ router.get("/callback", async (req, res) => {
       }
     );
 
-    res.json(response.data);
+    const access_token = tokenResponse.data.access_token;
 
-} catch (error: any) {
-  console.error("SPOTIFY ERROR:", error.response?.data || error.message);
+    // users top tracks
+    const topTracks = await axios.get(
+      "https://api.spotify.com/v1/me/top/tracks",
+      {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      }
+    );
 
-  res.status(500).json({
-    error: error.response?.data || error.message
-  });
-}
+res.json(
+  topTracks.data.items.map((track: any) => ({
+    name: track.name,
+    artist: track.artists[0].name
+  }))
+);
+
+  } catch (error: any) {
+    console.error(error.response?.data || error.message);
+    res.status(500).send("Error getting data");
+  }
 });
 
 export default router;
