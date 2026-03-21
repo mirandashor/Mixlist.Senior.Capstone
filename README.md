@@ -1,4 +1,3 @@
-# Mixlist-Senior-Capstone
-<h1>Mixlist</h1>
-<h1>Mixlist</h1>
-<h1>Mixlist</h1>
+cd server
+npm install
+npm run dev

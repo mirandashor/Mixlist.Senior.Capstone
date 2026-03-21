@@ -1,0 +1,7 @@
+Node.js
+Express
+Axios
+CORS
+dotenv
+TypeScript
+ts-node-dev
