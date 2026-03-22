@@ -35,7 +35,7 @@ function App() {
       <h2>Your Top Tracks:</h2>
 
       {tracks.length === 0 ? (
-        <p>No data yet — log in to Spotify</p>
+        <p>No data</p>
       ) : (
         <ul>
           {tracks.map((track, index) => (
