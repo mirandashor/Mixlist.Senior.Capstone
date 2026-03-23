@@ -231,3 +231,27 @@ summary::after{
     border-radius:10px;
     margin:20px;
 }
+/* LOGIN PAGE */
+.dark-page{
+    background:black;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.login-container{
+    text-align:center;
+    width:300px;
+}
+
+.spotify-btn{
+    background:#1DB954;
+    color:white;
+    padding:10px 20px;
+    border:none;
+    border-radius:20px;
+    cursor:pointer;
+    margin-top:15px;
+}
