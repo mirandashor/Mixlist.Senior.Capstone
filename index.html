@@ -1,229 +1,827 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<title>Mixlist - the music recommendation engine</title>
-<link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Mixlist</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-<header class="page-header">
-<div>
-<h1>Mixlist</h1>
-<p class="subtitle">the music recommendation engine, built for the people in the room</p>
-</div>
-<a class="github-icon-link" href="https://github.com/mirandashor/Mixlist-Senior-Capstone" target="_blank">
-<img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub">
-</a>
-</header>
 
-<details>
-<summary>The Team</summary>
-<div class="card-container">
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="logo">Mixlist</div>
 
-  <div class="card">
-    <div class="card-image"></div>
-    <h3>Judy Nashwati</h3>
-    <p>
-      Major: Computer Science <br>
-      Frontend
-    </p>
-  </div>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#team">Team</a>
+            <a href="#flow">Flow</a>
+            <a href="#stories">Stories</a>
+            <a href="#system">System</a>
+            <a href="#tech">Tech</a>
+            <a href="#frontend">Frontend</a>
+            <a href="#backend">Backend</a>
+            <a href="#dev">Dev Plan</a>
+            <a href="#ethics">Ethics</a>
+        </div>
+    </nav>
 
-    <div class="card">
-    <div class="card-image"></div>
-    <h3>Miranda Secaur</h3>
-    <p>
-      Major: Information Technology <br>
-      Backend
-    </p>
-  </div>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-layout">
+            <div class="hero-card">
+                <div class="hero-badge">Collaborative Music Discovery</div>
 
-  <div class="card">
-    <div class="card-image"></div>
-    <h3>Miranda Shoraji</h3>
-    <p>
-      Major: Computer Science <br>
-      Backend
-    </p>
-  </div>
+                <h1>Build the perfect playlist for every room.</h1>
 
-  <div class="card">
-    <div class="card-image"></div>
-    <h3>Mariam Yassa</h3>
-    <p>
-      Major: Computer Science <br>
-      Frontend
-    </p>
-  </div>
+                <p>
+                    Mixlist is a collaborative playlist generator that blends multiple users’
+                    listening preferences to create a shared music experience for parties,
+                    cafés, study sessions, and more.
+                </p>
 
-</div>
-</details>
+                <div class="hero-buttons">
+                    <a href="#about" class="primary-btn">Explore Project</a>
 
-<details>
-<summary>What is Mixlist?</summary>
-<p>
-Mixlist is a collaborative music application designed to generate playlists 
-that reflect the combined musical tastes of a group. 
-<br> <br> While music streaming 
-services provide personalized recommendations for individuals, they offer 
-limited tools for creating playlists that adapt to the preferences of multiple 
-listeners in shared environments such as social gatherings, workplaces, or 
-small businesses.
-<br> <br>  Mixlist addresses this challenge by allowing users to 
-authenticate through Spotify, join a shared session, and contribute their 
-listening preferences to a dynamically generated group playlist. The system 
-aggregates listener taste profiles and assigns weighted values to songs in order 
-to construct playlists that balance the preferences of all participants. 
-<br> <br> By 
-leveraging Spotify’s API and real-time session management, Mixlist creates a 
-shared listening experience that adapts as participants join or leave the session.
-</p>
-</details>
+                    <a href="https://github.com/mirandashor/Mixlist-Senior-Capstone" target="_blank" class="github-btn">
+                        View on GitHub
+                    </a>
+                </div>
+            </div>
 
-<details>
-<summary>How it works</summary>
-<p>
-  <img class="responsive-image" src=".\assets\algoflow.png" style="--img-size:70%;">
-</p>
-</details>
+            <div class="hero-side">
+                <div class="side-card">
+                    <h3>What it does</h3>
+                    <p>Combines group listening preferences into one shared playlist experience.</p>
+                </div>
 
-<details>
-<summary>User Stories</summary>
-<img class="responsive-image" src=".\assets\userstories.png" style="--img-size:70%;">
-</details>
+                <div class="side-card">
+                    <h3>Best for</h3>
+                    <p>Parties, cafés, road trips, study groups, and any shared music setting.</p>
+                </div>
 
-<details>
-<summary>User Flow</summary> <a href="https://www.figma.com/design/6YUN1TS55cY4GSLbt0ZuLY/Mixlist?node-id=0-1&t=TD7KIytFSQ9TVsSS-1">
-<img class="responsive-image" src=".\assets\userflow.png"  alt="https://www.figma.com/proto/6YUN1TS55cY4GSLbt0ZuLY/Mixlist?node-id=0-1&t=TD7KIytFSQ9TVsSS-1" style="--img-size:70%;">
-</a></details>
+                <div class="side-card">
+                    <h3>Core idea</h3>
+                    <p>Make music selection collaborative instead of relying on one person’s taste.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<details>
-<summary>System Diagram</summary>
-<p>
-  <img class="responsive-image" src=".\assets\systemDiagram.png" style="--img-size:70%;">
-</p>
-</details>
+    <section id="about" class="content-section">
+        <div class="about-grid">
 
-<details>
-<summary>Tech Stack</summary>
-<p>
-<b><ul>Frontend:</b></ul>
-<b>React JS, Tailwind CSS :</b> React's design allows Mixlist's UI to update
-automatically as session data changes. Tailwind CSS provides a consistent user 
-experience across the platform. 
-<br>
+            <div class="about-text">
+                <h2>About Mixlist</h2>
+                <p>
+                    Mixlist is designed to make music selection collaborative instead of controlled by one person.
+                    By combining multiple users’ listening preferences, it creates a shared playlist that reflects
+                    the group as a whole.
+                </p>
 
-<b><ul>Backend:</b></ul>
-<b>Web server (Node.js + Express JS): </b>- Mixlist uses Node.js with Express to 
-handle API requests, manage sessions, and communicate with the Spotify API and 
-OAuth services. This architecture allows multiple users to participate in a session 
-while keeping API usage efficient and within Spotify’s rate limits. 
-<br>
+                <p>
+                    Whether you're hosting a party, studying with friends, or running a café,
+                    Mixlist ensures the music fits everyone in the room.
+                </p>
+            </div>
 
-<b><ul>Application Logic:</b></ul>
-<b>Web server (Node.js): </b>- Node.js processes listener taste profiles and combines 
-them into a shared group preference. This enables Mixlist to dynamically generate and 
-update playlists as users join or leave a session.
-<br>
+            <div class="about-cards">
+                <div class="about-card">
+                    <h3>Problem</h3>
+                    <p>Music choices are usually controlled by one person, which doesn’t reflect group preferences.</p>
+                </div>
 
-<b><ul>Database:</b></ul>
-<b>MySQLite </b>- Mixlist uses SQLite to store lightweight session metadata such as 
-session IDs, listener references, and playlist identifiers. Music files and personal 
-user data are not stored locally, as playlists are created and managed through the 
-Spotify API.
-</p>
-</details>
+                <div class="about-card">
+                    <h3>Solution</h3>
+                    <p>Mixlist blends listening data from multiple users into one shared playlist.</p>
+                </div>
 
-<details>
-<summary>Frontend Mapping</summary>
-<img class="responsive-image" src=".\assets\frontend.png" style="--img-size:70%;">
-<p>
-text
-</p>
-</details>
+                <div class="about-card">
+                    <h3>Result</h3>
+                    <p>A balanced, dynamic playlist that adapts to everyone’s taste.</p>
+                </div>
+            </div>
 
-<details>
-<summary>Backend Mapping</summary>
-<img class="responsive-image" src=".\assets\backend.png" style="--img-size:70%;">
-<p>
-text
-</p>
-</details>
+        </div>
+    </section>
 
-<details>
-<summary>Development Plan</summary>
-<p>Sprint Plan</p>
-<img class="responsive-image" src=".\assets\Gnatt.png" style="--img-size:70%;">
-<p>Unit Tests</p>
-<img class="responsive-image" src=".\assets\unittesting.png" style="--img-size:70%;">
-<p>Integration Tests</p>
-<img class="responsive-image" src=".\assets\integtesting.png" style="--img-size:70%;">
-<p>Performance Benchmarks</p>
-<img class="responsive-image" src=".\assets\stresstesting.png" style="--img-size:70%;">
-<p>Traceability Matrix</p>
-<img class="responsive-image" src=".\assets\traceablility.png" style="--img-size:70%;">
-</details>
+    <section id="team" class="content-section">
+        <h2>Meet the Team</h2>
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>Miranda Shoraji</h3>
+                <p>Major: Computer Science <br>
+                    Backend</p>
+            </div>
+            <div class="info-card">
+                <h3>Judy Nashwati</h3>
+                <p>Major: Computer Science <br>
+                    Frontend</p>
+            </div>
+            <div class="info-card">
+                <h3>Mariam Yassa</h3>
+                <p>Major: Computer Science <br>
+                    Frontend</p>
+            </div>
+            <div class="info-card">
+                <h3>Miranda Secaur</h3>
+                <p>Major: Information Technology <br>
+                    Backend</p>
+            </div>
+        </div>
+    </section>
 
-<details>
-<summary>Ethics & Governance</summary>
-<p>
-  IRB/CITI Status:
-  <br><br>
-Music preferences can be very personal and may sometimes 
-reveal sensitive information about a person. For example, 
-certain genres, artists, or podcasts might reflect someone’s 
-beliefs, emotional state, or interests. Because Mixlist 
-uses Spotify listening data to generate a collaborative playlist,
- it is important that users understand how their information
-  is being used during a session. <br> <br>
-To address this, users must log in and authorize access through 
-Spotify OAuth before they can join a Mixlist session. This 
-authorization allows the system to temporarily access the 
-user’s music preferences in order to generate the shared playlist. 
-Only the data necessary to create the playlist is used, 
-and the application does not access unrelated personal information. <br> <br>
-When creating a collaborative playlist from multiple participants,
- recommendation systems can sometimes favor more popular songs
-  or genres. This could result in certain users’ preferences
-   being underrepresented if their music taste is less common. <br> <br>
-Mixlist attempts to reduce this issue by combining the music 
-preferences of all participants and assigning weights to tracks 
-based on the group’s overall listening preferences. By aggregating 
-taste profiles from each participant, the system aims to represent 
-everyone in the session rather than prioritizing only the most popular songs. <br> <br>
-Another important ethical consideration is how long participant 
-data should remain accessible. Users may not expect their listening 
-data to remain available after the collaborative session ends. <br> <br>
-To protect user privacy, Mixlist stores listening data and Spotify 
-access tokens only for the duration of an active session. If a
- listener leaves the session or the host ends the Mixlist,
-  the associated listener data and tokens are removed from the 
-  system. This approach ensures that participant data is only
-   used temporarily for the purpose of generating the playlist.
+    <section id="features" class="content-section">
+        <h2>What is Mixlist?</h2>
+        <div class="text-block">
+            <p>
+                Mixlist is a collaborative music application designed to generate playlists
+                that reflect the combined musical tastes of a group.
+                <br> <br> While music streaming
+                services provide personalized recommendations for individuals, they offer
+                limited tools for creating playlists that adapt to the preferences of multiple
+                listeners in shared environments such as social gatherings, workplaces, or
+                small businesses.
+                <br> <br> Mixlist addresses this challenge by allowing users to
+                authenticate through Spotify, join a shared session, and contribute their
+                listening preferences to a dynamically generated group playlist. The system
+                aggregates listener taste profiles and assigns weighted values to songs in order
+                to construct playlists that balance the preferences of all participants.
+                <br> <br> By
+                leveraging Spotify’s API and real-time session management, Mixlist creates a
+                shared listening experience that adapts as participants join or leave the session.
+            </p>
+        </div>
+    </section>
 
-</p>
-</details>
+    <section class="content-section">
+        <h2>How It Works</h2>
+        <div class="text-block">
+            <p>
+                <img class="flow-image" src="./assets/algoflow.png" alt="How Mixlist Works">
+            </p>
+        </div>
+    </section>
+
+    <section id="stories" class="content-section">
+        <h2>User Stories</h2>
+
+        <div class="table-card">
+            <table class="user-story-table">
+                <thead>
+                    <tr>
+                        <th>Priority</th>
+                        <th>User Story</th>
+                        <th>Requirement</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="priority high">High<br>P1.1</td>
+                        <td>
+                            <strong>User Authentication</strong><br>
+                            As a listener, I want to authorize Spotify via OAuth verification.
+                        </td>
+                        <td>
+                            <ul>
+                                <li>OAuth redirects to Spotify</li>
+                                <li>Access token secured temporarily</li>
+                                <li>System retrieves taste profile</li>
+                                <li>Clear error handling</li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="priority high">High<br>P1.2</td>
+                        <td>
+                            <strong>Create Session</strong><br>
+                            As a Mixlist host, I want to create a Mixlist session so that listeners can join it.
+                        </td>
+                        <td>
+                            <ul>
+                                <li>"Create session" button generates a unique session and session ID</li>
+                                <li>Host parameters can be set such as genre and mood</li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="priority high">High<br>P1.3</td>
+                        <td>
+                            <strong>Listener Joins Session</strong><br>
+                            As a listener, I want to join a Mixlist using a link or QR code.
+                        </td>
+                        <td>
+                            <ul>
+                                <li>"Join" field accepts a code</li>
+                                <li>Participant appears in active session list</li>
+                                <li>Clear error handling</li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="priority high">High<br>P1.4</td>
+                        <td>
+                            <strong>Playlist Generation</strong><br>
+                            As a Mixlist host, I want to automatically generate a playlist based on participating users'
+                            music tastes.
+                        </td>
+                        <td>
+                            <ul>
+                                <li>Tastes are aggregated and recalibrated as users join and leave</li>
+                                <li>Playlist is created on the host Spotify account</li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="priority high">High<br>P1.5</td>
+                        <td>
+                            <strong>Real-Time Updates</strong><br>
+                            As a listener and host, I want to see updates on the music feed that reflects the current
+                            group’s taste.
+                        </td>
+                        <td>
+                            <ul>
+                                <li>Join and leave actions trigger queue changes</li>
+                                <li>UI updates occur quickly</li>
+                                <li>Current playback remains uninterrupted</li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="priority medium">Medium<br>P2.1</td>
+                        <td>
+                            <strong>Delete Session</strong><br>
+                            As a Mixlist host, I want to delete a Mixlist session.
+                        </td>
+                        <td>
+                            <ul>
+                                <li>Session ends and data is cleared</li>
+                                <li>Participants are removed from session</li>
+                                <li>Music stops</li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="priority low">Low<br>P3.1</td>
+                        <td>
+                            <strong>Leave Session</strong><br>
+                            As a listener, I want to leave a Mixlist session.
+                        </td>
+                        <td>
+                            <ul>
+                                <li>User is removed from group taste profile</li>
+                                <li>UI reflects removal</li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="priority low">Low<br>P3.2</td>
+                        <td>
+                            <strong>Remove User</strong><br>
+                            As a Mixlist host, I want to remove a user from the session to maintain control.
+                        </td>
+                        <td>
+                            <ul>
+                                <li>Host can remove a specific user</li>
+                                <li>UI reflects removal</li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="priority low">Low<br>P3.3</td>
+                        <td>
+                            <strong>Profile Creation</strong><br>
+                            As a listener, I want to create a profile.
+                        </td>
+                        <td>
+                            <ul>
+                                <li>User can import data from Spotify and edit Mixlist profile</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="flow" class="content-section">
+        <h2>User Flow</h2>
+        <div class="image-card">
+            <a href="https://www.figma.com/design/6YUN1TS55cY4GSLbt0ZuLY/Mixlist?node-id=0-1&t=TD7KIytFSQ9TVsSS-1">
+                <img class="responsive-image" src=".\assets\userflow.png"
+                    alt="https://www.figma.com/proto/6YUN1TS55cY4GSLbt0ZuLY/Mixlist?node-id=0-1&t=TD7KIytFSQ9TVsSS-1"
+                    style="--img-size:70%;">
+            </a>
+        </div>
+    </section>
+
+    <section id="system" class="content-section">
+        <h2>System Diagram</h2>
+        <div class="image-card">
+            <img class="responsive-image" src=".\assets\systemDiagram.png" style="--img-size:70%;">
+        </div>
+    </section>
+
+    <section id="tech" class="content-section">
+        <h2>Tech Stack</h2>
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>Frontend</h3>
+                <p>React JS, Tailwind CSS : React's design allows Mixlist's UI to update automatically as session data
+                    changes. Tailwind CSS provides a consistent user experience across the platform.</p>
+            </div>
+            <div class="info-card">
+                <h3>Backend</h3>
+                <p>Web server (Node.js + Express JS): - Mixlist uses Node.js with Express to handle API requests, manage
+                    sessions, and communicate with the Spotify API and OAuth services. This architecture allows multiple
+                    users to participate in a session while keeping API usage efficient and within Spotify’s rate
+                    limits.</p>
+            </div>
+            <div class="info-card">
+                <h3>APIs / Tools</h3>
+                <p>Web server (Node.js): - Node.js processes listener taste profiles and combines them into a shared
+                    group preference. This enables Mixlist to dynamically generate and update playlists as users join or
+                    leave a session. <br>
+                    Database:
+                    MySQLite - Mixlist uses SQLite to store lightweight session metadata such as session IDs, listener
+                    references, and playlist identifiers. Music files and personal user data are not stored locally, as
+                    playlists are created and managed through the Spotify API.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="frontend" class="content-section">
+        <h2>Frontend Mapping</h2>
+        <p class="section-intro">
+            This matrix shows how each interface component connects to user actions,
+            frontend behavior, and the API calls that power the Mixlist experience.
+        </p>
+
+        <div class="mapping-card">
+            <table class="mapping-table">
+                <thead>
+                    <tr>
+                        <th>User Interface Component</th>
+                        <th>User Action</th>
+                        <th>Frontend Response</th>
+                        <th>API Request</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>“Log in with Spotify” Button</strong></td>
+                        <td>User logs into Mixlist</td>
+                        <td>Redirect user to Spotify OAuth page</td>
+                        <td><span class="api-badge get">GET</span> /auth/login</td>
+                    </tr>
+                    <tr>
+                        <td><strong>“Agree” Button</strong></td>
+                        <td>User authorizes Spotify profile access</td>
+                        <td>Spotify returns authorization and sends user back to application</td>
+                        <td><span class="api-badge get">GET</span> /auth/callback</td>
+                    </tr>
+                    <tr>
+                        <td><strong>“Join Mixlist” or “Host Mixlist” Buttons</strong></td>
+                        <td>User selects session participation</td>
+                        <td>Redirect user to Join Mixlist page or Create Mixlist page</td>
+                        <td><span class="api-badge none">NONE</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>“Mix your mood” Field + “Create” Button</strong></td>
+                        <td>Host sets parameters and creates a Mixlist</td>
+                        <td>Session is created with selected parameters</td>
+                        <td><span class="api-badge post">POST</span> /[session]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>“Join” + “Scan QR Code” Buttons</strong></td>
+                        <td>Listener joins session through QR code or session ID</td>
+                        <td>System retrieves session ID</td>
+                        <td><span class="api-badge get">GET</span> /[sessionID]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Invite Icon</strong></td>
+                        <td>User invites additional listeners</td>
+                        <td>System generates link, code, or QR code</td>
+                        <td><span class="api-badge get">GET</span> /[sessionID]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Play / Pause / Skip Buttons</strong></td>
+                        <td>Host controls playback</td>
+                        <td>Manipulate music state</td>
+                        <td><span class="api-badge spotify">Spotify API</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>“Leave Mixlist” Button</strong></td>
+                        <td>Listener leaves Mixlist</td>
+                        <td>Remove listener from session</td>
+                        <td><span class="api-badge delete">DELETE</span> /[listenerID]</td>
+                    </tr>
+                    <tr>
+                        <td><strong>“End Session” in Host Settings</strong></td>
+                        <td>Host ends Mixlist</td>
+                        <td>Send request to end session and wipe listener data</td>
+                        <td><span class="api-badge delete">DELETE</span> /[sessionID]</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="backend" class="content-section">
+        <h2>Backend Mapping</h2>
+        <p class="section-intro">
+            This matrix shows how backend components connect to APIs, system behavior,
+            and the routes that support authentication, session management, aggregation,
+            and playlist generation.
+        </p>
+
+        <div class="mapping-card">
+            <table class="mapping-table">
+                <thead>
+                    <tr>
+                        <th>Backend Component</th>
+                        <th>API</th>
+                        <th>System Action</th>
+                        <th>API Route</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Authentication</strong></td>
+                        <td>Spotify OAuth</td>
+                        <td>Redirect user to Spotify OAuth page</td>
+                        <td><span class="api-badge get">GET</span> /auth/login</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Authentication</strong></td>
+                        <td>Spotify OAuth</td>
+                        <td>Exchange authorization code for temporary access token</td>
+                        <td><span class="api-badge get">GET</span> /auth/callback</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Session Management</strong></td>
+                        <td>Database</td>
+                        <td>Create new session and generate session ID</td>
+                        <td><span class="api-badge post">POST</span> /sessionID</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Taste Aggregation</strong></td>
+                        <td>Spotify API</td>
+                        <td>Combine listener taste profiles and calculate track weights</td>
+                        <td><span class="api-badge get">GET</span> /[sessionID]</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Playlist Generation</strong></td>
+                        <td>Spotify API</td>
+                        <td>Generate playlist using weighted tracks</td>
+                        <td><span class="api-badge post">POST</span> /[playlist]</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Session Management</strong></td>
+                        <td>Database</td>
+                        <td>Retrieve session ID for invite link, code, or QR code</td>
+                        <td><span class="api-badge get">GET</span> /[sessionID]</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Listener Management</strong></td>
+                        <td>Database</td>
+                        <td>Remove listener from Mixlist session</td>
+                        <td><span class="api-badge delete">DELETE</span> /[listenerID]</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Session Management</strong></td>
+                        <td>Database</td>
+                        <td>End Mixlist session</td>
+                        <td><span class="api-badge delete">DELETE</span> /[sessionID]</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section id="dev" class="content-section">
+        <h2>Development Plan</h2>
+
+        <h3 class="subheading">Sprint Plan</h3>
+        <p class="section-intro">
+            The sprint plan outlines the phased development of Mixlist, including setup,
+            integration, core features, and final deployment.
+        </p>
+
+        <div class="image-card">
+            <img class="responsive-image" src=".\assets\Gnatt.png" style="--img-size:70%;">
+        </div>
+
+        <h3 class="subheading">Unit Testing</h3>
+        <p class="section-intro">
+            Unit testing focuses on verifying that individual Mixlist components and endpoints
+            behave correctly on their own before they are combined into the full application flow.
+        </p>
+
+        <div class="mapping-card">
+            <table class="mapping-table">
+                <thead>
+                    <tr>
+                        <th>Test Case</th>
+                        <th>Component / Endpoint</th>
+                        <th>Input / Action</th>
+                        <th>Expected Output</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Spotify Login Redirect</strong></td>
+                        <td>Authentication<br><span class="api-badge get">GET</span> /auth/login</td>
+                        <td>User clicks “Login with Spotify”</td>
+                        <td>User is redirected to the Spotify OAuth page</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Token Exchange</strong></td>
+                        <td>Authentication<br><span class="api-badge get">GET</span> /auth/callback</td>
+                        <td>Valid Spotify authorization code</td>
+                        <td>Access token is stored and expiration is recorded</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Session Creation</strong></td>
+                        <td>Session Management<br><span class="api-badge post">POST</span> /sessionID</td>
+                        <td>Host creates a new Mixlist</td>
+                        <td>Unique session ID is created and session is marked active</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Listener Join</strong></td>
+                        <td>Listener Management</td>
+                        <td>Valid room code or QR join</td>
+                        <td>Listener is added to the session successfully</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Listener Leave</strong></td>
+                        <td>Listener Management</td>
+                        <td>Listener clicks leave</td>
+                        <td>Listener is removed from the active participant list</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Group Profile Aggregation</strong></td>
+                        <td>Aggregation Management<br><span class="api-badge get">GET</span> /[sessionID]</td>
+                        <td>Multiple listener taste profiles</td>
+                        <td>Combined group taste profile is returned consistently</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Playlist Weighting Logic</strong></td>
+                        <td>Aggregation + Playlist Logic</td>
+                        <td>Same listener set and same host settings</td>
+                        <td>Same weight distribution and repeatable output</td>
+                    </tr>
+
+                    <tr>
+                        <td><strong>Playlist Generation</strong></td>
+                        <td>Playlist Generation<br><span class="api-badge post">POST</span> /[playlist]</td>
+                        <td>Group taste profile plus host parameters</td>
+                        <td>Playlist object is created and Spotify playlist is returned</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3 class="subheading">Integration Tests</h3>
+        <p class="section-intro">
+            Integration testing verifies that major Mixlist components work together correctly,
+            especially across authentication, session creation, aggregation, and playlist updates.
+        </p>
+
+        <div class="mapping-card">
+            <table class="mapping-table">
+                <thead>
+                    <tr>
+                        <th>Test Case</th>
+                        <th>Components Involved</th>
+                        <th>Input / Action</th>
+                        <th>Expected Output</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Host Login to Session Creation</strong></td>
+                        <td>Frontend + Auth + Session Management</td>
+                        <td>Host logs in and creates Mixlist</td>
+                        <td>Session is created and linked to the authenticated host</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Listener Join Flow</strong></td>
+                        <td>Frontend + Session Management + Listener Management</td>
+                        <td>Listener enters room code or scans QR code</td>
+                        <td>Listener appears in the active session</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Join Updates Aggregation</strong></td>
+                        <td>Listener Management + Aggregation</td>
+                        <td>New listener joins</td>
+                        <td>Group taste profile recalculates</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Aggregation to Playlist Pipeline</strong></td>
+                        <td>Aggregation + Playlist Generation</td>
+                        <td>Updated group profile is sent to the generator</td>
+                        <td>Playlist updates with combined preferences</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Listener Leave Update</strong></td>
+                        <td>Listener Management + Aggregation + Playlist</td>
+                        <td>Listener leaves session</td>
+                        <td>Listener is removed and playlist recalculates</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Session End Cleanup</strong></td>
+                        <td>Session Management + Data Cleanup</td>
+                        <td>Host ends Mixlist</td>
+                        <td>Session closes and listener/session data is cleared</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3 class="subheading">Performance Benchmarks</h3>
+        <p class="section-intro">
+            Performance testing evaluates how well Mixlist handles high activity, repeated
+            API requests, and multiple active sessions while remaining stable and responsive.
+        </p>
+
+        <div class="mapping-card">
+            <table class="mapping-table">
+                <thead>
+                    <tr>
+                        <th>Test Case</th>
+                        <th>Scenario</th>
+                        <th>What We Measure</th>
+                        <th>Expected Result</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Concurrent Listener Joins</strong></td>
+                        <td>Multiple users join the same session at once</td>
+                        <td>Response time, session stability</td>
+                        <td>Users are added without failures or duplicate state</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Playlist Refresh Under Load</strong></td>
+                        <td>Users repeatedly join and leave during an active session</td>
+                        <td>Update latency</td>
+                        <td>Playlist updates stay responsive</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Multiple Active Sessions</strong></td>
+                        <td>Several hosts run sessions simultaneously</td>
+                        <td>Backend stability, memory and session tracking</td>
+                        <td>Sessions remain isolated and stable</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Spotify Request Volume</strong></td>
+                        <td>Repeated profile and playlist-related API calls</td>
+                        <td>Request frequency and failures</td>
+                        <td>System stays within Spotify rate limits</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Burst Testing</strong></td>
+                        <td>Rapid sequence of join, leave, and refresh actions</td>
+                        <td>Error rate and crash resistance</td>
+                        <td>App remains functional without crashing</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Spotify API Rate Limit Handling</strong></td>
+                        <td>Repeated profile fetches, playlist creation, and playlist update requests</td>
+                        <td>Throttle behavior and recovery</td>
+                        <td>System stays within Spotify’s rolling rate window and recovers cleanly from HTTP 429
+                            responses</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3 class="subheading">Traceability Matrix</h3>
+        <p class="section-intro">
+            The traceability matrix links each major user story to a specific test case,
+            showing how project requirements are verified through testing.
+        </p>
+
+        <div class="mapping-card">
+            <table class="mapping-table">
+                <thead>
+                    <tr>
+                        <th>User Story</th>
+                        <th>Description</th>
+                        <th>Test Case Verifying It</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>US-1</strong></td>
+                        <td>Host can create a music session</td>
+                        <td>Multiple Active Sessions</td>
+                    </tr>
+                    <tr>
+                        <td><strong>US-2</strong></td>
+                        <td>Listener can join a host session</td>
+                        <td>Concurrent Listener Joins</td>
+                    </tr>
+                    <tr>
+                        <td><strong>US-3</strong></td>
+                        <td>Playlist updates dynamically as listeners join or leave</td>
+                        <td>Playlist Refresh Under Load</td>
+                    </tr>
+                    <tr>
+                        <td><strong>US-4</strong></td>
+                        <td>System aggregates listener music taste profiles</td>
+                        <td>Spotify Request Volume</td>
+                    </tr>
+                    <tr>
+                        <td><strong>US-5</strong></td>
+                        <td>Playlist is generated based on group preferences</td>
+                        <td>Spotify API Rate Limit Handling</td>
+                    </tr>
+                    <tr>
+                        <td><strong>US-6</strong></td>
+                        <td>System remains stable during heavy user activity</td>
+                        <td>Burst Testing</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+    </section>
+
+    <section id="ethics" class="content-section">
+        <h2>Ethics & Governance</h2>
+        <p class="section-intro">
+            Mixlist uses Spotify listening data to create collaborative playlists, so privacy,
+            fairness, and temporary data use are important parts of the system design.
+        </p>
+
+        <div class="ethics-grid">
+            <div class="ethics-card">
+                <h3>IRB / CITI Status</h3>
+                <p>
+                    Music preferences can be very personal and may sometimes reveal sensitive
+                    information about a person, including beliefs, emotional state, or interests.
+                    Because Mixlist uses Spotify listening data to generate a collaborative playlist,
+                    users should understand how their information is being used during a session.
+                </p>
+            </div>
+
+            <div class="ethics-card">
+                <h3>User Consent</h3>
+                <p>
+                    To address this, users must log in and authorize access through Spotify OAuth
+                    before joining a Mixlist session. This gives the system temporary access to the
+                    listening data needed to generate the shared playlist, without accessing unrelated
+                    personal information.
+                </p>
+            </div>
+
+            <div class="ethics-card">
+                <h3>Fairness in Recommendations</h3>
+                <p>
+                    Recommendation systems can sometimes favor more popular songs or genres, which may
+                    underrepresent users with less common music tastes. Mixlist attempts to reduce this
+                    issue by combining the preferences of all participants and assigning track weights
+                    based on the group’s overall listening profile.
+                </p>
+            </div>
+
+            <div class="ethics-card">
+                <h3>Privacy and Data Retention</h3>
+                <p>
+                    Another important concern is how long participant data remains accessible. To protect
+                    user privacy, Mixlist stores listening data and Spotify access tokens only for the
+                    duration of an active session. If a listener leaves or the host ends the session,
+                    the associated listener data and tokens are removed from the system.
+                </p>
+            </div>
+        </div>
+    </section>
 
 </body>
-  <nav class="navbar">
-    <div class="logo">🎵 Mixlist</div>
 
-    <div class="nav-links">
-        <button>How it works</button>
-        <button>FAQ</button>
-        <button>About Us</button>
-        <button>Support</button>
-    </div>
-</nav>
-
-<section class="hero">
-    <div class="hero-card">
-        <h1>Mixlist</h1>
-        <p>A real-time playlist generator built for the people in the room.</p>
-
-       <button class="primary-btn" onclick="location.href='login.html'">
-    Log in with Spotify
-</button>
-    </div>
-</section>
 </html>
