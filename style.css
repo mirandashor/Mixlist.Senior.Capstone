@@ -255,3 +255,15 @@ summary::after{
     cursor:pointer;
     margin-top:15px;
 }
+.form-container{
+    width:300px;
+    margin:100px auto;
+    text-align:center;
+}
+
+.form-container input{
+    display:block;
+    width:100%;
+    margin:10px 0;
+    padding:10px;
+}
