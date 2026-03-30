@@ -12,6 +12,8 @@ function App() {
     }
   }, []);
 
+  
+
   const handleLogin = () => {
     window.location.href = "http://localhost:5000/auth/login";
   };
@@ -63,28 +65,12 @@ function App() {
       </button>
 
           <div>
-      <h1>My Spotify App</h1>
-
-      {/* 👇 BUTTON GOES HERE */}
+            
       <button onClick={handleGeneratePlaylist}>
         Generate Playlist
       </button>
 
     </div>
-
-      <h2>Your Top Tracks:</h2>
-
-      {tracks.length === 0 ? (
-        <p>No data</p>
-      ) : (
-        <ul>
-          {tracks.map((track, index) => (
-            <li key={index}>
-              {track.name} - {track.artist}
-            </li>
-          ))}
-        </ul>
-      )}
     </div>
   );
 
