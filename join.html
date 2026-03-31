@@ -20,11 +20,11 @@
         </div>
 
         <div class="nav-links">
-            <a href="dashboard.html">Home</a>
-            <a href="#">How it works</a>
-            <a href="#">FAQ</a>
-            <a href="#">Support</a>
-        </div>
+    <a href="dashboard.html">Home</a>
+    <a href="index.html#flow">How it works</a>
+    <a href="index.html#features">FAQ</a>
+    <a href="index.html#about">Support</a>
+</div>
     </nav>
 
     <main class="page-wrapper">
@@ -47,17 +47,22 @@
 
             <form class="join-form">
                 <div class="input-row">
-                    <input type="text" placeholder="Enter room code" class="room-input">
-                    <button type="submit" class="join-btn">Join</button>
-                </div>
+    <input type="text" placeholder="Enter room code" class="room-input">
 
-                <div class="divider">
-                    <span>or</span>
-                </div>
+    <button type="button" class="join-btn"
+        onclick="window.location.href='dashboard.html'">
+        Join
+    </button>
+</div>
 
-                <button type="button" class="qr-btn">
-                    📷 Scan QR Code
-                </button>
+<div class="divider">
+    <span>or</span>
+</div>
+
+<button type="button" class="qr-btn"
+    onclick="window.location.href='dashboard.html'">
+    📷 Scan QR Code
+</button>
             </form>
         </section>
 

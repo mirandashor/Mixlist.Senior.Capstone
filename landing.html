@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mixlist</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: white;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 40px;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 22px;
+        }
+
+        .nav-buttons button {
+            margin-left: 15px;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            background: #8a2be2;
+            color: white;
+            cursor: pointer;
+        }
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            height: 80vh;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 500px;
+            opacity: 0.8;
+        }
+
+        .buttons {
+            margin-top: 30px;
+        }
+
+        .buttons button {
+            margin: 10px;
+            padding: 14px 28px;
+            border-radius: 30px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .primary {
+            background: #8a2be2;
+            color: white;
+        }
+
+        .secondary {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">🎵 Mixlist</div>
+
+        <div class="nav-buttons">
+            <button>Login</button>
+            <button>Sign Up</button>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Mix music with everyone in the room</h1>
+
+        <p>
+            Create collaborative playlists in real time. Let everyone add songs,
+            vote, and build the perfect vibe together.
+        </p>
+
+        <div class="buttons">
+            <button class="primary">Create Playlist</button>
+            <button class="secondary">Join Playlist</button>
+        </div>
+    </section>
+
+    <div class="footer">
+        © 2026 Mixlist
+    </div>
+
+</body>
+</html>
