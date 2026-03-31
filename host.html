@@ -11,8 +11,10 @@
 
     <link rel="stylesheet" href="host.css">
 </head>
+
 <body>
 
+    <!-- NAVBAR -->
     <nav class="navbar">
         <div class="logo">
             <span class="logo-icon">🎵</span>
@@ -20,14 +22,18 @@
         </div>
 
         <div class="nav-links">
+           
             <a href="dashboard.html">Home</a>
-            <a href="#">How it works</a>
-            <a href="#">FAQ</a>
-            <a href="#">Support</a>
+            <a href="index.html#flow">How it works</a>
+            <a href="index.html#features">FAQ</a>
+            <a href="index.html#about">Support</a>
         </div>
     </nav>
 
+    <!-- MAIN CONTENT -->
     <main class="page-wrapper">
+
+        <!-- HERO -->
         <section class="host-hero">
             <div class="host-hero-text">
                 <span class="hero-badge">Start your own session</span>
@@ -39,6 +45,7 @@
             </div>
         </section>
 
+        <!-- HOST CARD -->
         <section class="host-card">
             <h2>Host a Mixlist</h2>
             <p class="host-subtext">
@@ -48,7 +55,12 @@
             <form class="host-form">
                 <div class="input-row">
                     <input type="text" placeholder="Mix your mood" class="mood-input">
-                    <button type="submit" class="create-btn">Create</button>
+
+                    
+                    <button type="button" class="create-btn"
+                        onclick="window.location.href='dashboard.html'">
+                        Create
+                    </button>
                 </div>
 
                 <div class="host-message">
@@ -57,6 +69,7 @@
             </form>
         </section>
 
+        <!-- INFO SECTION -->
         <section class="info-section">
             <div class="info-card">
                 <h3>Choose the Vibe</h3>
@@ -79,6 +92,7 @@
                 </p>
             </div>
         </section>
+
     </main>
 
 </body>
