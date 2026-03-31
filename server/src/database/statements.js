@@ -1,5 +1,3 @@
-const { clear } = require('node:console');
-
 const sqlite3 = require("sqlite3").verbose();
 const path = require("path");
 
@@ -14,7 +12,7 @@ db.serialize(() => { //run in order
         CREATE TABLE IF NOT EXISTS users 
         (
         id INTEGER PRIMARY KEY AUTOINCREMENT, 
-        spotify_user_id TEXT,
+        spotify_user_id TEXT UNIQUE,
         display_name TEXT        
         )
         `);
@@ -27,19 +25,23 @@ db.serialize(() => { //run in order
         (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         user_id INTEGER,
-        spotify_track_id TEXT,
+        spotify_track_id TEXT UNIQUE,
         track_name  TEXT,
         artist_name TEXT,
         rank INTEGER,
-        FOREIGN KEY (user_id) REFERENCES users(id) 
+        FOREIGN KEY (user_id) REFERENCES users(id),
+        UNIQUE (user_id, spotify_track_id)
         )
         `);
+    db.run(`DELETE FROM top_tracks`);
+    db.run(`DELETE FROM users`);
+    console.log("Database cleared on startup");
 });
 //insert the user and their top tracks into the database dynamically
 function saveUserAndTracks(user, tracks) {
     db.run(
         //insert the info using their spotify ID and display name
-        `INSERT INTO users (spotify_user_id, display_name)
+        `INSERT OR IGNORE INTO users (spotify_user_id, display_name)
         VALUES (?, ?)`,
         [user.id, user.display_name],
         function(err) {
@@ -47,7 +49,17 @@ function saveUserAndTracks(user, tracks) {
 
             let userId = this.lastID
 
-            insertTracks(userId, tracks);
+            if (!userId) {
+                db.get(
+                    `SELECT id FROM users WHERE spotify_user_id = ?`,
+                    [user.id],
+                    (err, row) => {
+                        insertTracks(row.id, tracks);
+                    }
+                );
+            } else{ 
+                insertTracks(userId, tracks);
+            }
             }
     );
 }
@@ -57,7 +69,7 @@ function saveUserAndTracks(user, tracks) {
 function insertTracks(userId, tracks) {
     tracks.forEach((track, index) => {
         db.run(
-            `INSERT INTO top_tracks
+            `INSERT OR IGNORE INTO top_tracks
             (user_id, spotify_track_id, track_name, artist_name, rank)
             VALUES (?, ?, ?, ?, ?)`,
             [userId, track.id, track.name, track.artist, index]
