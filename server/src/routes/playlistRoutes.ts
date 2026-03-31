@@ -7,7 +7,7 @@ router.post("/generate-playlist", async (req, res) => {
   try {
     const { accessToken } = req.body;
 
-    // ✅ Safety check (prevents crashes)
+    // (prevents crashes)
     if (!accessToken) {
       return res.status(400).json({ error: "Missing access token" });
     }
