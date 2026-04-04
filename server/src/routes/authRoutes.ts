@@ -1,6 +1,7 @@
 import express from "express";
 import axios from "axios";
 import { saveUserAndTracks } from "../database/statements";
+import { getArtistTags } from "../services/lastfmService";
 
 const router = express.Router();
 
@@ -74,6 +75,14 @@ router.get("/callback", async (req, res) => {
       name: track.name,
       artist: track.artists[0].name
     }));
+
+    for (let track of tracks.slice(0, 3)) {
+      const tags = await getArtistTags(track.artist);
+
+      console.log("Artist:", track.artist);
+      console.log("Tags:", tags.slice(0, 5));
+}
+    
 
     saveUserAndTracks(user, tracks);
 

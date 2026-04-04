@@ -1,18 +1,7 @@
 import { useEffect, useState } from "react";
 
 function App() {
-  const [tracks, setTracks] = useState<any[]>([]);
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const tracksParam = params.get("tracks");
-
-    if (tracksParam) {
-      setTracks(JSON.parse(decodeURIComponent(tracksParam)));
-    }
-  }, []);
-
-  
+  const [selectedGenre, setSelectedGenre] = useState("");
 
   const handleLogin = () => {
     window.location.href = "http://localhost:5000/auth/login";
@@ -35,7 +24,7 @@ function App() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ accessToken }),
+        body: JSON.stringify({ accessToken, genre: selectedGenre }),
       });
 
       const data = await res.json();
@@ -64,8 +53,25 @@ function App() {
         Login with Spotify
       </button>
 
+<div style={{ marginTop: "20px" }}>
+  <h3>Select Genre</h3>
+
+  {["indie", "rock", "pop", "hip hop"].map((genre) => (
+    <label key={genre} style={{ display: "block" }}>
+      <input
+        type="radio"
+        name="genre"
+        value={genre}
+        onChange={(e) => setSelectedGenre(e.target.value)}
+      />
+      {genre}
+    </label>
+  ))}
+</div>
+
+
           <div>
-            
+
       <button onClick={handleGeneratePlaylist}>
         Generate Playlist
       </button>

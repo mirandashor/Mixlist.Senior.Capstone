@@ -1,11 +1,14 @@
 import express from "express";
 import axios from "axios";
+import { getArtistTags } from "../services/lastfmService";
 
 const router = express.Router();
 
 router.post("/generate-playlist", async (req, res) => {
   try {
-    const { accessToken } = req.body;
+    const { accessToken, genre } = req.body;
+
+    console.log("Selected genre:", genre);
 
     // (prevents crashes)
     if (!accessToken) {
@@ -34,16 +37,44 @@ router.post("/generate-playlist", async (req, res) => {
       }
     );
 
-    const uris = topTracksRes.data.items.map((track: any) => track.uri);
+const tracks = topTracksRes.data.items;
 
-    console.log("TRACK COUNT:", uris.length);
+const filteredTracks = [];
+
+for (let track of tracks) {
+  const artist = track.artists[0].name;
+
+  const tags = await getArtistTags(artist);
+
+  const tagNames = tags.map((t: any) => t.name.toLowerCase());
+
+  // if no genre selected, keep everything
+  if (!genre) {
+    filteredTracks.push(track);
+    continue;
+  }
+
+  // match genre (flexible match)
+  const isMatch = tagNames.some(tag =>
+    tag.includes(genre.toLowerCase())
+  );
+
+  if (isMatch) {
+    filteredTracks.push(track);
+  }
+}
+ 
+const uris = filteredTracks.map((track: any) => track.uri);
+
+console.log("Original track count:", tracks.length);
+console.log("Filtered track count:", filteredTracks.length);
 
     // 3. Create playlist
     const playlistRes = await axios.post(
       "https://api.spotify.com/v1/me/playlists",
       {
-        name: "My Generated Playlist",
-        description: "Built from my top tracks",
+        name: "Mixlist Playlist",
+        description: "Built for the people in the room",
         public: false,
       },
       {
