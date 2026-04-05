@@ -1,11 +1,21 @@
 import { useEffect, useState } from "react";
 
 function App() {
-  const [selectedGenre, setSelectedGenre] = useState("");
+  const [selectedGenre, setSelectedGenre] = useState<string[]>([]);
 
   const handleLogin = () => {
     window.location.href = "http://localhost:5000/auth/login";
   };
+
+  const genre = [
+  "Indie",
+  "Rock",
+  "Pop",
+  "Metal",
+  "Electronic",
+  "Country",
+  "Jazz",
+];
 
   const handleGeneratePlaylist = async () => {
     try {
@@ -37,6 +47,16 @@ function App() {
     }
   };
 
+  const handleGenreChange = (e: any) => {
+  const value = e.target.value;
+
+  setSelectedGenre((prev) =>
+    prev.includes(value)
+      ? prev.filter((g) => g !== value)
+      : [...prev, value]
+  );
+};
+
   return (
     <div style={{ padding: "20px", fontFamily: "Arial" }}>
       <h1>Mixlist</h1>
@@ -54,15 +74,14 @@ function App() {
       </button>
 
 <div style={{ marginTop: "20px" }}>
-  <h3>Select Genre</h3>
+  <h3>Select Genres</h3>
 
-  {["indie", "rock", "pop", "hip hop"].map((genre) => (
+  {genre.map((genre) => (
     <label key={genre} style={{ display: "block" }}>
       <input
-        type="radio"
-        name="genre"
+        type="checkbox"
         value={genre}
-        onChange={(e) => setSelectedGenre(e.target.value)}
+        onChange={(e) => handleGenreChange(e)}
       />
       {genre}
     </label>

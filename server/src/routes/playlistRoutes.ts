@@ -10,14 +10,12 @@ router.post("/generate-playlist", async (req, res) => {
 
     console.log("Selected genre:", genre);
 
-    // (prevents crashes)
     if (!accessToken) {
       return res.status(400).json({ error: "Missing access token" });
     }
 
     console.log("TOKEN RECEIVED:", accessToken);
 
-    // 1. Get current user
     const meRes = await axios.get("https://api.spotify.com/v1/me", {
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -27,7 +25,6 @@ router.post("/generate-playlist", async (req, res) => {
     const userId = meRes.data.id;
     console.log("USER ID:", userId);
 
-    // 2. Get top tracks
     const topTracksRes = await axios.get(
       "https://api.spotify.com/v1/me/top/tracks?limit=20",
       {
@@ -48,32 +45,34 @@ for (let track of tracks) {
 
   const tagNames = tags.map((t: any) => t.name.toLowerCase());
 
-  // if no genre selected, keep everything
-  if (!genre) {
-    filteredTracks.push(track);
-    continue;
-  }
-
-  // match genre (flexible match)
-  const isMatch = tagNames.some(tag =>
-    tag.includes(genre.toLowerCase())
-  );
+  const isMatch =
+    !genre || genre.length === 0
+      ? true
+      : genre.some((g: string) =>
+          tagNames.some(tag =>
+            tag.includes(g.toLowerCase())
+          )
+        );
 
   if (isMatch) {
     filteredTracks.push(track);
   }
 }
- 
-const uris = filteredTracks.map((track: any) => track.uri);
 
 console.log("Original track count:", tracks.length);
 console.log("Filtered track count:", filteredTracks.length);
 
-    // 3. Create playlist
+const uris = filteredTracks.map((track: any) => track.uri);
+
+const playlistName =
+  genre && genre.length > 0
+    ? `${genre.join(" & ")} Mixlist`
+    : "Mixlist Playlist";
+
     const playlistRes = await axios.post(
       "https://api.spotify.com/v1/me/playlists",
       {
-        name: "Mixlist Playlist",
+        name: playlistName,
         description: "Built for the people in the room",
         public: false,
       },
