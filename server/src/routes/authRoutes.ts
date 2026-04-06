@@ -79,7 +79,7 @@ router.get("/callback", async (req, res) => {
 
 // redirect to frontend with data
 res.redirect(
-  `http://localhost:5173/?access_token=${encodeURIComponent(access_token)}&tracks=${encodeURIComponent(JSON.stringify(tracks))}`
+  `http://localhost:5173/hostorjoin?access_token=${encodeURIComponent(access_token)}&tracks=${encodeURIComponent(JSON.stringify(tracks))}`
 );
 
   } catch (error: any) {
