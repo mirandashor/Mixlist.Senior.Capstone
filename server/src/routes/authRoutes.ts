@@ -1,28 +1,24 @@
 import express from "express";
 import axios from "axios";
-import { saveUserAndTracks } from "../database/statements";
 
 const router = express.Router();
 
-const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID!;
-const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET!;
-const REDIRECT_URI = "http://127.0.0.1:5000/auth/callback";
+const CLIENT_ID = process.env.CLIENT_ID!;
+const CLIENT_SECRET = process.env.CLIENT_SECRET!;
+const REDIRECT_URI = "http://localhost:5000/auth/callback";
 
+// STEP 1: LOGIN
 router.get("/login", (req, res) => {
-  const scope = "user-top-read playlist-modify-private user-read-private";
+  const scope = "user-read-private user-read-email playlist-modify-public";
 
-  const authURL =
-    "https://accounts.spotify.com/authorize?" +
-    new URLSearchParams({
-      response_type: "code",
-      client_id: CLIENT_ID,
-      scope: scope,
-      redirect_uri: REDIRECT_URI,
-    });
+  const authUrl = `https://accounts.spotify.com/authorize?response_type=code&client_id=${CLIENT_ID}&scope=${encodeURIComponent(
+    scope
+  )}&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`;
 
-  res.redirect(authURL);
+  res.redirect(authUrl);
 });
 
+// STEP 2: CALLBACK
 router.get("/callback", async (req, res) => {
   const code = req.query.code as string;
 
@@ -43,48 +39,16 @@ router.get("/callback", async (req, res) => {
       }
     );
 
-    const access_token = tokenResponse.data.access_token;
-    
-    // get user info (user ID and display name - no private info)
-    const spotifyUser = await axios.get(
-      "https://api.spotify.com/v1/me",
-      {
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-        },
-      }
-    );
-    const user = {
-      id: spotifyUser.data.id,
-      display_name: spotifyUser.data.display_name
-    };
+    const accessToken = tokenResponse.data.access_token;
 
-    // get users top tracks
-    const topTracks = await axios.get(
-      "https://api.spotify.com/v1/me/top/tracks",
-      {
-        headers: {
-          Authorization: `Bearer ${access_token}`,
-        },
-      }
+    // 🔥 THIS IS THE IMPORTANT PART
+    res.redirect(
+      `http://localhost:5173/dashboard?access_token=${accessToken}`
     );
 
-    const tracks = topTracks.data.items.map((track: any) => ({
-      id: track.id,
-      name: track.name,
-      artist: track.artists[0].name
-    }));
-
-    saveUserAndTracks(user, tracks);
-
-// redirect to frontend with data
-res.redirect(
-  `http://localhost:5173/?tracks=${encodeURIComponent(JSON.stringify(tracks))}`
-);
-
-  } catch (error: any) {
-    console.error(error.response?.data || error.message);
-    res.status(500).send("Error getting data");
+  } catch (error) {
+    console.error(error);
+    res.send("Error logging in");
   }
 });
 
