@@ -1,18 +1,16 @@
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 
 function App() {
-  const [tracks, setTracks] = useState<any[]>([]);
+  // const [tracks, setTracks] = useState<any[]>([]);
 
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const tracksParam = params.get("tracks");
+  // useEffect(() => {
+  //   const params = new URLSearchParams(window.location.search);
+  //   const tracksParam = params.get("tracks");
 
-    if (tracksParam) {
-      setTracks(JSON.parse(decodeURIComponent(tracksParam)));
-    }
-  }, []);
-
-  
+  //   if (tracksParam) {
+  //     setTracks(JSON.parse(decodeURIComponent(tracksParam)));
+  //   }
+  // }, []);
 
   const handleLogin = () => {
     window.location.href = "http://localhost:5000/auth/login";
