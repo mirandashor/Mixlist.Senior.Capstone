@@ -13,7 +13,7 @@ function App() {
   // }, []);
 
   const handleLogin = () => {
-    window.location.href = "http://localhost:5000/auth/login";
+    window.location.href = `${import.meta.env.VITE_API_BASE_URL}/auth/login`;
   };
 
   const handleGeneratePlaylist = async () => {
@@ -28,7 +28,7 @@ function App() {
         return;
       }
 
-      const res = await fetch("http://localhost:5000/api/spotify/generate-playlist", {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/spotify/generate-playlist`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

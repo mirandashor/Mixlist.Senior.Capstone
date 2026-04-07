@@ -6,7 +6,8 @@ const router = express.Router();
 
 const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID!;
 const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET!;
-const REDIRECT_URI = "http://127.0.0.1:5000/auth/callback";
+const REDIRECT_URI = process.env.REDIRECT_URI!;
+const FRONTEND_URL = process.env.FRONTEND_URL!;
 
 router.get("/login", (req, res) => {
   const scope = "user-top-read playlist-modify-private user-read-private";
@@ -79,7 +80,7 @@ router.get("/callback", async (req, res) => {
 
 // redirect to frontend with data
 res.redirect(
-  `http://localhost:5173/hostorjoin?access_token=${encodeURIComponent(access_token)}`
+  `${FRONTEND_URL}/hostorjoin?access_token=${encodeURIComponent(access_token)}`
 );
 
   } catch (error: any) {

@@ -4,7 +4,6 @@ body {
   background: #f5f3ff;
 }
 
-/* NAVBAR */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -32,7 +31,6 @@ body {
   cursor: pointer;
 }
 
-/* HERO */
 .hero-wrapper {
   display: flex;
   justify-content: center;
@@ -49,7 +47,6 @@ body {
   background: url('https://images.unsplash.com/photo-1506157786151-b8491531f063?q=80&w=1600') center/cover no-repeat;
 }
 
-/* overlay */
 .hero::before {
   content: "";
   position: absolute;
@@ -85,7 +82,6 @@ body {
   margin-bottom: 30px;
 }
 
-/* BUTTON */
 .spotify-btn {
   padding: 16px 32px;
   border-radius: 14px;
@@ -102,7 +98,6 @@ body {
   background: #a78bfa;
 }
 
-/* FOOTER */
 .footer {
   text-align: center;
   margin-top: 40px;

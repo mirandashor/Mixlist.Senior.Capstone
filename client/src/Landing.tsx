@@ -1,12 +1,14 @@
+//landing page
 import React from "react";
 import "./landing.css";
 
-const App: React.FC = () => {
+const Landing: React.FC = () => {
     const handleLogin = () => {
-        window.location.href = "http://localhost:5000/auth/login";
+        window.location.href = `${import.meta.env.VITE_API_BASE_URL}/auth/login`;
     };
 
     return (
+        //nav bar
         <>
         <nav className="navbar">
             <div className="logo">🎵 Mixlist</div>
@@ -26,7 +28,8 @@ const App: React.FC = () => {
                     <p>
                         A real-time playlist generator, built for the people in the room.
                     </p>
-                    <button className="spotify-btn" onClick={handleLogin}>
+                    {/* login button */}
+                    <button className="spotify-btn" onClick={handleLogin}> 
                         Log in with Spotify
                     </button>
                 </div>
@@ -40,4 +43,4 @@ const App: React.FC = () => {
     );
 };
 
-export default App;
+export default Landing;
