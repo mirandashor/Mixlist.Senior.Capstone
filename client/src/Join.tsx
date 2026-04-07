@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import "./join.css";
+import logo from "./assets/logo.png";
+import { Link } from "react-router-dom";
 
 const Join = () => {
   const navigate = useNavigate();
@@ -8,25 +10,23 @@ const Join = () => {
     navigate("/hostorjoin");
   };
 
-  const handleScanQR = () => {
-    navigate("/hostorjoin");
-  };
 
   return (
     <>
       <nav className="navbar">
-        <div className="logo">
-          <span className="logo-icon">🎵</span>
+        <a href="/" className="logo">
+          <img src={logo} alt="Mixlist logo" />
           <span>Mixlist</span>
-        </div>
+        </a>
 
-        <div className="nav-links">
-          <a href="/">Home</a>
-          <a href="/#flow">How it works</a>
-          <a href="/#features">FAQ</a>
-          <a href="/#about">Support</a>
+        <div className="nav-buttons">
+          <Link to="/info#how-it-works">How it works</Link>
+          <Link to="/info#faq">FAQ</Link>
+          <Link to="/info#about">About Us</Link>
+          <Link to="/info#support">Support</Link>
         </div>
       </nav>
+
 
       <main className="page-wrapper">
         <section className="join-hero">
@@ -34,7 +34,7 @@ const Join = () => {
             <span className="hero-badge">Join a live session</span>
             <h1>Jump into the mix</h1>
             <p>
-              Enter a room code or scan a QR code to join an active Mixlist
+              Enter a room code to join an active MixList
               and add your music taste to the room.
             </p>
           </div>
@@ -59,13 +59,7 @@ const Join = () => {
               </button>
             </div>
 
-            <div className="divider">
-              <span>or</span>
-            </div>
 
-            <button type="button" className="qr-btn" onClick={handleScanQR}>
-              📷 Scan QR Code
-            </button>
           </form>
         </section>
 

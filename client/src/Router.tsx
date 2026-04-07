@@ -3,6 +3,7 @@ import Landing from "./Landing";
 import HostOrJoin from "./HostOrJoin";
 import Host from "./Host";
 import Join from "./Join";
+import InfoPage from "./InfoPage";
 
 function Router() {
   return (
@@ -11,6 +12,7 @@ function Router() {
       <Route path="/hostorjoin" element={<HostOrJoin />} />
       <Route path="/host" element={<Host />} />
       <Route path="/join" element={<Join />} />
+      <Route path="/info" element={<InfoPage />} />
     </Routes>
   );
 }
