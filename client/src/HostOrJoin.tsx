@@ -1,7 +1,9 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./hostorjoin.css";
 
 const HostOrJoin: React.FC = () => {
+    const navigate = useNavigate();
     return (
         <>
         <nav className="navbar">
@@ -27,12 +29,12 @@ const HostOrJoin: React.FC = () => {
                     <div className="hero-buttons">
                         <button
                             className="small-btn primary-small"
-                            onClick={() => (window.location.href = "/join")}
+                            onClick={() => navigate("/join")}
                             >Get Started
                         </button>
                         <button
                             className="small-btn secondary-small"
-                            onClick={() => (window.location.href = "/#flow")}
+                            onClick={() => navigate("/#flow")}
                             >Learn More
                         </button>
                     </div>
@@ -43,13 +45,13 @@ const HostOrJoin: React.FC = () => {
                 {/* button sends you to join page */}
                 <button
                     className="big-btn"
-                    onClick={() => (window.location.href = "/join")}
+                    onClick={() => navigate("/join")}
                     >🎧 Join a Mixlist
                 </button>
                 {/* button sends you to host page */}
                 <button
                     className="big-btn"
-                    onClick={() => (window.location.href = "/host")}
+                    onClick={() => navigate("/host")}
                     >🎶 Host a Mixlist
                 </button>
 

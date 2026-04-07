@@ -2,6 +2,7 @@ const sqlite3 = require("sqlite3").verbose();
 const path = require("path");
 
 const dbPath = path.join(__dirname, "database.db");
+console.log("DB PATH:", dbPath);
 const db = new sqlite3.Database(dbPath);
 
 db.serialize(() => { //run in order
@@ -76,7 +77,17 @@ function insertTracks(userId, tracks) {
         );
     });
     console.log("Top Tracks Saved!")
+
+ // DEBUG: check how many tracks exist in Render DB
+    db.get("SELECT COUNT(*) AS count FROM top_tracks", (err, row) => {
+        if (err) {
+            console.error("COUNT ERROR:", err.message);
+        } else {
+            console.log("TRACK COUNT:", row.count);
+        }
+    });
 }
+
 //delete the data in the database after a session ends
 function clearSessionData() {
     db.run(`DELETE FROM top_tracks`);
@@ -86,5 +97,5 @@ function clearSessionData() {
 
 module.exports = {
     saveUserAndTracks,
-    clearSessionData
+    clearSessionData,
 };

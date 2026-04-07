@@ -1,106 +1,112 @@
-body {
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-  background: #f5f3ff;
-}
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: #f5f3ff;
+        }
 
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 40px;
-  background: #c4b5fd;
-}
+        /* NAVBAR */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 40px;
+            background: #c4b5fd;
+        }
 
-.logo {
-  font-weight: 800;
-  font-size: 20px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+        .logo {
+            font-weight: 800;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-.nav-buttons button {
-  margin-left: 12px;
-  padding: 10px 18px;
-  border-radius: 12px;
-  border: none;
-  background: #a78bfa;
-  color: #1f1f1f;
-  font-weight: 600;
-  cursor: pointer;
-}
+        .nav-buttons button {
+            margin-left: 12px;
+            padding: 10px 18px;
+            border-radius: 12px;
+            border: none;
+            background: #a78bfa;
+            color: #1f1f1f;
+            font-weight: 600;
+            cursor: pointer;
+        }
 
-.hero-wrapper {
-  display: flex;
-  justify-content: center;
-  margin-top: 40px;
-}
+        /* HERO CONTAINER */
+        .hero-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+        }
 
-.hero {
-  width: 85%;
-  max-width: 900px;
-  height: 420px;
-  border-radius: 30px;
-  overflow: hidden;
-  position: relative;
-  background: url('https://images.unsplash.com/photo-1506157786151-b8491531f063?q=80&w=1600') center/cover no-repeat;
-}
+        .hero {
+            width: 85%;
+            max-width: 900px;
+            height: 420px;
+            border-radius: 30px;
+            overflow: hidden;
+            position: relative;
 
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(80, 60, 150, 0.55);
-  backdrop-filter: blur(2px);
-}
+            background: url('https://images.unsplash.com/photo-1506157786151-b8491531f063?q=80&w=1600') center/cover no-repeat;
+        }
 
-.hero-content {
-  position: relative;
-  z-index: 1;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  color: #e9d5ff;
-  padding: 20px;
-}
+        /* overlay for blur/darken */
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(80, 60, 150, 0.55);
+            backdrop-filter: blur(2px);
+        }
 
-.hero h1 {
-  font-size: 56px;
-  margin-bottom: 10px;
-  color: #d8b4fe;
-  text-shadow: 0 2px 6px rgba(0,0,0,0.4);
-}
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #e9d5ff;
+            padding: 20px;
+        }
 
-.hero p {
-  font-size: 18px;
-  max-width: 500px;
-  opacity: 0.9;
-  margin-bottom: 30px;
-}
+        .hero h1 {
+            font-size: 56px;
+            margin-bottom: 10px;
+            color: #d8b4fe;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+        }
 
-.spotify-btn {
-  padding: 16px 32px;
-  border-radius: 14px;
-  border: none;
-  font-size: 18px;
-  font-weight: 600;
-  background: #c4b5fd;
-  color: #1f1f1f;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  cursor: pointer;
-}
+        .hero p {
+            font-size: 18px;
+            max-width: 500px;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
 
-.spotify-btn:hover {
-  background: #a78bfa;
-}
+        /* BUTTON */
+        .spotify-btn {
+            padding: 16px 32px;
+            border-radius: 14px;
+            border: none;
+            font-size: 18px;
+            font-weight: 600;
+            background: #c4b5fd;
+            color: #1f1f1f;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
 
-.footer {
-  text-align: center;
-  margin-top: 40px;
-  padding: 20px;
-  color: #777;
-}
+        .spotify-btn:hover {
+            background: #a78bfa;
+        }
+
+        /* FOOTER */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #777;
+        }

@@ -21,11 +21,17 @@ router.get("/login", (req, res) => {
       redirect_uri: REDIRECT_URI,
     });
 
+  console.log("Login route hit");
+  console.log("Redirecting to Spotify auth URL");
+
   res.redirect(authURL);
 });
 
 router.get("/callback", async (req, res) => {
   const code = req.query.code as string;
+
+  console.log("Callback hit");
+  console.log("Code:", code);
 
   try {
     const tokenResponse = await axios.post(
@@ -44,9 +50,10 @@ router.get("/callback", async (req, res) => {
       }
     );
 
+    console.log("Token exchange worked");
+
     const access_token = tokenResponse.data.access_token;
-    
-    // get user info (user ID and display name - no private info)
+
     const spotifyUser = await axios.get(
       "https://api.spotify.com/v1/me",
       {
@@ -55,12 +62,14 @@ router.get("/callback", async (req, res) => {
         },
       }
     );
+
+    console.log("User fetch worked");
+
     const user = {
       id: spotifyUser.data.id,
-      display_name: spotifyUser.data.display_name
+      display_name: spotifyUser.data.display_name,
     };
 
-    // get users top tracks
     const topTracks = await axios.get(
       "https://api.spotify.com/v1/me/top/tracks",
       {
@@ -70,20 +79,24 @@ router.get("/callback", async (req, res) => {
       }
     );
 
+    console.log("Top tracks fetch worked");
+
     const tracks = topTracks.data.items.map((track: any) => ({
       id: track.id,
       name: track.name,
-      artist: track.artists[0].name
+      artist: track.artists[0].name,
     }));
 
     saveUserAndTracks(user, tracks);
+    console.log("Save worked");
 
-// redirect to frontend with data
-res.redirect(
-  `${FRONTEND_URL}/hostorjoin?access_token=${encodeURIComponent(access_token)}`
-);
+    console.log("Redirecting to frontend");
 
+    res.redirect(
+      `${FRONTEND_URL}/hostorjoin?access_token=${encodeURIComponent(access_token)}`
+    );
   } catch (error: any) {
+    console.error("CALLBACK ERROR:");
     console.error(error.response?.data || error.message);
     res.status(500).send("Error getting data");
   }
