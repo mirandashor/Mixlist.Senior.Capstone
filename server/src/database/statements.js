@@ -76,15 +76,15 @@ function insertTracks(userId, tracks) {
             [userId, track.id, track.name, track.artist, index]
         );
     });
-    console.log("Top Tracks Saved!")
+    // DEBUG: show what is actually in the database in render
+    db.all(`SELECT * FROM users`, [], (err, rows) => {
+        if (err) console.error("USERS ERROR:", err);
+        else console.log("USERS:", rows);
+    });
 
- // DEBUG: check how many tracks exist in Render DB
-    db.get("SELECT COUNT(*) AS count FROM top_tracks", (err, row) => {
-        if (err) {
-            console.error("COUNT ERROR:", err.message);
-        } else {
-            console.log("TRACK COUNT:", row.count);
-        }
+    db.all(`SELECT * FROM top_tracks`, [], (err, rows) => {
+        if (err) console.error("TRACKS ERROR:", err);
+        else console.log("TRACKS:", rows);
     });
 }
 
