@@ -76,6 +76,8 @@ function insertTracks(userId, tracks) {
             [userId, track.id, track.name, track.artist, index]
         );
     });
+    console.log("Top Tracks Saved!")
+    
     // DEBUG: show what is actually in the database in render
     db.all(`SELECT * FROM users`, [], (err, rows) => {
         if (err) console.error("USERS ERROR:", err);
