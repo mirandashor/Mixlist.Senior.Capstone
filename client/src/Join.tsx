@@ -1,15 +1,46 @@
 import { useNavigate } from "react-router-dom";
 import "./join.css";
+// store changing data (room code input)
+import React, { useState } from "react";
+
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
 const Join = () => {
   const navigate = useNavigate();
 
-  const handleJoin = () => {
-    navigate("/hostorjoin");
-  };
+  //roomCode = current variable in the input box (empty)
+  //setRoomCode = updates the value when a user inputs a room code
+  const [roomCode, setRoomCode] = useState("");
 
-  const handleScanQR = () => {
-    navigate("/hostorjoin");
+  //send post request to backend to know what room to join & get user id for who is joining
+  const handleJoin = async () => {
+    try {
+      const res = await fetch(`${apiBaseUrl}/api/session/join`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          roomCode,
+          userId: 2,
+        }),
+      });
+
+      //get backend respone- error or join
+      const data = await res.json();
+
+      if (!res.ok) {
+        alert(data.error || "Failed to join session");
+        return;
+      }
+
+      //send the user to join the host page
+      //give guest role so they cannot see/change parameters
+      navigate(`/host?roomCode=${roomCode}&role=guest`);
+    } catch (err) {
+      console.error("join error:", err);
+      alert("server error");
+    }
   };
 
   return (
@@ -52,7 +83,11 @@ const Join = () => {
                 type="text"
                 placeholder="Enter room code"
                 className="room-input"
+                value={roomCode}
+                onChange={(e) => setRoomCode(e.target.value)}
               />
+              {/* value = roomCode shows whatever is in state 
+              onChange = when user types, save it into roomCode */}
 
               <button type="button" className="join-btn" onClick={handleJoin}>
                 Join
@@ -63,9 +98,6 @@ const Join = () => {
               <span>or</span>
             </div>
 
-            <button type="button" className="qr-btn" onClick={handleScanQR}>
-              📷 Scan QR Code
-            </button>
           </form>
         </section>
 

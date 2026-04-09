@@ -1,9 +1,37 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./hostorjoin.css";
+const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
 const HostOrJoin: React.FC = () => {
     const navigate = useNavigate();
+
+//host button creates a session then navigates to join button
+const handleHost = async () => {
+    try {
+        const res = await fetch(`${apiBaseUrl}/api/session/create`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                hostUserId: 1,
+            }),
+        });
+
+        const data = await res.json();
+
+        if (!res.ok) {
+            alert(data.error || "failed to create session");
+            return;
+        }
+
+        navigate(`/host?roomCode=${data.roomCode}&role=host`);
+    } catch (err) {
+        console.error("error creating session:", err);
+        alert("server error");
+    }
+};
     return (
         <>
         <nav className="navbar">
@@ -51,7 +79,7 @@ const HostOrJoin: React.FC = () => {
                 {/* button sends you to host page */}
                 <button
                     className="big-btn"
-                    onClick={() => navigate("/host")}
+                    onClick={handleHost}
                     >🎶 Host a Mixlist
                 </button>
 
