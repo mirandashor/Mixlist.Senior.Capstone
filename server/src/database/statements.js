@@ -182,6 +182,112 @@ function createSession(hostUserId) {
     });
 }
 
+//users join an existing session
+//find session by room code, then add the user to that session table
+function joinSession(roomCode, userId) {
+    //success or error
+    return new Promise((resolve, reject) => {
+        //find the row in the db for the session that matches the inputted room code
+        //db.get = get one row, db.all = get many row, db.run = insert/update/delete
+        db.get(
+            //look in session_room table, find the row where room_code matches the input one
+            //select room code row from session_room where it matches the room code
+            `SELECT * FROM session_room WHERE room_code = ?`,
+            [roomCode],
+            //db error
+            function(err, session) {
+                if (err) {
+                    reject(err);
+                    return;
+                }
+                //room code error
+                if (!session) {
+                    reject(new Error("session not found"));
+                    return;
+                }
+                //session room no longer open. (playlist generated)
+                if (session.status !== "waiting") {
+                    reject(new Error("session is locked"));
+                    return;
+                }
+
+                //add the user into session_users table
+                //insert session room id = found from room code, and user id = joining user
+                db.run(
+                    `INSERT INTO session_users
+                    (session_room_id, user_id)
+                    VALUES (?, ?)`,
+                    [session.id, userId],
+
+                    function (err2) {
+                        //stop if insert fails (e.g. user tries joining twice)
+                        if (err2) {
+                            reject(err2);
+                            return;
+                        }
+                        //return the session info as structured json if join works
+                        resolve({
+                            sessionId: session.id,
+                            roomCode: session.room_code,
+                            userId: userId
+                        });
+                    }
+                );
+            }
+        );
+    });
+}
+//GET session users. using room code, get all users and display them
+//by finding the session by room code
+//to see all users in the session for frontend and back
+//find this room code then put all users inside it 
+function getSessionUsers(roomCode) {
+    return new Promise((resolve, reject) => {
+        //find the session that matches the inputted room code from session_room table
+        db.get(
+            `SELECT * FROM session_room WHERE room_code = ?`,
+            [roomCode],
+            function (err, session) {
+                //db error
+                if (err) {
+                    reject(err);
+                    return;
+                }
+                //room code error
+                if (!session) {
+                    reject(new Error("session not found"));
+                    return;
+                }
+
+                //get all db info on users linked to that session
+                //from session_users table, match the user_id to the users table
+                //keep only rows where session_room_id matches this room
+                //return user info
+                db.all(
+                    `SELECT users.id, users.spotify_user_id, users.display_name
+                     FROM session_users
+                     JOIN users ON session_users.user_id = users.id
+                     WHERE session_users.session_room_id = ?`,
+                    [session.id],
+                    function (err2, users) {
+                        //query error
+                        if (err2) {
+                            reject(err2);
+                            return;
+                        }
+                        //return session info and the users in it 
+                        resolve({
+                            sessionId: session.id,
+                            roomCode: session.room_code,
+                            users: users
+                        });
+                    }
+                );
+            }
+        );
+    });
+}
+
 //delete the data in the database after a session ends
 function clearSessionData() {
     db.run(`DELETE FROM session_users`);
@@ -194,5 +300,7 @@ function clearSessionData() {
 module.exports = {
     saveUserAndTracks,
     createSession,
+    joinSession,
+    getSessionUsers,
     clearSessionData,
 };
