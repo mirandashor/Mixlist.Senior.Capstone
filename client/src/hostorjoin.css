@@ -342,3 +342,18 @@ section {
         align-items: flex-start;
     }
 }
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 800;
+    font-size: 1.8rem;
+    color: #2d1b4e;
+}
+
+.logo img {
+    height: 36px;
+    width: auto;
+    object-fit: contain;
+}
