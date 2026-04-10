@@ -1,7 +1,6 @@
-import { useNavigate, Link } from "react-router-dom";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./hostorjoin.css";
-import logo from "./assets/logo.png";
-
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
 const HostOrJoin: React.FC = () => {
@@ -44,62 +43,40 @@ const handleHost = async () => {
 };
     return (
         <>
-            <nav className="navbar">
-                <a href="/" className="logo">
-                    <img src={logo} alt="Mixlist logo" />
-                    <span>Mixlist</span>
-                </a>
+        <nav className="navbar">
+            <div className="logo">🎵 Mixlist</div>
 
-                <div className="nav-buttons">
-                    <Link to="/info#how-it-works">How it works</Link>
-                    <Link to="/info#faq">FAQ</Link>
-                    <Link to="/info#about">About Us</Link>
-                    <Link to="/info#support">Support</Link>
+            <div className="nav-links">
+                <a href="/#flow">How it works</a>
+                <a href="/#features">FAQ</a>
+                <a href="/#about">About Us</a>
+                <a href="/#support">Support</a>
+            </div>
+        </nav>
+
+        <main className="page-wrapper">
+            <section className="hero-section">
+                <div className="hero-text">
+                    <h1>Mix music with everyone in the room</h1>
+                    <p>
+                        Create or join a live playlist where everyone contributes 
+                        their taste. No more fighting over the aux.
+                    </p>
+
+                    <div className="hero-buttons">
+                        <button
+                            className="small-btn primary-small"
+                            onClick={() => navigate("/join")}
+                            >Get Started
+                        </button>
+                        <button
+                            className="small-btn secondary-small"
+                            onClick={() => navigate("/#flow")}
+                            >Learn More
+                        </button>
+                    </div>
                 </div>
-            </nav>
-
-            <main className="page-wrapper">
-                <section className="hero-section">
-                    <div className="hero-text">
-                        <h1>Choose how you want to join the mix</h1>
-                        <p>
-                            Start a session or jump into one with a room code.
-                            Mixlist makes group playlist creation simple.
-                        </p>
-                    </div>
-                </section>
-
-                <section className="dashboard-container">
-                    <button
-                        className="big-btn"
-                        onClick={() => navigate("/join")}
-                    >
-                        🎧 Join a Mixlist
-                    </button>
-
-                    <button
-                        className="big-btn"
-                        onClick={() => navigate("/host")}
-                    >
-                        🎶 Host a Mixlist
-                    </button>
-
-                    <div className="info-box">
-                        <strong>Join a Mixlist</strong>
-                        <br />
-                        <br />
-                        Enter a room code to join an active session and add your
-                        taste profile to the mix in seconds.
-                    </div>
-
-                    <div className="info-box">
-                        <strong>Host a Mixlist</strong>
-                        <br />
-                        <br />
-                        Create a session, invite others, and build a playlist
-                        together from one shared space.
-                    </div>
-                </section>
+            </section>
 
             <section className="dashboard-container">
                 {/* button sends you to join page */}
