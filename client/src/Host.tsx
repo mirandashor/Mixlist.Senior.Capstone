@@ -75,26 +75,45 @@ const Host = () => {
           <a href="/">Home</a>
           <a href="/#flow">How it works</a>
           <a href="/#features">FAQ</a>
+          <a href="/#about">About Us</a>
           <a href="/#about">Support</a>
         </div>
       </nav>
 
-      <main className="page-wrapper">
-        <section className="host-hero">
-          <div className="host-hero-text">
-            <span className="hero-badge">
-              {/* if the user is a guest, show waiting room, else if host, show start session */}
-              {isGuest ? "Waiting room" : "Start your own session"}
-              </span>
-            {/* if guest, show waiting text, else if host, show session info */}
-            <h1>{isGuest ? "Waiting for the host to start" : "Set the mood for the room"}</h1>
-            <p>
-              {isGuest
-                ? "The host is mixing the vibe for this room. Hang tight until the session starts and you’ll be directed to the Mix."
-                : "Start a new Mixlist by choosing the vibe, genre, or mood you want."}
-            </p>
-          </div>
-        </section>
+<main className="page-wrapper">
+  <section className="host-hero">
+
+    <div className="host-hero-full">
+
+      <div className="badge-row">
+
+        <button className="back-btn" onClick={() => navigate(-1)}>
+          ← Go Back
+        </button>
+
+        <span className="hero-badge">
+          {isGuest ? "Waiting room" : "Start your own session"}
+        </span>
+
+      </div>
+
+      <div className="host-hero-text">
+        <h1>
+          {isGuest
+            ? "Waiting for the host to start"
+            : "Set the mood for the room"}
+        </h1>
+
+        <p>
+          {isGuest
+            ? "The host is mixing the vibe for this room. Hang tight until the session starts and you’ll be directed to the Mix."
+            : "Start a new Mixlist by choosing the vibe, genre, or mood you want."}
+        </p>
+      </div>
+
+    </div>
+
+  </section>
 
         <section className="host-card">
           <h2>{isGuest ? "Waiting Room" : "Host a Mixlist"}</h2>

@@ -84,25 +84,38 @@ body {
     padding: 60px 24px 70px;
 }
 
-/* HERO */
-.host-hero {
-    margin-bottom: 32px;
+.host-hero-full {
+    width: 100%;
 }
 
 .host-hero-text {
-    max-width: 720px;
+    max-width: 700px;
+}
+
+/* reuse these if already defined */
+.badge-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.back-btn {
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(136, 111, 212, 0.28);
+    background: rgba(167, 139, 250, 0.18);
+    color: #6c4aa3;
+    font-weight: 700;
+    cursor: pointer;
 }
 
 .hero-badge {
-    display: inline-block;
-    padding: 9px 16px;
+    padding: 10px 16px;
     border-radius: 999px;
-    background: rgba(139, 92, 246, 0.12);
-    color: var(--purple-dark);
-    font-size: 0.95rem;
+    background: rgba(167, 139, 250, 0.18);
+    color: #6d28d9;
     font-weight: 700;
-    margin-bottom: 18px;
-    border: 1px solid rgba(139, 92, 246, 0.18);
 }
 
 .host-hero-text h1 {

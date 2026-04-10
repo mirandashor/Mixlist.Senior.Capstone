@@ -65,20 +65,36 @@ const Join = () => {
           <a href="/">Home</a>
           <a href="/#flow">How it works</a>
           <a href="/#features">FAQ</a>
+          <a href="/#about">About Us</a>
           <a href="/#about">Support</a>
         </div>
       </nav>
 
-      <main className="page-wrapper">
-        <section className="join-hero">
-          <div className="join-hero-text">
-            <span className="hero-badge">Join a live session</span>
-            <h1>Jump into the mix</h1>
-            <p>
-              Enter a room code to join an active MixList
-            </p>
-          </div>
-        </section>
+<main className="page-wrapper">
+  <section className="join-hero">
+
+    <div className="join-hero-full">
+
+      <div className="badge-row">
+        <button className="back-btn" onClick={() => navigate(-1)}>
+          ← Go Back
+        </button>
+
+        <span className="hero-badge">
+          Join a live session
+        </span>
+      </div>
+
+      <div className="join-hero-text">
+        <h1>Jump into the mix</h1>
+        <p>
+          Enter a room code to join an active MixList
+        </p>
+      </div>
+
+    </div>
+
+  </section>
 
         <section className="join-card">
           <h2>Join a Mixlist</h2>

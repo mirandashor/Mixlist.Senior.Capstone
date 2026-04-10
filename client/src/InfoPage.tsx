@@ -24,7 +24,8 @@ const InfoPage = () => {
                     <span>Mixlist</span>
                 </a>
 
-                <div className="nav-buttons">
+                <div className="nav-links">
+                    <a href="/">Home</a>
                     <a href="/info#how-it-works">How it works</a>
                     <a href="/info#faq">FAQ</a>
                     <a href="/info#about">About Us</a>

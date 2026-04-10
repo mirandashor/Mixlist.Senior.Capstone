@@ -51,6 +51,7 @@ const handleHost = async () => {
             </a>
 
             <div className="nav-links">
+                <a href="/">Home</a>
                 <a href="/#flow">How it works</a>
                 <a href="/#features">FAQ</a>
                 <a href="/#about">About Us</a>

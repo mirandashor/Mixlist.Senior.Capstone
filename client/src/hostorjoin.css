@@ -81,7 +81,7 @@ body {
     border: none;
     border-radius: 24px;
     cursor: pointer;
-    background: linear-gradient(135deg, #a78bfa, #c4b5fd);
+    background: linear-gradient(135deg, #baa3ff, #967ff3);
     color: #2e1065;
     box-shadow: 0 12px 28px rgba(91, 33, 182, 0.18);
     transition: all 0.22s ease;
