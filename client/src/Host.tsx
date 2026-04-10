@@ -1,7 +1,7 @@
 //use state for room code and users
 //use effect for reading query param and fetch users when the room exists
 import { useNavigate } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./host.css";
 
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;

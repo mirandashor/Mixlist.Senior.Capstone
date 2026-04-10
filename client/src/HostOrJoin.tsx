@@ -1,6 +1,6 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./hostorjoin.css";
+
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
 const HostOrJoin: React.FC = () => {

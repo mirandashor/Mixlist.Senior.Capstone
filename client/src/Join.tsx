@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import "./join.css";
 // store changing data (room code input)
-import React, { useState } from "react";
+import { useState } from "react";
 
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
