@@ -17,7 +17,7 @@ const Landing: React.FC = () => {
                     <span>Mixlist</span>
                 </div>
 
-                <div className="nav-buttons">
+                <div className="nav-links">
                     <Link to="/info#how-it-works">How it works</Link>
                     <Link to="/info#faq">FAQ</Link>
                     <Link to="/info#about">About Us</Link>

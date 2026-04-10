@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import "./hostorjoin.css";
+import logo from "./assets/logo.png";
 
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
@@ -44,7 +45,10 @@ const handleHost = async () => {
     return (
         <>
         <nav className="navbar">
-            <div className="logo">🎵 Mixlist</div>
+            <a href="/" className="logo">
+                <img src={logo} alt="Mixlist logo" />
+                <span>Mixlist</span>
+            </a>
 
             <div className="nav-links">
                 <a href="/#flow">How it works</a>
@@ -57,24 +61,11 @@ const handleHost = async () => {
         <main className="page-wrapper">
             <section className="hero-section">
                 <div className="hero-text">
-                    <h1>Mix music with everyone in the room</h1>
+                    <h1>Choose how you want to join the mix</h1>
                     <p>
-                        Create or join a live playlist where everyone contributes 
-                        their taste. No more fighting over the aux.
+                        Start a session or jump into one with a room code.
+                        Mixlist makes group playlist creation simple.
                     </p>
-
-                    <div className="hero-buttons">
-                        <button
-                            className="small-btn primary-small"
-                            onClick={() => navigate("/join")}
-                            >Get Started
-                        </button>
-                        <button
-                            className="small-btn secondary-small"
-                            onClick={() => navigate("/#flow")}
-                            >Learn More
-                        </button>
-                    </div>
                 </div>
             </section>
 
@@ -96,16 +87,16 @@ const handleHost = async () => {
                     <strong>Join a Mixlist</strong>
                     <br />
                     <br />
-                    Enter a room code or scan a QR code to join an active session and
-                    add your taste profile to the mix in seconds.
+                    Enter a room code to join an active session and add your
+                    taste profile to the Mix in seconds.
                 </div>
 
                 <div className="info-box">
                     <strong>Host a Mixlist</strong>
                     <br />
                     <br />
-                    Create a session, start a playlist, and invite others to help shape
-                    the soundtrack in real time.
+                    Create a session, invite others, and build a playlist
+                    together from one shared space.
                 </div>
             </section>
 

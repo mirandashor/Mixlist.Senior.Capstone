@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import "./join.css";
+import logo from "./assets/logo.png";
 // store changing data (room code input)
 import { useState } from "react";
 
@@ -55,10 +56,10 @@ const Join = () => {
   return (
     <>
       <nav className="navbar">
-        <div className="logo">
-          <span className="logo-icon">🎵</span>
+        <a href="/" className="logo">
+          <img src={logo} alt="Mixlist logo" />
           <span>Mixlist</span>
-        </div>
+        </a>
 
         <div className="nav-links">
           <a href="/">Home</a>
@@ -74,8 +75,7 @@ const Join = () => {
             <span className="hero-badge">Join a live session</span>
             <h1>Jump into the mix</h1>
             <p>
-              Enter a room code or scan a QR code to join an active Mixlist
-              and add your music taste to the room.
+              Enter a room code to join an active MixList
             </p>
           </div>
         </section>
@@ -117,14 +117,14 @@ const Join = () => {
           </div>
 
           <div className="info-card">
-            <h3>QR Option</h3>
-            <p>Scan a QR code if the host has one available for the session.</p>
+            <h3>Wait For the Host</h3>
+            <p>The host will choose parameters and start the session once everyone is in.</p>
           </div>
 
           <div className="info-card">
             <h3>Live Playlist</h3>
             <p>
-              Once you are in, your preferences can help shape the mix in real
+              Once you are in, your music taste can help shape the mix in real
               time.
             </p>
           </div>

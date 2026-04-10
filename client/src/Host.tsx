@@ -3,6 +3,7 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./host.css";
+import logo from "./assets/logo.png";
 
 const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
@@ -47,8 +48,12 @@ const Host = () => {
         console.error("error getting users:", err);
       }
     };
-    //runs every time the room code changes
+    //runs when the room code changes
     fetchUsers();
+    //auto refresh so we can see new users 
+    const interval = setInterval(fetchUsers, 3000);
+
+    return () => clearInterval(interval);
   }, [roomCode]);
 
   //helper var to check if guest or host for what they see on site
@@ -61,10 +66,10 @@ const Host = () => {
   return (
     <>
       <nav className="navbar">
-        <div className="logo">
-          <span className="logo-icon">🎵</span>
+        <a href="/" className="logo">
+          <img src={logo} alt="Mixlist logo" />
           <span>Mixlist</span>
-        </div>
+        </a>
 
         <div className="nav-links">
           <a href="/">Home</a>
