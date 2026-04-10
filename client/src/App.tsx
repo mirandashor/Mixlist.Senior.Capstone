@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [selectedGenre, setSelectedGenre] = useState<string[]>([]);
+  const [playlistId, setPlaylistId] = useState<string | null>(null);
 
   const handleLogin = () => {
     window.location.href = "http://localhost:5000/auth/login";
@@ -40,7 +41,10 @@ function App() {
       const data = await res.json();
       console.log("RESPONSE:", data);
 
+      setPlaylistId(data.playlistId);
+
       alert("Playlist created!");
+
     } catch (error) {
       console.error("BUTTON ERROR:", error);
       alert("Something broke. Check console.");
@@ -96,6 +100,37 @@ function App() {
       </button>
 
     </div>
+
+{playlistId && (
+  <div style={{ marginTop: "20px" }}>
+    <h3>Your Playlist</h3>
+
+    <iframe
+      src={`https://open.spotify.com/embed/playlist/${playlistId}`}
+      width="300%"
+      height="80"
+      style={{ borderRadius: "14px" }}
+      frameBorder="0"
+      allow="autoplay; encrypted-media;"
+    />
+  </div>
+)}
+
+{playlistId && (
+  <div style={{ marginTop: "20px" }}>
+    <h3>Your Playlist</h3>
+
+    <iframe
+      src={`https://open.spotify.com/embed/playlist/${playlistId}`}
+      width="300%"
+      height="800"
+      style={{ borderRadius: "14px" }}
+      frameBorder="0"
+      allow="autoplay; encrypted-media;"
+    />
+  </div>
+)}
+
     </div>
   );
 
