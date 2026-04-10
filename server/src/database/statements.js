@@ -73,30 +73,48 @@ db.serialize(() => { //run in order
 
 //save the user into the user table database dynamically
 function saveUserAndTracks(user, tracks) {
-    db.run(
-        //insert the info using their spotify ID and display name
-        `INSERT OR IGNORE INTO users (spotify_user_id, display_name)
-        VALUES (?, ?)`,
-        [user.id, user.display_name],
-        function(err) {
-            if (err) return console.error(err);
+    return new Promise((resolve, reject) => {
+        db.run(
+            //insert the info using their spotify ID and display name
+            `INSERT OR IGNORE INTO users (spotify_user_id, display_name)
+            VALUES (?, ?)`,
+            [user.id, user.display_name],
+            function(err) {
+                if (err) {
+                    reject(err);
+                    return;
+                }
 
-            let userId = this.lastID;
+                let userId = this.lastID;
 
-            if (!userId) {
-                db.get(
-                    `SELECT id FROM users WHERE spotify_user_id = ?`,
-                    [user.id],
-                    (err, row) => {
-                        if (err) return console.error(err);
-                        insertTracks(row.id, tracks);
-                    }
-                );
-            } else { 
-                insertTracks(userId, tracks);
+                //if user already existed, get their existing database id
+                if (!userId) {
+                    db.get(
+                        `SELECT id FROM users WHERE spotify_user_id = ?`,
+                        [user.id],
+                        (err, row) => {
+                            if (err) {
+                                reject(err);
+                                return;
+                            }
+
+                            if (!row) {
+                                reject(new Error("user not found after save"));
+                                return;
+                            }
+
+                            userId = row.id;
+                            insertTracks(userId, tracks);
+                            resolve(userId);
+                        }
+                    );
+                } else {
+                    insertTracks(userId, tracks);
+                    resolve(userId);
+                }
             }
-        }
-    );
+        );
+    });
 }
 
 //insert a users top tracks into top_tracks table in database 

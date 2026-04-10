@@ -87,13 +87,14 @@ router.get("/callback", async (req, res) => {
       artist: track.artists[0].name,
     }));
 
-    saveUserAndTracks(user, tracks);
+    const userId = await saveUserAndTracks(user, tracks);
     console.log("Save worked");
+    console.log("DB user id:", userId);
 
     console.log("Redirecting to frontend");
 
     res.redirect(
-      `${FRONTEND_URL}/hostorjoin?access_token=${encodeURIComponent(access_token)}`
+      `${FRONTEND_URL}/hostorjoin?access_token=${encodeURIComponent(access_token)}&userId=${userId}`
     );
   } catch (error: any) {
     console.error("CALLBACK ERROR:");

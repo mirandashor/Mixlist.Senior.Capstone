@@ -12,9 +12,18 @@ const Join = () => {
   //setRoomCode = updates the value when a user inputs a room code
   const [roomCode, setRoomCode] = useState("");
 
+  //get the logged in users id from URL
+  const params = new URLSearchParams(window.location.search);
+  const userId = params.get("userId");
+
   //send post request to backend to know what room to join & get user id for who is joining
   const handleJoin = async () => {
     try {
+      if (!userId) {
+        alert ("no logged in user found");
+        return;
+      }
+      //join session using user id to add to the session
       const res = await fetch(`${apiBaseUrl}/api/session/join`, {
         method: "POST",
         headers: {
@@ -22,7 +31,7 @@ const Join = () => {
         },
         body: JSON.stringify({
           roomCode,
-          userId: 2,
+          userId: Number(userId),
         }),
       });
 

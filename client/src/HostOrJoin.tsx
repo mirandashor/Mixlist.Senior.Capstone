@@ -6,16 +6,25 @@ const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 const HostOrJoin: React.FC = () => {
     const navigate = useNavigate();
 
+//get logged in user id from URL after spotify auth callback
+const params = new URLSearchParams(window.location.search);
+const userId = params.get("userId");
+
 //host button creates a session then navigates to join button
 const handleHost = async () => {
     try {
+        if(!userId) {
+            alert("no logged in user found");
+            return;
+        }
+        //host user id is set to the host room to create session with them
         const res = await fetch(`${apiBaseUrl}/api/session/create`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                hostUserId: 1,
+                hostUserId: Number(userId),
             }),
         });
 
@@ -26,7 +35,7 @@ const handleHost = async () => {
             return;
         }
 
-        navigate(`/host?roomCode=${data.roomCode}&role=host`);
+        navigate(`/host?roomCode=${data.roomCode}&role=host&userId=${userId}`);
     } catch (err) {
         console.error("error creating session:", err);
         alert("server error");
@@ -73,7 +82,7 @@ const handleHost = async () => {
                 {/* button sends you to join page */}
                 <button
                     className="big-btn"
-                    onClick={() => navigate("/join")}
+                    onClick={() => navigate(`/join?userId=${userId}`)}
                     >🎧 Join a Mixlist
                 </button>
                 {/* button sends you to host page */}
