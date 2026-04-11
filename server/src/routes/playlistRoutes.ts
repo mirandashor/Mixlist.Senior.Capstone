@@ -4,10 +4,27 @@ import { getArtistTags } from "../services/lastfmService";
 
 const router = express.Router();
 const { getTracksForSession } = require("../database/statements");
+const { getSessionUsers } = require("../database/statements");
 
 router.post("/generate-playlist", async (req, res) => {
   try {
     const { accessToken, roomCode, genre } = req.body;
+
+    //  Build playlist name from genres
+    const playlistName =
+      genre && genre.length > 0
+        ? `${genre.join(" & ")} Mixlist`
+        : "Mixlist";
+
+    //  Get users for description
+    const sessionData = await getSessionUsers(roomCode);
+    const names = sessionData.users.map((u: any) => u.display_name);
+
+    // limit to 4 names max
+    const shortNames = names.slice(0, 4);
+
+    //  Build description
+    const description = `Built by ${shortNames.join(", ")} 🎶 https://mixlist-senior-capstone.onrender.com`;
 
     // (prevents crashes)
     if (!accessToken) {
@@ -75,8 +92,8 @@ const uris = sortedTracks.map(id => `spotify:track:${id}`);
     const playlistRes = await axios.post(
       "https://api.spotify.com/v1/me/playlists",
       {
-        name: "My Generated Playlist",
-        description: "Built from my top tracks",
+        name: playlistName,
+        description: description,
         public: false,
       },
       {

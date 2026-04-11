@@ -13,6 +13,11 @@ const Host = () => {
   //users stores list of users in the session, setUsers updates teh users list 
   const [roomCode, setRoomCode] = useState("");
   const [selectedGenre, setSelectedGenre] = useState<string[]>([]);
+
+  //search bar functionality
+  const [search, setSearch] = useState("");
+  const [showDropdown, setShowDropdown] = useState(false);
+
   const [users, setUsers] = useState<any[]>([]);
   //roles state, set if user or guest
   const [role, setRole] = useState("");
@@ -98,6 +103,18 @@ const Host = () => {
   }
 };
 
+// genre filtering search bar 
+
+const genres = [
+  "Rock","Indie","Soundtracks","Holiday","Metal","Chill","Pop","Ska",
+  "Dance","Country","Background","Electronic","Religious","Rap","R&B","Reggae"
+].sort();
+
+const filteredGenres = genres.filter(
+  (g) =>
+    g.toLowerCase().includes(search.toLowerCase()) &&
+    !selectedGenre.includes(g)
+);
 
   return (
     <>
@@ -185,48 +202,85 @@ const Host = () => {
                 Pick the mood and start the session.
               </p>
 
+              <div style={{ marginBottom: "15px", position: "relative" }}>
 
-                <div style={{ marginBottom: "15px" }}>
-                  <h3>Select Genres</h3>
+              {/* Selected tags */}
+              <div style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: "5px",
+                marginBottom: "5px"
+              }}>
+                {selectedGenre.map((g) => (
+                  <span
+                    key={g}
+                    style={{
+                      background: "#333",
+                      color: "white",
+                      padding: "4px 8px",
+                      borderRadius: "12px",
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "5px"
+                    }}
+                  >
+                    {g}
+                    <span
+                      style={{ cursor: "pointer" }}
+                      onClick={() =>
+                        setSelectedGenre(prev => prev.filter(x => x !== g))
+                      }
+                    >
+                      ❌
+                    </span>
+                  </span>
+                ))}
+              </div>
 
-                  {[
-                    "Rock",
-                    "Indie",
-                    "Soundtracks",
-                    "Holiday",
-                    "Metal",
-                    "Chill",
-                    "Pop",
-                    "Ska",
-                    "Dance",
-                    "Country",
-                    "Background",
-                    "Electronic",
-                    "Religious",
-                    "Rap",
-                    "R&B",
-                    "Reggae"
-                  ]
-                    .sort()
-                    .map((g) => (
-                      <label key={g} style={{ display: "block" }}>
-                        <input
-                          type="checkbox"
-                          value={g}
-                          onChange={(e) => {
-                            const value = e.target.value;
+              {/* Search input */}
+              <input
+                type="text"
+                placeholder="Search genres..."
+                value={search}
+                onChange={(e) => {
+                  setSearch(e.target.value);
+                  setShowDropdown(true);
+                }}
+                onFocus={() => setShowDropdown(true)}
+                style={{ width: "100%", padding: "8px" }}
+              />
 
-                            setSelectedGenre((prev) =>
-                              prev.includes(value)
-                                ? prev.filter((x) => x !== value)
-                                : [...prev, value]
-                            );
-                          }}
-                        />
-                        {g}
-                      </label>
-                    ))}
+              {/* Dropdown */}
+              {showDropdown && search && (
+                <div style={{
+                  position: "absolute",
+                  width: "100%",
+                  background: "white",
+                  border: "1px solid #ccc",
+                  maxHeight: "150px",
+                  overflowY: "auto",
+                  zIndex: 10
+                }}>
+                  {filteredGenres.map((g) => (
+                    <div
+                      key={g}
+                      style={{
+                        padding: "8px",
+                        cursor: "pointer"
+                      }}
+                      onClick={() => {
+                        setSelectedGenre(prev => [...prev, g]);
+                        setSearch("");
+                        setShowDropdown(false);
+                      }}
+                    >
+                      {g}
+                    </div>
+                  ))}
                 </div>
+              )}
+            </div>
+                
 
               <form className="host-form">
                 <div className="input-row">
