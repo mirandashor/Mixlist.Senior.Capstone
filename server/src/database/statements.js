@@ -315,10 +315,41 @@ function clearSessionData() {
     console.log("Session data cleared");
 }
 
+//user handling
+
+function getTracksForSession(roomCode) {
+    return new Promise((resolve, reject) => {
+        db.get(
+            `SELECT * FROM session_room WHERE room_code = ?`,
+            [roomCode],
+            (err, session) => {
+                if (err) return reject(err);
+                if (!session) return reject(new Error("Session not found"));
+
+                db.all(
+                    `SELECT top_tracks.spotify_track_id
+                     FROM session_users
+                     JOIN top_tracks ON session_users.user_id = top_tracks.user_id
+                     WHERE session_users.session_room_id = ?`,
+                    [session.id],
+                    (err2, rows) => {
+                        if (err2) return reject(err2);
+
+                        const trackIds = rows.map(r => r.spotify_track_id);
+                        resolve(trackIds);
+                    }
+                );
+            }
+        );
+    });
+}
+
+
 module.exports = {
     saveUserAndTracks,
     createSession,
     joinSession,
     getSessionUsers,
     clearSessionData,
+    getTracksForSession
 };
