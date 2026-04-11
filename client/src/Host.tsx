@@ -60,10 +60,6 @@ const Host = () => {
   //helper var to check if guest or host for what they see on site
   const isGuest = role === "guest";
 
-  const handleCreate = () => {
-    navigate("/hostorjoin");
-  };
-
 
   const handleGeneratePlaylist = async () => {
   try {
