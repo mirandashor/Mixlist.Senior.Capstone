@@ -1,9 +1,9 @@
 import express from "express";
 import axios from "axios";
-import { getTracksForSession } from "../database/statements";
 import { getArtistTags } from "../services/lastfmService";
 
 const router = express.Router();
+const { getTracksForSession } = require("../database/statements");
 
 router.post("/generate-playlist", async (req, res) => {
   try {
@@ -47,7 +47,7 @@ for (const track of tracks) {
 const isMatch =
   !genre || genre.length === 0
     ? true
-    : tagNames.some(tag =>
+    : tagNames.some((tag: any) =>
         genre.some((g: string) => {
           const t = tag.toLowerCase();
           const gLower = g.toLowerCase();
