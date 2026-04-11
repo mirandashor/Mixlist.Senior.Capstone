@@ -12,6 +12,7 @@ const Host = () => {
   //room code stores current room code, setRoomCode updates the room code
   //users stores list of users in the session, setUsers updates teh users list 
   const [roomCode, setRoomCode] = useState("");
+  const [selectedGenre, setSelectedGenre] = useState<string[]>([]);
   const [users, setUsers] = useState<any[]>([]);
   //roles state, set if user or guest
   const [role, setRole] = useState("");
@@ -82,6 +83,7 @@ const Host = () => {
       body: JSON.stringify({
         accessToken,
         roomCode,
+        genre: selectedGenre
       }),
     });
 
@@ -186,6 +188,49 @@ const Host = () => {
               <p className="host-subtext">
                 Pick the mood and start the session.
               </p>
+
+
+                <div style={{ marginBottom: "15px" }}>
+                  <h3>Select Genres</h3>
+
+                  {[
+                    "Rock",
+                    "Indie",
+                    "Soundtracks",
+                    "Holiday",
+                    "Metal",
+                    "Chill",
+                    "Pop",
+                    "Ska",
+                    "Dance",
+                    "Country",
+                    "Background",
+                    "Electronic",
+                    "Religious",
+                    "Rap",
+                    "R&B",
+                    "Reggae"
+                  ]
+                    .sort()
+                    .map((g) => (
+                      <label key={g} style={{ display: "block" }}>
+                        <input
+                          type="checkbox"
+                          value={g}
+                          onChange={(e) => {
+                            const value = e.target.value;
+
+                            setSelectedGenre((prev) =>
+                              prev.includes(value)
+                                ? prev.filter((x) => x !== value)
+                                : [...prev, value]
+                            );
+                          }}
+                        />
+                        {g}
+                      </label>
+                    ))}
+                </div>
 
               <form className="host-form">
                 <div className="input-row">

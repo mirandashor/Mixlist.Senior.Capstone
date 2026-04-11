@@ -1,12 +1,13 @@
 import express from "express";
 import axios from "axios";
 import { getTracksForSession } from "../database/statements";
+import { getArtistTags } from "../services/lastfmService";
 
 const router = express.Router();
 
 router.post("/generate-playlist", async (req, res) => {
   try {
-    const { accessToken, roomCode } = req.body;
+    const { accessToken, roomCode, genre } = req.body;
 
     // (prevents crashes)
     if (!accessToken) {
@@ -30,25 +31,40 @@ router.post("/generate-playlist", async (req, res) => {
     console.log("USER ID:", userId);
 
 // 1. Get all track IDs from session
-const trackIds = await getTracksForSession(roomCode);
+const tracks = await getTracksForSession(roomCode);
 
-console.log("TRACK IDS FROM DB:", trackIds.length);
+console.log("TRACKS FROM DB:", tracks.length);
 
 // 2. Score tracks (count duplicates)
 const trackScores: Record<string, number> = {};
 
-for (const id of trackIds) {
-  trackScores[id] = (trackScores[id] || 0) + 1;
+for (const track of tracks) {
+  const artist = track.artist_name;
+
+  const tags = await getArtistTags(artist);
+  const tagNames = tags.map((t: any) => t.name.toLowerCase());
+
+  const isMatch =
+    !genre || genre.length === 0
+      ? true
+      : genre.some((g: string) =>
+          tagNames.some(tag =>
+            tag.includes(g.toLowerCase())
+          )
+        );
+
+  if (isMatch) {
+    const id = track.spotify_track_id;
+    trackScores[id] = (trackScores[id] || 0) + 1;
+  }
 }
 
-// 3. Sort by score (highest first)
+// sort by score
 const sortedTracks = Object.entries(trackScores)
   .sort((a, b) => b[1] - a[1])
   .map(([id]) => id);
 
-console.log("SORTED TRACKS:", sortedTracks.length);
-
-// 4. Convert to Spotify URIs
+// 4. convert to Spotify URIs
 const uris = sortedTracks.map(id => `spotify:track:${id}`);
 
     console.log("TRACK COUNT:", uris.length);
