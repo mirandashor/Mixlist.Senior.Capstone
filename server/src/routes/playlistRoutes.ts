@@ -37,7 +37,7 @@ router.post("/generate-playlist", async (req, res) => {
 
     console.log("TOKEN RECEIVED:", accessToken);
 
-    // 1. Get current user
+    // Get current user
     const meRes = await axios.get("https://api.spotify.com/v1/me", {
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -52,7 +52,7 @@ const tracks = await getTracksForSession(roomCode);
 
 console.log("TRACKS FROM DB:", tracks.length);
 
-// 2. Score tracks (count duplicates)
+// Score tracks (count duplicates)
 const trackScores: Record<string, number> = {};
 
 for (const track of tracks) {
@@ -78,17 +78,35 @@ const isMatch =
   }
 }
 
-// sort by score
-const sortedTracks = Object.entries(trackScores)
-  .sort((a, b) => b[1] - a[1])
-  .map(([id]) => id);
+// group by score
+const grouped: Record<number, string[]> = {};
+
+for (const [id, score] of Object.entries(trackScores)) {
+  if (!grouped[score]) grouped[score] = [];
+  grouped[score].push(id);
+}
+
+// shuffle each group
+const shuffle = (arr: string[]) => {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+};
+
+Object.values(grouped).forEach(shuffle);
+
+// flatten groups (high score first)
+const sortedTracks = Object.keys(grouped)
+  .sort((a, b) => Number(b) - Number(a))
+  .flatMap(score => grouped[Number(score)]);
 
 // 4. convert to Spotify URIs
 const uris = sortedTracks.map(id => `spotify:track:${id}`);
 
     console.log("TRACK COUNT:", uris.length);
 
-    // 3. Create playlist
+    // Create playlist
     const playlistRes = await axios.post(
       "https://api.spotify.com/v1/me/playlists",
       {
@@ -107,7 +125,7 @@ const uris = sortedTracks.map(id => `spotify:track:${id}`);
     const playlistId = playlistRes.data.id;
     console.log("PLAYLIST CREATED:", playlistId);
 
-    // 4. Add tracks
+    // Add tracks
     await axios.post(
       `https://api.spotify.com/v1/playlists/${playlistId}/items`,
       {
