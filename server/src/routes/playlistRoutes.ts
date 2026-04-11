@@ -1,15 +1,20 @@
 import express from "express";
 import axios from "axios";
+import { getTracksForSession } from "../database/statements";
 
 const router = express.Router();
 
 router.post("/generate-playlist", async (req, res) => {
   try {
-    const { accessToken } = req.body;
+    const { accessToken, roomCode } = req.body;
 
     // (prevents crashes)
     if (!accessToken) {
       return res.status(400).json({ error: "Missing access token" });
+    }
+
+    if (!roomCode) {
+     return res.status(400).json({ error: "Missing roomCode" });
     }
 
     console.log("TOKEN RECEIVED:", accessToken);
@@ -24,17 +29,27 @@ router.post("/generate-playlist", async (req, res) => {
     const userId = meRes.data.id;
     console.log("USER ID:", userId);
 
-    // 2. Get top tracks
-    const topTracksRes = await axios.get(
-      "https://api.spotify.com/v1/me/top/tracks?limit=20",
-      {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      }
-    );
+// 1. Get all track IDs from session
+const trackIds = await getTracksForSession(roomCode);
 
-    const uris = topTracksRes.data.items.map((track: any) => track.uri);
+console.log("TRACK IDS FROM DB:", trackIds.length);
+
+// 2. Score tracks (count duplicates)
+const trackScores: Record<string, number> = {};
+
+for (const id of trackIds) {
+  trackScores[id] = (trackScores[id] || 0) + 1;
+}
+
+// 3. Sort by score (highest first)
+const sortedTracks = Object.entries(trackScores)
+  .sort((a, b) => b[1] - a[1])
+  .map(([id]) => id);
+
+console.log("SORTED TRACKS:", sortedTracks.length);
+
+// 4. Convert to Spotify URIs
+const uris = sortedTracks.map(id => `spotify:track:${id}`);
 
     console.log("TRACK COUNT:", uris.length);
 

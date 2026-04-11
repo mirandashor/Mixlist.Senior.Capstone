@@ -5,3 +5,4 @@ CORS
 dotenv
 TypeScript
 ts-node-dev
+react-router-dom

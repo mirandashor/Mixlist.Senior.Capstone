@@ -63,6 +63,44 @@ const Host = () => {
     navigate("/hostorjoin");
   };
 
+
+  const handleGeneratePlaylist = async () => {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const accessToken = params.get("access_token");
+
+    if (!accessToken) {
+      alert("Missing access token");
+      return;
+    }
+
+    const res = await fetch(`${apiBaseUrl}/api/spotify/generate-playlist`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        accessToken,
+        roomCode,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.error || "Failed to generate playlist");
+      return;
+    }
+
+    alert("Playlist created!");
+
+  } catch (err) {
+    console.error("generate error:", err);
+    alert("Server error");
+  }
+};
+
+
   return (
     <>
       <nav className="navbar">
@@ -157,13 +195,13 @@ const Host = () => {
                     className="mood-input"
                   />
 
-                  <button
-                    type="button"
-                    className="create-btn"
-                    onClick={handleCreate}
-                  >
-                    Create
-                  </button>
+                <button
+                  type="button"
+                  className="create-btn"
+                  onClick={handleGeneratePlaylist}
+                >
+                  Create
+                </button>
                 </div>
 
                 <div className="host-message">

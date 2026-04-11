@@ -10,6 +10,7 @@ const HostOrJoin: React.FC = () => {
 //get logged in user id from URL after spotify auth callback
 const params = new URLSearchParams(window.location.search);
 const userId = params.get("userId");
+const accessToken = params.get("access_token");
 
 //host button creates a session then navigates to join button
 const handleHost = async () => {
@@ -36,7 +37,11 @@ const handleHost = async () => {
             return;
         }
 
-        navigate(`/host?roomCode=${data.roomCode}&role=host&userId=${userId}`);
+        const accessToken = params.get("access_token");
+
+        navigate(
+            `/host?roomCode=${data.roomCode}&role=host&userId=${userId}&access_token=${accessToken}`
+        );
     } catch (err) {
         console.error("error creating session:", err);
         alert("server error");
@@ -74,8 +79,11 @@ const handleHost = async () => {
                 {/* button sends you to join page */}
                 <button
                     className="big-btn"
-                    onClick={() => navigate(`/join?userId=${userId}`)}
-                    >🎧 Join a Mixlist
+                     onClick={() =>
+                        navigate(`/join?userId=${userId}&access_token=${accessToken}`)
+                }
+                >
+                    🎧 Join a Mixlist
                 </button>
                 {/* button sends you to host page */}
                 <button
