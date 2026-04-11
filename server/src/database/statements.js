@@ -327,7 +327,7 @@ function getTracksForSession(roomCode) {
                 if (!session) return reject(new Error("Session not found"));
 
                 db.all(
-                    `SELECT top_tracks.spotify_track_id
+                    `SELECT top_tracks.spotify_track_id, top_tracks.artist_name
                      FROM session_users
                      JOIN top_tracks ON session_users.user_id = top_tracks.user_id
                      WHERE session_users.session_room_id = ?`,

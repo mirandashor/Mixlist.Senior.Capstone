@@ -44,14 +44,16 @@ for (const track of tracks) {
   const tags = await getArtistTags(artist);
   const tagNames = tags.map((t: any) => t.name.toLowerCase());
 
-  const isMatch =
-    !genre || genre.length === 0
-      ? true
-      : genre.some((g: string) =>
-          tagNames.some(tag =>
-            tag.includes(g.toLowerCase())
-          )
-        );
+const isMatch =
+  !genre || genre.length === 0
+    ? true
+    : tagNames.some(tag =>
+        genre.some((g: string) => {
+          const t = tag.toLowerCase();
+          const gLower = g.toLowerCase();
+          return t.includes(gLower) || gLower.includes(t);
+        })
+      );
 
   if (isMatch) {
     const id = track.spotify_track_id;
