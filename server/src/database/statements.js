@@ -282,9 +282,9 @@ function getSessionUsers(roomCode) {
                 //keep only rows where session_room_id matches this room
                 //return user info
                 db.all(
-                    `SELECT top_tracks.spotify_track_id, top_tracks.artist_name
+                    `SELECT users.display_name
                     FROM session_users
-                    JOIN top_tracks ON session_users.user_id = top_tracks.user_id
+                    JOIN users ON session_users.user_id = users.id
                     WHERE session_users.session_room_id = ?`,
                     [session.id],
                     function (err2, users) {
