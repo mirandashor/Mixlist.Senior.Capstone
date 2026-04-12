@@ -27,7 +27,7 @@ router.post("/generate-playlist", async (req, res) => {
     const shortNames = names.slice(0, 5);
 
     //  Build description
-    const description = `Built by ${shortNames.join(", ")} Mix your mood at https://mixlist-senior-capstone.onrender.com`;
+    const description = `Built by ${shortNames.join(" & ")} -- Make your own mixlist at https://mixlist.onrender.com/`;
 
     // (prevents crashes)
     if (!accessToken) {
