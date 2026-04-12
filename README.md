@@ -16,11 +16,23 @@ You must have the following installed on your system:
 - git clone
 - cd Mixlist-Senior-Capstone
 ### 3. Install Dependencies
+Backend:
+- `git clone`
+- `npm install`
 
+Frontend:
 - `git clone`
 - `npm install`
 
 ### 3. Install Dependencies
+Backend:
+```bash
+- git clone
+```
+```bash
+- npm install
+```
+Frontend:
 ```bash
 - git clone
 ```
@@ -28,8 +40,36 @@ You must have the following installed on your system:
 - npm install
 ```
 ### 4. Configure Environment Variables 
+Necessary variables:
+- Spotify API key
+- LastFM API key
+- frontend URL
+- redirect URI
+
+- Google OAuth
+
+Configuration:
+Create a `.env` file inside the **server** directory with the following components: <br>
+<br>
+SPOTIFY_CLIENT_ID=(your-spotify-key)
+
+SPOTIFY_CLIENT_SECRET=(your-spotify-secret-key)
+
+FRONTEND_URL=(your-frontend-url)
+
+REDIRECT_URI=http:(your-localhost)/auth/callback
+
+LASTFM_API_KEY=(your-lastfm-key)
+
 
 ### 5. Run the Application
+Backend: 
+- `cd server`
+- `npm run dev`
+
+Frontend: 
+- `cd server`
+- `npm run dev`
 
 ----
 ## Library Setup
@@ -45,7 +85,7 @@ You must have the following installed on your system:
 After completing installation, verify the project by running both the backend and frontend locally:
 
 ### 1. Run the backend server
-   - Open a terminal in the **'server'** directory (\Mixlist-Senior-Capstone\server)
+   - Open a terminal in the **server**' directory (\Mixlist-Senior-Capstone\server)
    - run the command: **```npm run dev```** <br>
 
 **Expected Results:**
