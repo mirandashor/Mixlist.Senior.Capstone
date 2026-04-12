@@ -20,11 +20,11 @@ router.post("/generate-playlist", async (req, res) => {
     const sessionData = await getSessionUsers(roomCode);
     const names = sessionData.users.map((u: any) => u.display_name);
 
-    // limit to 4 names max
-    const shortNames = names.slice(0, 4);
+    // 5 names max
+    const shortNames = names.slice(0, 5);
 
     //  Build description
-    const description = `Built by ${shortNames.join(", ")} 🎶 https://mixlist-senior-capstone.onrender.com`;
+    const description = `Built by ${shortNames.join(", ")} Mix your mood at https://mixlist-senior-capstone.onrender.com`;
 
     // (prevents crashes)
     if (!accessToken) {
@@ -96,12 +96,12 @@ const shuffle = (arr: string[]) => {
 
 Object.values(grouped).forEach(shuffle);
 
-// flatten groups (high score first)
+// high score first
 const sortedTracks = Object.keys(grouped)
   .sort((a, b) => Number(b) - Number(a))
   .flatMap(score => grouped[Number(score)]);
 
-// 4. convert to Spotify URIs
+// convert to Spotify URIs
 const uris = sortedTracks.map(id => `spotify:track:${id}`);
 
     console.log("TRACK COUNT:", uris.length);
@@ -123,7 +123,14 @@ const uris = sortedTracks.map(id => `spotify:track:${id}`);
     );
 
     const playlistId = playlistRes.data.id;
-    console.log("PLAYLIST CREATED:", playlistId);
+
+    //Playlist state for listener redirect
+    (globalThis as any).generatedPlaylists =
+      (globalThis as any).generatedPlaylists || {};
+
+    (globalThis as any).generatedPlaylists[roomCode] = playlistId;
+
+    console.log("Playlist Created:", playlistId);
 
     // Add tracks
     await axios.post(
@@ -139,10 +146,10 @@ const uris = sortedTracks.map(id => `spotify:track:${id}`);
       }
     );
 
-    console.log("TRACKS ADDED");
+    console.log("Tracks added");
 
     res.json({
-      message: "Playlist created!",
+      message: "Playlist created",
       playlistId: playlistId
     });
 
@@ -154,6 +161,23 @@ const uris = sortedTracks.map(id => `spotify:track:${id}`);
       details: err.response?.data || err.message,
     });
   }
+});
+
+// poll for playlist readiness
+router.get("/status/:roomCode", (req, res) => {
+  const { roomCode } = req.params;
+
+  const playlistId =
+    (globalThis as any).generatedPlaylists?.[roomCode];
+
+  if (!playlistId) {
+    return res.json({ ready: false });
+  }
+
+  res.json({
+    ready: true,
+    playlistId
+  });
 });
 
 export default router;
