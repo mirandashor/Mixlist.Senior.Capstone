@@ -7,12 +7,11 @@ const { getTracksForSession } = require("../database/statements");
 const { getSessionUsers } = require("../database/statements");
 
 //reccomendation variables
-const includeRecommendations = true;
 const targetLength = 40;
 
 router.post("/generate-playlist", async (req, res) => {
   try {
-    const { accessToken, roomCode, genre } = req.body;
+    const { accessToken, roomCode, genre, includeSmart, includeTopHits } = req.body;
 
     //  Build playlist name from genres
     const playlistName =
@@ -106,10 +105,12 @@ const sortedTracks = Object.keys(grouped)
   .flatMap(score => grouped[Number(score)]);
 
 
-//recommendation logic
+//genre filtering logic
 let finalTrackIds = [...sortedTracks];
 
-if (includeRecommendations && finalTrackIds.length < targetLength) {
+const shouldFill = includeSmart || includeTopHits;
+
+if (includeSmart && shouldFill && finalTrackIds.length < targetLength) {
   console.log("ADDING SMART RECOMMENDATIONS...");
 
   const needed = targetLength - finalTrackIds.length;
@@ -120,7 +121,7 @@ if (includeRecommendations && finalTrackIds.length < targetLength) {
   ];
 
   for (const artist of uniqueArtists) {
-    if (finalTrackIds.length >= targetLength) break;
+    if (shouldFill && finalTrackIds.length >= targetLength) break;
 
     try {
       const res = await axios.get(
@@ -156,7 +157,7 @@ if (includeRecommendations && finalTrackIds.length < targetLength) {
 
         if (!matchesGenre && Math.random() > 0.4) continue;
 
-        if (finalTrackIds.length >= targetLength) break;
+        if (shouldFill && finalTrackIds.length >= targetLength) break;
 
         if (song.type !== "track") continue;
 
@@ -170,8 +171,46 @@ if (includeRecommendations && finalTrackIds.length < targetLength) {
   }
 }
 
+// Top Hits logic
+if (includeTopHits && shouldFill) {
+  console.log("ADDING TOP HITS...");
+
+  try {
+    const res = await axios.get(
+      "https://api.spotify.com/v1/search",
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+        params: {
+          q: genre?.join(" ") || "",
+          type: "track",
+          limit: 10,
+        },
+      }
+    );
+
+    let songs = res.data.tracks?.items || [];
+
+    // sort by popularity (highest first)
+    songs = songs.sort((a: any, b: any) => b.popularity - a.popularity);
+
+    for (const song of songs) {
+      if (song.type !== "track") continue;
+
+      if (!finalTrackIds.includes(song.id)) {
+        finalTrackIds.push(song.id);
+      }
+    }
+
+  } catch (err) {
+    console.error("top hits error:", err);
+  }
+}
+
+
 // Filler rec's for genre filters that are not popular for listeners
-if (finalTrackIds.length < targetLength) {
+if (includeSmart && shouldFill && finalTrackIds.length < targetLength) {
   console.log("FALLBACK RECOMMENDATIONS...");
 
   const uniqueArtists = [
@@ -213,7 +252,16 @@ if (finalTrackIds.length < targetLength) {
   }
 }
 
-// convert to Spotify URIs
+// convert to Spotify URIs & shuffle
+const shuffleFinal = (arr: string[]) => {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+};
+
+shuffleFinal(finalTrackIds);
+
 const finalUris = finalTrackIds.map(id => `spotify:track:${id}`);
 
 

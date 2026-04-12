@@ -14,6 +14,11 @@ const Host = () => {
   const [roomCode, setRoomCode] = useState("");
   const [selectedGenre, setSelectedGenre] = useState<string[]>([]);
 
+  //smart & top hits rec's
+  const [includeSmart, setIncludeSmart] = useState(false);
+  const [includeTopHits, setIncludeTopHits] = useState(false);
+
+
   //search bar functionality
   const [search, setSearch] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
@@ -111,7 +116,9 @@ const Host = () => {
       body: JSON.stringify({
         accessToken,
         roomCode,
-        genre: selectedGenre
+        genre: selectedGenre,
+        includeSmart,
+        includeTopHits
       }),
     });
 
@@ -308,6 +315,29 @@ const filteredGenres = genres.filter(
               )}
             </div>
                 
+            <div style={{ marginBottom: "15px" }}>
+              <h3>Options</h3>
+
+              <label style={{ display: "block", marginBottom: "5px" }}>
+                <input
+                  type="checkbox"
+                  checked={includeSmart}
+                  onChange={(e) => setIncludeSmart(e.target.checked)}
+                />
+                {" "}Smart Recommendations
+              </label>
+
+              <label style={{ display: "block" }}>
+                <input
+                  type="checkbox"
+                  checked={includeTopHits}
+                  onChange={(e) => setIncludeTopHits(e.target.checked)}
+                />
+                {" "}Top Hits
+              </label>
+            </div>
+
+
 
               <form className="host-form">
                 <div className="input-row">
