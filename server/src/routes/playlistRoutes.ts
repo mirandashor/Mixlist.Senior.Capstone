@@ -6,6 +6,10 @@ const router = express.Router();
 const { getTracksForSession } = require("../database/statements");
 const { getSessionUsers } = require("../database/statements");
 
+//reccomendation variables
+const includeRecommendations = true;
+const targetLength = 40;
+
 router.post("/generate-playlist", async (req, res) => {
   try {
     const { accessToken, roomCode, genre } = req.body;
@@ -101,10 +105,120 @@ const sortedTracks = Object.keys(grouped)
   .sort((a, b) => Number(b) - Number(a))
   .flatMap(score => grouped[Number(score)]);
 
-// convert to Spotify URIs
-const uris = sortedTracks.map(id => `spotify:track:${id}`);
 
-    console.log("TRACK COUNT:", uris.length);
+//recommendation logic
+let finalTrackIds = [...sortedTracks];
+
+if (includeRecommendations && finalTrackIds.length < targetLength) {
+  console.log("ADDING SMART RECOMMENDATIONS...");
+
+  const needed = targetLength - finalTrackIds.length;
+
+  // get unique artists from session
+  const uniqueArtists = [
+    ...new Set(tracks.map((t: any) => t.artist_name))
+  ];
+
+  for (const artist of uniqueArtists) {
+    if (finalTrackIds.length >= targetLength) break;
+
+    try {
+      const res = await axios.get(
+        "https://api.spotify.com/v1/search",
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+          params: {
+            q: `${artist} ${genre?.join(" ") || ""}`,
+            type: "track",
+            limit: 3,
+          },
+        }
+      );
+
+      const songs = res.data.tracks?.items || [];
+
+      for (const song of songs) {
+
+        const tags = await getArtistTags(song.artists[0]?.name);
+        const tagNames = tags.map((t: any) => t.name.toLowerCase());
+
+        const matchesGenre =
+          !genre || genre.length === 0
+            ? true
+            : tagNames.some((tag: any) =>
+                genre.some((g: string) =>
+                  tag.includes(g.toLowerCase()) ||
+                  g.toLowerCase().includes(tag)
+                )
+              );
+
+        if (!matchesGenre && Math.random() > 0.4) continue;
+
+        if (finalTrackIds.length >= targetLength) break;
+
+        if (song.type !== "track") continue;
+
+        if (!finalTrackIds.includes(song.id)) {
+          finalTrackIds.push(song.id);
+        }
+      }
+    } catch (err) {
+      console.error("artist rec error:", err);
+    }
+  }
+}
+
+// Filler rec's for genre filters that are not popular for listeners
+if (finalTrackIds.length < targetLength) {
+  console.log("FALLBACK RECOMMENDATIONS...");
+
+  const uniqueArtists = [
+    ...new Set(tracks.map((t: any) => t.artist_name))
+  ];
+
+  for (const artist of uniqueArtists) {
+    if (finalTrackIds.length >= targetLength) break;
+
+    try {
+      const res = await axios.get(
+        "https://api.spotify.com/v1/search",
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+          params: {
+            q: artist,
+            type: "track",
+            limit: 3,
+          },
+        }
+      );
+
+      const songs = res.data.tracks?.items || [];
+
+      for (const song of songs) {
+        if (finalTrackIds.length >= targetLength) break;
+
+        if (song.type !== "track") continue;
+
+        if (!finalTrackIds.includes(song.id)) {
+          finalTrackIds.push(song.id);
+        }
+      }
+    } catch (err) {
+      console.error("fallback error:", err);
+    }
+  }
+}
+
+// convert to Spotify URIs
+const finalUris = finalTrackIds.map(id => `spotify:track:${id}`);
+
+
+
+    console.log("TRACK COUNT:", finalUris.length);
 
     // Create playlist
     const playlistRes = await axios.post(
@@ -136,7 +250,7 @@ const uris = sortedTracks.map(id => `spotify:track:${id}`);
     await axios.post(
       `https://api.spotify.com/v1/playlists/${playlistId}/items`,
       {
-        uris: uris,
+        uris: finalUris,
       },
       {
         headers: {

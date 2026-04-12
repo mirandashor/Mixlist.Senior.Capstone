@@ -133,8 +133,8 @@ const Host = () => {
 // genre filtering search bar 
 
 const genres = [
-  "Rock","Indie","Soundtracks","Holiday","Metal","Chill","Pop","Ska",
-  "Dance","Country","Background","Electronic","Religious","Rap","R&B","Reggae"
+  "Rock","Indie","Soundtracks","Christmas","Metal","Pop","Ska", "Classical",
+  "Country","Electronic","Christian","Rap","R&B","Reggae", "Techno", "Dubstep"
 ].sort();
 
 const filteredGenres = genres.filter(
