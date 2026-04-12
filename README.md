@@ -77,6 +77,8 @@ The Backend will run on http://localhost:5000 <br>
 The Frontend will run on http://localhost:5173
 
 ----
+<br>
+
 ## Library Setup
 **Mixlist uses the following libraries and technologies:**
 
@@ -91,12 +93,28 @@ The Frontend will run on http://localhost:5173
 | API | LastFM | Additional music data for recommendation algorithm |
 
 ----
+<br>
+
 ## Required Path Configurations
+**Project Structure:** <br>
+`client/` - React + Vite frontend <br>
+`server/` - Node.js + Express.js backend
+<br> <br>
+
+**Environment Files** <br>
+`server/.env` - backend environment variables <br>
+`client/.env` - frontend environment variables 
+<br> <br>
+
+**Key Directories** <br>
+`client/src/` - frontend components and UI <br>
+`server/src/routes/` - API routes and server logic <br>
+`server/src/database/` - database logic and files <br>
+`server/src/services/` - backend service logic
 
 ----
-## Follow-on Project Instructions for future contributors
+<br>
 
-----
 ## Command-line Validation Test
 After completing installation, verify the project by running both the backend and frontend locally:
 
@@ -129,3 +147,4 @@ npm run dev
 - Real-time updates
   - Allow the host to create a session, and users can join any time and the playlist will re-generate with the new taste profile in consideration
 - User Profiles?
+
