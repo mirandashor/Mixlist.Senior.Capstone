@@ -8,66 +8,57 @@
 
 ### 1. Prerequisites
 You must have the following installed on your system:
-- Node.js - v18 or higher recommended. (https://nodejs.org/)
+- Node.js (v18 or higher recommended) - https://nodejs.org/
   - npm (included with Node.js)
-- Git (https://git-scm.com/)
+- Git - https://git-scm.com/
 
 ### 2. Clone the Repository
-- git clone
-- cd Mixlist-Senior-Capstone
+- In your VSCode terminal, run the commands: 
+- `git clone https://github.com/mirandashor/Mixlist-Senior-Capstone.git`
+- `cd Mixlist-Senior-Capstone`
+
 ### 3. Install Dependencies
-Backend:
-- `git clone`
+Backend: 
+- Open a terminal in the **/server** directory (\Mixlist-Senior-Capstone\server)
+- Run the following commands:
+- `cd server`
 - `npm install`
 
 Frontend:
-- `git clone`
+- Open a terminal in the **/client** directory (\Mixlist-Senior-Capstone\client)
+- Run the following commands:
+- `cd client`
 - `npm install`
 
-### 3. Install Dependencies
-Backend:
-```bash
-- git clone
-```
-```bash
-- npm install
-```
-Frontend:
-```bash
-- git clone
-```
-```bash
-- npm install
-```
+Navigating to each respective terminal can be done by 'cd server' and 'cd client' commands, or right click each folder and 'open in integrated terminal' 
+
 ### 4. Configure Environment Variables 
-Necessary variables:
-- Spotify API key
-- LastFM API key
+Necessary Variables:
+- Spotify API Key
+- LastFM API Key
 - frontend URL
 - redirect URI
 
-- Google OAuth
-
-Configuration:
-Create a `.env` file inside the **server** directory with the following components: <br>
-<br>
+Configuration: <br>
+- Create a `.env` file inside the **/server** directory and add the following components: <br>
+```env
 SPOTIFY_CLIENT_ID=(your-spotify-key)
 
 SPOTIFY_CLIENT_SECRET=(your-spotify-secret-key)
 
+LASTFM_API_KEY=(your-lastfm-key)
+
 FRONTEND_URL=(your-frontend-url)
 
 REDIRECT_URI=http:(your-localhost)/auth/callback
-
-LASTFM_API_KEY=(your-lastfm-key)
-
+```
 
 ### 5. Run the Application
-Backend: 
+Backend: In the **/server** terminal, run:
 - `cd server`
 - `npm run dev`
 
-Frontend: 
+Frontend: In the **/client** terminal, run:
 - `cd server`
 - `npm run dev`
 
@@ -107,4 +98,4 @@ npm run dev
    - Open the provided frontend URL in a browser
    - Confirm the page loads successfully and all routes function without errors
 
-Navigating to the terminal can be done by 'cd server' and 'cd client' commands, or right click the folder and 'open in integrated terminal'
+Navigating to the terminal can be done by 'cd server' and 'cd client' commands, or right click each folder and 'open in integrated terminal'
