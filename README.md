@@ -41,7 +41,7 @@ npm install
 ```
 
 ### 4. Configure Environment Variables 
-Necessary External Variables:
+Necessary Unique External Variables:
 - Spotify API Key - https://developer.spotify.com/
 - LastFM API Key - https://www.last.fm/api/authentication
 
