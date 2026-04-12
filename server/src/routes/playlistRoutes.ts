@@ -143,7 +143,7 @@ const uris = sortedTracks.map(id => `spotify:track:${id}`);
 
     res.json({
       message: "Playlist created!",
-      playlistId,
+      playlistId: playlistId
     });
 
   } catch (err: any) {

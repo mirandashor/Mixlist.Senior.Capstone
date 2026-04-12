@@ -95,7 +95,7 @@ const Host = () => {
       return;
     }
 
-    alert("Playlist created!");
+    navigate(`/dashboard?playlistId=${data.playlistId}`);
 
   } catch (err) {
     console.error("generate error:", err);
