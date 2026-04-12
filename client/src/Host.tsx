@@ -65,6 +65,33 @@ const Host = () => {
   //helper var to check if guest or host for what they see on site
   const isGuest = role === "guest";
 
+  // polling for playlist readiness
+  useEffect(() => {
+    if (role !== "guest" || !roomCode) return;
+
+    const checkStatus = async () => {
+      try {
+        const res = await fetch(`${apiBaseUrl}/api/spotify/status/${roomCode}`);
+        const data = await res.json();
+
+        console.log("STATUS CHECK:", data);
+
+        if (data.ready && data.playlistId) {
+          navigate(`/dashboard?playlistId=${data.playlistId}`);
+        }
+      } catch (err) {
+        console.error("status check error:", err);
+      }
+    };
+
+    // run immediately
+    checkStatus();
+
+    // then poll every 2 seconds
+    const interval = setInterval(checkStatus, 2000);
+
+    return () => clearInterval(interval);
+  }, [role, roomCode]);
 
   const handleGeneratePlaylist = async () => {
   try {
