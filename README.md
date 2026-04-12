@@ -143,6 +143,7 @@ npm run dev
    - Confirm the page loads successfully and all routes function without errors
 
 ----
+<br>
 ## Follow-on Project Instructions for future contributors
 - Real-time updates
   - Allow the host to create a session, and users can join any time and the playlist will re-generate with the new taste profile in consideration
