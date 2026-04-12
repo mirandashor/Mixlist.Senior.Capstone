@@ -138,6 +138,8 @@ npm run dev
 
 ## Follow-on Project Instructions for future contributors
 - Real-time updates
-  - Allow the host to create a session, and users can join any time and the playlist will re-generate with the new taste profile in consideration
-- User Profiles?
-
+  - The host to creates a session. Users can join any time and the playlist will refresh with the new taste profile in the mix
+- User Profiles
+- Host can delete a session & User can delete a session
+  - Instead of just closing the browser to end a session
+- Host can remove a user 
