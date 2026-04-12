@@ -22,7 +22,8 @@ cd Mixlist-Senior-Capstone
 ```
 
 ### 3. Install Dependencies
-**Backend:** From the project root, open a terminal in the **/server** directory
+**Backend** <br>
+From the project root, open a terminal in the **server/** directory:
 ```bash
 cd server
 ```
@@ -31,7 +32,8 @@ Run the following command:
 npm install
 ```
 
-**Frontend:** From the project root, open a terminal in the **/client** directory
+**Frontend** <br>
+From the project root, open a terminal in the **client/** directory:
 ```bash
 cd client
 ```
@@ -46,7 +48,7 @@ Necessary Unique External Variables:
 - LastFM API Key - https://www.last.fm/api/authentication
 
 Configuration: <br>
-- Create a `.env` file inside the **/server** directory and add the following components: <br>
+- Create a `.env` file inside the **server/** directory and add the following components: <br>
 ```env
 SPOTIFY_CLIENT_ID=your-spotify-key
 
@@ -58,23 +60,38 @@ FRONTEND_URL=http://localhost:5173
 
 REDIRECT_URI=http://127.0.0.1:5000/auth/callback
 ```
-- Create a `.env` file inside the **/client** directory and add the following component:
+- Create a `.env` file inside the **client/** directory and add the following component:
 ```env
 VITE_API_BASE_URL=http://localhost:5000
 ```
+<br>
 
-### 5. Run the Application
-**Backend:** In the **/server** terminal, run:
+## 5. Command-line Validation Test
+After completing installation, verify the project by running both the backend and frontend locally:
+
+### 1. Start the backend server
+   - Open a terminal in the **server/**' directory
+   - run the command:
+```bash
+npm run dev
+``` 
+**Expected Results:**
+   - The server/backend should start without errors
+   - A message in the console such as **Server running on port 5000**
+
+### 2. Start the frontend site
+   - Open a second terminal in the **'client/'** directory 
+   - Run the command:
 ```bash
 npm run dev
 ```
-**Frontend:** In the **/client** terminal, run:
-```bash
-npm run dev
-```
-Note: <br>
-The Backend will run on http://localhost:5000 <br>
-The Frontend will run on http://localhost:5173
+**Expected Results:**
+   - The client/frontend should start without errors
+   - A message in the console such as **Local: http://localhost:5173/**
+
+### 3. Verify the Application flow
+   - Open the frontend URL from the console in a browser
+   - Confirm the page loads successfully and all routes function without errors
 
 ----
 <br>
@@ -115,35 +132,6 @@ The Frontend will run on http://localhost:5173
 ----
 <br>
 
-## Command-line Validation Test
-After completing installation, verify the project by running both the backend and frontend locally:
-
-### 1. Start the backend server
-   - Open a terminal in the **server**' directory 
-   - run the command:
-```bash
-npm run dev
-``` 
-**Expected Results:**
-   - The server/backend should start without errors
-   - A message such as **Server running on port 5000**
-
-### 2. Start the frontend site
-   - Open a seccond terminal in the **'client'** directory 
-   - Run the command:
-```bash
-npm run dev
-```
-**Expected Results:**
-   - The client/frontend should start without errors
-   - A message such as **Local: http:// localhost:5173/**
-
-### 3. Verify the Application flow
-   - Open the provided frontend URL in a browser
-   - Confirm the page loads successfully and all routes function without errors
-
-----
-<br>
 ## Follow-on Project Instructions for future contributors
 - Real-time updates
   - Allow the host to create a session, and users can join any time and the playlist will re-generate with the new taste profile in consideration
