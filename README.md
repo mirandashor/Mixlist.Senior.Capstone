@@ -3,6 +3,10 @@
 ![MySQL](https://img.shields.io/badge/Database-MySQL-orange)
 
 # Mixlist
+Mixlist is a web application that generates collaborative playlists by combining user taste profiles from the Spotify API with genre-based recommendations from the LastFM API.
+
+Users can join sessions, share their preferences, and generate playlists tailored to the group.
+
 ----
 ## Install Instructions
 
