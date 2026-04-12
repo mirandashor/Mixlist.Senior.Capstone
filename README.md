@@ -13,57 +13,73 @@ You must have the following installed on your system:
 - Git - https://git-scm.com/
 
 ### 2. Clone the Repository
-- In your VSCode terminal, run the commands: 
-- `git clone https://github.com/mirandashor/Mixlist-Senior-Capstone.git`
-- `cd Mixlist-Senior-Capstone`
+- In your terminal, run the following commands:
+```bash
+git clone https://github.com/mirandashor/Mixlist-Senior-Capstone.git
+```
+```bash
+cd Mixlist-Senior-Capstone
+```
 
 ### 3. Install Dependencies
-Backend: 
-- Open a terminal in the **/server** directory (\Mixlist-Senior-Capstone\server)
-- Run the following commands:
-- `cd server`
-- `npm install`
+**Backend:** From the project root, open a terminal in the **/server** directory
+```bash
+cd server
+```
+Run the following command:
+```bash
+npm install
+```
 
-Frontend:
-- Open a terminal in the **/client** directory (\Mixlist-Senior-Capstone\client)
-- Run the following commands:
-- `cd client`
-- `npm install`
-
-Navigating to each respective terminal can be done by 'cd server' and 'cd client' commands, or right click each folder and 'open in integrated terminal' 
+**Frontend:** From the project root, open a terminal in the **/client** directory
+```bash
+cd client
+```
+Run the following command:
+```bash
+npm install
+```
 
 ### 4. Configure Environment Variables 
-Necessary Variables:
-- Spotify API Key
-- LastFM API Key
-- frontend URL
-- redirect URI
+Necessary External Variables:
+- Spotify API Key - https://developer.spotify.com/
+- LastFM API Key - https://www.last.fm/api/authentication
 
 Configuration: <br>
 - Create a `.env` file inside the **/server** directory and add the following components: <br>
 ```env
-SPOTIFY_CLIENT_ID=(your-spotify-key)
+SPOTIFY_CLIENT_ID=your-spotify-key
 
-SPOTIFY_CLIENT_SECRET=(your-spotify-secret-key)
+SPOTIFY_CLIENT_SECRET=your-spotify-secret-key
 
-LASTFM_API_KEY=(your-lastfm-key)
+LASTFM_API_KEY=your-lastfm-key
 
-FRONTEND_URL=(your-frontend-url)
+FRONTEND_URL=http://localhost:5173
 
-REDIRECT_URI=http:(your-localhost)/auth/callback
+REDIRECT_URI=http://127.0.0.1:5000/auth/callback
+```
+- Create a `.env` file inside the **/client** directory and add the following component:
+```env
+VITE_API_BASE_URL=http://localhost:5000
 ```
 
 ### 5. Run the Application
-Backend: In the **/server** terminal, run:
-- `cd server`
-- `npm run dev`
-
-Frontend: In the **/client** terminal, run:
-- `cd server`
-- `npm run dev`
+**Backend:** In the **/server** terminal, run:
+```bash
+npm run dev
+```
+**Frontend:** In the **/client** terminal, run:
+```bash
+npm run dev
+```
+Note: <br>
+The Backend will run on http://localhost:5000 <br>
+The Frontend will run on http://localhost:5173
 
 ----
 ## Library Setup
+**Mixlist uses the following libraries and technologies**
+
 
 ----
 ## Required Path Configurations
@@ -75,27 +91,26 @@ Frontend: In the **/client** terminal, run:
 ## Command-line Validation Test
 After completing installation, verify the project by running both the backend and frontend locally:
 
-### 1. Run the backend server
-   - Open a terminal in the **server**' directory (\Mixlist-Senior-Capstone\server)
-   - run the command: **```npm run dev```** <br>
-
+### 1. Start the backend server
+   - Open a terminal in the **server**' directory 
+   - run the command:
+```bash
+npm run dev
+``` 
 **Expected Results:**
    - The server/backend should start without errors
    - A message such as **Server running on port 5000**
 
-### 2. Run the frontend
-   - Open a terminal in the **'client'** directory (\Mixlist-Senior-Capstone\client)
+### 2. Start the frontend site
+   - Open a seccond terminal in the **'client'** directory 
    - Run the command:
 ```bash
 npm run dev
 ```
-
 **Expected Results:**
    - The client/frontend should start without errors
-   - A message such as **Local:   http:// localhost:5173/**
+   - A message such as **Local: http:// localhost:5173/**
 
 ### 3. Verify the Application flow
    - Open the provided frontend URL in a browser
    - Confirm the page loads successfully and all routes function without errors
-
-Navigating to the terminal can be done by 'cd server' and 'cd client' commands, or right click each folder and 'open in integrated terminal'
