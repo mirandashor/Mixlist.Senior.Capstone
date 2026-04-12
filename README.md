@@ -78,8 +78,17 @@ The Frontend will run on http://localhost:5173
 
 ----
 ## Library Setup
-**Mixlist uses the following libraries and technologies**
+**Mixlist uses the following libraries and technologies:**
 
+| Category | Library | Purpose |
+| --- | --- | --- |
+| Frontend | React | Builds the user interface |
+| Frontend | Vite | Fast frontend development and building tools |
+| Backend | Node.js | Server runtime |
+| Backend | Express.js | Handles API routing |
+| Database | SQLite | Stores temporary application data |
+| API | Spotify | User and Music data |
+| API | LastFM | Additional music data for recommendation algorithm |
 
 ----
 ## Required Path Configurations
@@ -114,3 +123,9 @@ npm run dev
 ### 3. Verify the Application flow
    - Open the provided frontend URL in a browser
    - Confirm the page loads successfully and all routes function without errors
+
+----
+## Follow-on Project Instructions for future contributors
+- Real-time updates
+  - Allow the host to create a session, and users can join any time and the playlist will re-generate with the new taste profile in consideration
+- User Profiles?
