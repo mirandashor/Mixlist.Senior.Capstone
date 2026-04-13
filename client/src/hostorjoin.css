@@ -99,7 +99,7 @@ body {
     background: white;
     border: 1px solid rgba(167, 139, 250, 0.22);
     border-radius: 24px;
-    padding: 28px;
+    padding: 18px 28px;
     font-size: 1.2rem;
     line-height: 1.7;
     color: #4b5563;
@@ -111,6 +111,7 @@ body {
     transform: translateY(-4px);
     box-shadow: 0 16px 30px rgba(76, 29, 149, 0.10);
     border-color: #a78bfa;
+    cursor:default;
 }
 
 /* OPTIONAL: make first two items line up nicer */
@@ -121,7 +122,8 @@ body {
 
 /* OPTIONAL: slightly larger text spacing for cards */
 .info-box {
-    min-height: 190px;
+    min-height: auto;
+    margin-bottom: 16px;
 }
 
 /* RESPONSIVE */
@@ -182,12 +184,14 @@ body {
     transform: scale(0.98);
 }
 
-section {
-    margin-top: 60px;
-}
-
 .dashboard-container {
-    margin-top: 80px;
+    max-width: 1100px;
+    margin: -15px auto 32px;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    align-items: start;
 }
 
 .page-wrapper {
@@ -197,7 +201,7 @@ section {
 }
 
 .hero-section {
-    margin-bottom: 50px;
+    margin-top: -50px;
 }
 
 .hero-text {
@@ -208,7 +212,8 @@ section {
     font-size: 3rem;
     font-weight: 800;
     color: #1f2937;
-    margin-bottom: 16px;
+    margin-bottom: 2px;
+    margin-top: -10x;
 }
 
 .hero-text p {
@@ -256,13 +261,13 @@ section {
 }
 
 .how-section {
-    margin-top: 60px;
+    margin-top: 35px;
 }
 
 .how-section h2 {
     font-size: 2rem;
     color: #1f2937;
-    margin-bottom: 24px;
+    margin-bottom: 15px;
 }
 
 .steps {
