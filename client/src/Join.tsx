@@ -119,10 +119,6 @@ const Join = () => {
               </button>
             </div>
 
-            <div className="divider">
-              <span>or</span>
-            </div>
-
           </form>
         </section>
 

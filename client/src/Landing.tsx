@@ -10,14 +10,14 @@ const Landing: React.FC = () => {
 
 
     return (
-        <div className="page">
-            <nav className="navbar">
-                <div className="logo">
+        <div className="landing-page">
+            <nav className="landing-navbar">
+                <div className="landing-logo">
                     <img src={logo} alt="Mixlist logo" />
                     <span>Mixlist</span>
                 </div>
 
-                <div className="nav-links">
+                <div className="landing-nav-links">
                     <Link to="/info#how-it-works">How it works</Link>
                     <Link to="/info#faq">FAQ</Link>
                     <Link to="/info#about">About Us</Link>
@@ -25,45 +25,45 @@ const Landing: React.FC = () => {
                 </div>
             </nav>
 
-            <main className="main-content">
-                <section className="hero-section">
-                    <div className="hero-text">
-                        <span className="hero-badge">Collaborative Playlist Generation</span>
+            <main className="landing-main-content">
+                <section className="landing-hero-section">
+                    <div className="landing-hero-text">
+                        <span className="landing-hero-badge">Collaborative Playlist Generation</span>
                         <h1>Build the perfect playlist with everyone in the room</h1>
                         <p>
                             Mixlist helps groups create playlists together using tailored preferences from your favorites,
                             so the music actually matches the vibe.
                         </p>
 
-                        <div className="hero-actions">
-                            <button className="spotify-btn" onClick={handleLogin}>
+                        <div className="landing-hero-actions">
+                            <button className="landing-spotify-btn" onClick={handleLogin}>
                                 Log in with Spotify
                             </button>
                         </div>
 
-                        <div className="hero-stats">
-                            <div className="stat-card">
+                        <div className="landing-hero-stats">
+                            <div className="landing-stat-card">
                                 <h3>Fast setup</h3>
                                 <p>Create a session and get people joining in seconds.</p>
                             </div>
-                            <div className="stat-card">
+                            <div className="landing-stat-card">
                                 <h3>Group-based</h3>
                                 <p>Built for parties, study groups, hangouts, and events.</p>
                             </div>
-                            <div className="stat-card">
+                            <div className="landing-stat-card">
                                 <h3>Spotify powered</h3>
                                 <p>Use real music taste data to generate better playlists.</p>
                             </div>
                         </div>
                     </div>
 
-                    <div className="hero-visual">
-                        <div className="image-card"></div>
+                    <div className="landing-hero-visual">
+                        <div className="landing-image-card"></div>
                     </div>
                 </section>
 
-                <section className="features-section">
-                    <div className="section-heading">
+                <section className="landing-features-section">
+                    <div className="landing-section-heading">
                         <span>Why Mixlist</span>
                         <h2>Made for shared music moments</h2>
                         <p>
@@ -72,16 +72,16 @@ const Landing: React.FC = () => {
                         </p>
                     </div>
 
-                    <div className="features-grid">
-                        <div className="feature-card">
+                    <div className="landing-features-grid">
+                        <div className="landing-feature-card">
                             <h3>Create a session</h3>
                             <p>Start a room instantly and invite others to join your mix.</p>
                         </div>
-                        <div className="feature-card">
+                        <div className="landing-feature-card">
                             <h3>Blend preferences</h3>
                             <p>Combine everyone’s music taste into one playlist that feels balanced.</p>
                         </div>
-                        <div className="feature-card">
+                        <div className="landing-feature-card">
                             <h3>Keep the vibe going</h3>
                             <p>Generate new playlists as more people join the session.</p>
                         </div>
@@ -89,7 +89,7 @@ const Landing: React.FC = () => {
                 </section>
             </main>
 
-            <footer className="footer">
+            <footer className="landing-footer">
                 <p>© 2026 Mixlist. Built for better group listening.</p>
             </footer>
         </div>
