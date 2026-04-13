@@ -30,17 +30,19 @@ const Dashboard = () => {
       <main className="dashboard-page-wrapper">
         <section className="dashboard-hero">
           <div className="dashboard-badge-row">
-            <button className="dashboard-back-btn" onClick={() => navigate(-1)}>
-              ← Back
+            <button className="dashboard-back-btn" onClick={() => navigate("/hostorjoin")}>
+              ← Create A New Session
             </button>
-            <span className="dashboard-hero-badge">Playlist ready</span>
+            <span className="dashboard-hero-badge">Generated Playlist</span>
           </div>
 
           <div className="dashboard-hero-text">
             <h1>Your Mixlist is ready</h1>
             <p>
               Your playlist has been generated based on the group’s music taste.
-              Preview it below and open it in Spotify.
+            </p>
+            <p>
+              View it below or open it in Spotify.
             </p>
           </div>
         </section>
@@ -48,7 +50,6 @@ const Dashboard = () => {
         <section className="dashboard-playlist-card">
           <div className="dashboard-playlist-header">
             <div className="dashboard-playlist-header-text">
-              <p className="dashboard-playlist-label">Generated playlist</p>
               <h2>{playlistName}</h2>
               <p className="dashboard-playlist-meta">Created for {creatorName}</p>
             </div>
@@ -63,12 +64,6 @@ const Dashboard = () => {
                 Open in Spotify
               </a>
 
-              <button
-                className="dashboard-secondary-btn"
-                onClick={() => navigate("/host")}
-              >
-                Back to session
-              </button>
             </div>
           </div>
 
@@ -77,7 +72,7 @@ const Dashboard = () => {
               title="Spotify Playlist"
               src={playlistEmbedUrl}
               width="100%"
-              height="460"
+              height="720"
               frameBorder="0"
               allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
               loading="lazy"
@@ -89,23 +84,21 @@ const Dashboard = () => {
           <div className="dashboard-info-card">
             <h3>Preview the playlist</h3>
             <p>
-              Scroll through the songs and make sure the playlist fits your
-              group’s vibe.
+              View the playlist on Mixlist's website, or open it on Spotify.
             </p>
           </div>
 
           <div className="dashboard-info-card">
             <h3>Save and share</h3>
             <p>
-              Open the playlist in Spotify to save it, share it, or send it to
-              everyone in the session.
+              Save it to spotify, share it via the link, and keep your Mix forever.
             </p>
           </div>
 
           <div className="dashboard-info-card">
             <h3>Make another mix</h3>
             <p>
-              Want a different result? Go back to the session and generate a new
+              Want a different result? Go back and generate a new
               playlist with different settings.
             </p>
           </div>

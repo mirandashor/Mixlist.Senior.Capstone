@@ -94,7 +94,7 @@ router.get("/:roomCode/users", async (req, res) => {
         res.json(result);
 
     } catch (err: any) {
-        console.error("get session users error:");
+        console.error("get session users error:", err);
             //room code doesnt exist
             if (err.message === "session not found") {
                 return res.status(404).json({ error: "session not found" });
