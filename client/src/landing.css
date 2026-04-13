@@ -72,6 +72,7 @@ body {
 .main-content {
     flex: 1;
     width: 100%;
+    margin-top: -25px;
 }
 
 /* HERO */
@@ -123,7 +124,7 @@ body {
     display: flex;
     gap: 16px;
     flex-wrap: wrap;
-    margin-top: 10px;
+    margin-top: -8px;
 }
 
 .spotify-btn,
@@ -138,15 +139,17 @@ body {
 }
 
 .spotify-btn {
-    background: linear-gradient(135deg, #8b5cf6, #a855f7);
-    color: white;
+    background: linear-gradient(135deg, #5aea5d, #2cb72f);
+    color: black;
     box-shadow: 0 10px 24px rgba(139, 92, 246, 0.25);
-    border: 3px solid transparent;
+    border: 3px solid rgba(17, 141, 17, 0.856);
 }
 
 .spotify-btn:hover {
     transform: translateY(-2px);
+    color: white;
     box-shadow: 0 14px 28px rgba(139, 92, 246, 0.3);
+    background:  linear-gradient(135deg, #b495fb, #7c54a2);
     border: 3px solid rgba(8, 181, 8, 0.856);
 }
 
@@ -251,7 +254,7 @@ body {
 .features-section {
     width: 100%;
     max-width: 1400px;
-    margin: 0 auto;
+    margin: -80px auto;
     padding: 30px 64px 80px;
 }
 
@@ -269,8 +272,9 @@ body {
 }
 
 .section-heading h2 {
-    margin: 10px 0 12px;
-    font-size: clamp(2rem, 4vw, 3rem);
+    margin: 5px 0 12px;
+    font-size: 50px;
+    width: 800px;
     color: #24123f;
 }
 
@@ -278,7 +282,7 @@ body {
     margin: 0;
     color: #635b75;
     line-height: 1.7;
-    font-size: 1.05rem;
+    font-size: 18px;
 }
 
 .features-grid {
