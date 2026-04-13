@@ -264,16 +264,20 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 22px;
-    margin-top: -60px;
+    margin-top: -70px;
+    align-items: stretch; /* 🔥 makes them same height */
 }
 
 .info-card {
     background: white;
     border-radius: 24px;
-    padding: 26px;
+    padding: 20px;
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.05);
     border: 1px solid rgba(29, 185, 84, 0.12);
     transition: all 0.2s ease;
+
+    height: 100%;        /* 🔥 fills equal grid height */
+    min-height: 150px;   /* 🔥 optional: forces minimum size */
 }
 
 .info-card:hover {

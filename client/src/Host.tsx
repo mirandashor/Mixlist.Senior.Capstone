@@ -401,32 +401,31 @@ const Host = () => {
             //else, info section for host view
             <>
               <div className="info-card">
+                <h3>Invite others</h3>
+                <p>
+                  Share the room code with your friends and 
+                  have them join the Mix
+                </p>
+              </div>
+
+              <div className="info-card">
                 <h3>Choose the Vibe</h3>
                 <p>
-                  Set the tone with a genre, mood, or overall sound for the
-                  room.
+                  Set the tone by picking from the provided genres
                 </p>
               </div>
 
               <div className="info-card">
                 <h3>Create the Session</h3>
                 <p>
-                  Launch your Mixlist and make it ready for others to join.
-                </p>
-              </div>
-
-              <div className="info-card">
-                <h3>Invite Others</h3>
-                <p>
-                  Share the room code or QR code so everyone can add their
-                  taste.
+                  Click "Create" and launch your Mixlist..
                 </p>
               </div>
             </>
           )}
         </section>
       </main>
-      
+
         <footer className="footer">
         <div className="footer-content">
           <p>© 2026 Mixlist. All rights reserved.</p>
