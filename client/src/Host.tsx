@@ -9,21 +9,24 @@ const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 
 const Host = () => {
   const navigate = useNavigate();
+
   //room code stores current room code, setRoomCode updates the room code
-  //users stores list of users in the session, setUsers updates teh users list 
   const [roomCode, setRoomCode] = useState("");
+
+  //selectedGenre stores chosen genres, setSelectedGenre updates them
   const [selectedGenre, setSelectedGenre] = useState<string[]>([]);
 
   //smart & top hits rec's
   const [includeSmart, setIncludeSmart] = useState(false);
   const [includeTopHits, setIncludeTopHits] = useState(false);
 
-
   //search bar functionality
   const [search, setSearch] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
 
+  //users stores list of users in the session, setUsers updates teh users list
   const [users, setUsers] = useState<any[]>([]);
+
   //roles state, set if user or guest
   const [role, setRole] = useState("");
 
@@ -59,9 +62,11 @@ const Host = () => {
         console.error("error getting users:", err);
       }
     };
+
     //runs when the room code changes
     fetchUsers();
-    //auto refresh so we can see new users 
+
+    //auto refresh so we can see new users
     const interval = setInterval(fetchUsers, 3000);
 
     return () => clearInterval(interval);
@@ -96,59 +101,76 @@ const Host = () => {
     const interval = setInterval(checkStatus, 2000);
 
     return () => clearInterval(interval);
-  }, [role, roomCode]);
+  }, [role, roomCode, navigate]);
 
   const handleGeneratePlaylist = async () => {
-  try {
-    const params = new URLSearchParams(window.location.search);
-    const accessToken = params.get("access_token");
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const accessToken = params.get("access_token");
 
-    if (!accessToken) {
-      alert("Missing access token");
-      return;
+      if (!accessToken) {
+        alert("Missing access token");
+        return;
+      }
+
+      if (selectedGenre.length === 0) {
+        alert("Please select at least one genre");
+        return;
+      }
+
+      const res = await fetch(`${apiBaseUrl}/api/spotify/generate-playlist`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          accessToken,
+          roomCode,
+          genre: selectedGenre,
+          includeSmart,
+          includeTopHits,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        alert(data.error || "Failed to generate playlist");
+        return;
+      }
+
+      navigate(`/dashboard?playlistId=${data.playlistId}`);
+    } catch (err) {
+      console.error("generate error:", err);
+      alert("Server error");
     }
+  };
 
-    const res = await fetch(`${apiBaseUrl}/api/spotify/generate-playlist`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        accessToken,
-        roomCode,
-        genre: selectedGenre,
-        includeSmart,
-        includeTopHits
-      }),
-    });
+  // genre filtering search bar
+  const genres = [
+    "Rock",
+    "Indie",
+    "Soundtracks",
+    "Christmas",
+    "Metal",
+    "Pop",
+    "Ska",
+    "Classical",
+    "Country",
+    "Electronic",
+    "Christian",
+    "Rap",
+    "R&B",
+    "Reggae",
+    "Techno",
+    "Dubstep",
+  ].sort();
 
-    const data = await res.json();
-
-    if (!res.ok) {
-      alert(data.error || "Failed to generate playlist");
-      return;
-    }
-
-    navigate(`/dashboard?playlistId=${data.playlistId}`);
-
-  } catch (err) {
-    console.error("generate error:", err);
-    alert("Server error");
-  }
-};
-
-// genre filtering search bar 
-
-const genres = [
-  "Rock","Indie","Soundtracks","Christmas","Metal","Pop","Ska", "Classical",
-  "Country","Electronic","Christian","Rap","R&B","Reggae", "Techno", "Dubstep"
-].sort();
-
-const filteredGenres = genres.filter(
-  (g) =>
-    g.toLowerCase().includes(search.toLowerCase()) &&
-    !selectedGenre.includes(g)
-);
+  const filteredGenres = genres.filter(
+    (g) =>
+      g.toLowerCase().includes(search.toLowerCase()) &&
+      !selectedGenre.includes(g)
+  );
 
   return (
     <>
@@ -163,65 +185,75 @@ const filteredGenres = genres.filter(
           <a href="/#flow">How it works</a>
           <a href="/#features">FAQ</a>
           <a href="/#about">About Us</a>
-          <a href="/#about">Support</a>
+          <a href="/#support">Support</a>
         </div>
       </nav>
 
-<main className="page-wrapper">
-  <section className="host-hero">
+      <main className="page-wrapper">
+        <section className="host-hero">
+          <div className="host-hero-full">
+            <div className="badge-row">
+              <button className="back-btn" onClick={() => navigate(-1)}>
+                ← Go Back
+              </button>
 
-    <div className="host-hero-full">
+              <span className="hero-badge">
+                {isGuest ? "Waiting room" : "Start your own session"}
+              </span>
+            </div>
 
-      <div className="badge-row">
+            <div className="host-hero-text">
+              <h1>
+                {isGuest
+                  ? "Waiting for the host to start"
+                  : "Set the mood for the room"}
+              </h1>
 
-        <button className="back-btn" onClick={() => navigate(-1)}>
-          ← Go Back
-        </button>
-
-        <span className="hero-badge">
-          {isGuest ? "Waiting room" : "Start your own session"}
-        </span>
-
-      </div>
-
-      <div className="host-hero-text">
-        <h1>
-          {isGuest
-            ? "Waiting for the host to start"
-            : "Set the mood for the room"}
-        </h1>
-
-        <p>
-          {isGuest
-            ? "The host is mixing the vibe for this room. Hang tight until the session starts and you’ll be directed to the Mix."
-            : "Start a new Mixlist by choosing the vibe, genre, or mood you want."}
-        </p>
-      </div>
-
-    </div>
-
-  </section>
+              <p>
+                {isGuest
+                  ? "The host is mixing the vibe for this room. Hang tight until the session starts and you’ll be directed to the Mix."
+                  : "Start a new Mixlist by choosing the vibe, genre, or mood you want."}
+              </p>
+            </div>
+          </div>
+        </section>
 
         <section className="host-card">
           <h2>{isGuest ? "Waiting Room" : "Host a Mixlist"}</h2>
-          <p><strong>Room Code:</strong> {roomCode}</p>
+
+          <div className="host-meta">
+            <div className="meta-box">
+              <span className="meta-label">Room Code</span>
+              <span className="meta-value">{roomCode}</span>
+            </div>
+
+            <div className="meta-box">
+              <span className="meta-label">Status</span>
+              <span className="meta-value">
+                {isGuest ? "Waiting for host" : "Ready to create"}
+              </span>
+            </div>
+          </div>
+
           {/* // if role is set gust show waiting  */}
           {role === "guest" && (
-            <p><strong>Waiting for host to start the session...</strong></p>
+            <p className="host-subtext">
+              Waiting for host to start the session...
+            </p>
           )}
 
-          <div>
-            <h3>Users:</h3>
+          <div className="users-section">
+            <h3 className="users-title">Users</h3>
+
             {/* if no users, show message*/}
             {users.length === 0 ? (
-              <p>No users yet</p>
-            // else, show list of users
+              <div className="empty-pill">No users yet</div>
             ) : (
-              <ul>
-            {/* loop through users array */}
+              <ul className="user-list">
+                {/* loop through users array */}
                 {users.map((user, index) => (
-                  <li key={index}>
-            {/* shows display name*/}
+                  <li key={index} className="user-pill">
+                    {/* shows display name*/}
                     {user.display_name || "User"}
                   </li>
                 ))}
@@ -233,128 +265,102 @@ const filteredGenres = genres.filter(
           {role !== "guest" && (
             <>
               <p className="host-subtext">
-                Pick the mood and start the session.
+                Pick the mood and start the session
               </p>
 
-              <div style={{ marginBottom: "15px", position: "relative" }}>
+              <div className="genre-block">
+                <label className="genre-label">Choose genres</label>
 
-              {/* Selected tags */}
-              <div style={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: "5px",
-                marginBottom: "5px"
-              }}>
-                {selectedGenre.map((g) => (
-                  <span
-                    key={g}
-                    style={{
-                      background: "#333",
-                      color: "white",
-                      padding: "4px 8px",
-                      borderRadius: "12px",
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "5px"
-                    }}
-                  >
-                    {g}
-                    <span
-                      style={{ cursor: "pointer" }}
-                      onClick={() =>
-                        setSelectedGenre(prev => prev.filter(x => x !== g))
-                      }
-                    >
-                      ❌
-                    </span>
-                  </span>
-                ))}
-              </div>
-
-              {/* Search input */}
-              <input
-                type="text"
-                placeholder="Search genres..."
-                value={search}
-                onChange={(e) => {
-                  setSearch(e.target.value);
-                  setShowDropdown(true);
-                }}
-                onFocus={() => setShowDropdown(true)}
-                style={{ width: "100%", padding: "8px" }}
-              />
-
-              {/* Dropdown */}
-              {showDropdown && search && (
-                <div style={{
-                  position: "absolute",
-                  width: "100%",
-                  background: "white",
-                  border: "1px solid #ccc",
-                  maxHeight: "150px",
-                  overflowY: "auto",
-                  zIndex: 10
-                }}>
-                  {filteredGenres.map((g) => (
-                    <div
-                      key={g}
-                      style={{
-                        padding: "8px",
-                        cursor: "pointer"
-                      }}
-                      onClick={() => {
-                        setSelectedGenre(prev => [...prev, g]);
-                        setSearch("");
-                        setShowDropdown(false);
-                      }}
-                    >
+                {/* Selected tags */}
+                <div className="selected-tags">
+                  {selectedGenre.map((g) => (
+                    <span key={g} className="genre-tag">
                       {g}
-                    </div>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setSelectedGenre((prev) =>
+                            prev.filter((x) => x !== g)
+                          )
+                        }
+                      >
+                        ×
+                      </button>
+                    </span>
                   ))}
                 </div>
-              )}
-            </div>
-                
-            <div style={{ marginBottom: "15px" }}>
-              <h3>Options</h3>
 
-              <label style={{ display: "block", marginBottom: "5px" }}>
+                {/* Search input */}
                 <input
-                  type="checkbox"
-                  checked={includeSmart}
-                  onChange={(e) => setIncludeSmart(e.target.checked)}
+                  type="text"
+                  className="genre-search"
+                  placeholder="Search genres..."
+                  value={search}
+                  onChange={(e) => {
+                    setSearch(e.target.value);
+                    setShowDropdown(true);
+                  }}
+                  onFocus={() => setShowDropdown(true)}
                 />
-                {" "}Smart Recommendations
-              </label>
 
-              <label style={{ display: "block" }}>
-                <input
-                  type="checkbox"
-                  checked={includeTopHits}
-                  onChange={(e) => setIncludeTopHits(e.target.checked)}
-                />
-                {" "}Top Hits
-              </label>
-            </div>
+                {/* Dropdown */}
+                {showDropdown && search && (
+                  <div className="genre-dropdown">
+                    {filteredGenres.length > 0 ? (
+                      filteredGenres.map((g) => (
+                        <div
+                          key={g}
+                          className="genre-option"
+                          onClick={() => {
+                            setSelectedGenre((prev) => [...prev, g]);
+                            setSearch("");
+                            setShowDropdown(false);
+                          }}
+                        >
+                          {g}
+                        </div>
+                      ))
+                    ) : (
+                      <div className="genre-option">No matching genres</div>
+                    )}
+                  </div>
+                )}
+              </div>
 
+              <div className="options-block">
+                <h3 className="options-label">Options</h3>
 
+                <div className="options-row">
+                  <label className="option-pill">
+                    <input
+                      type="checkbox"
+                      checked={includeSmart}
+                      onChange={(e) => setIncludeSmart(e.target.checked)}
+                    />
+                    {" "}Smart Recommendations
+                  </label>
 
-              <form className="host-form">
-                <div className="input-row">
-                  <input
-                    type="text"
-                    placeholder="Mix your mood"
-                    className="mood-input"
-                  />
+                  <label className="option-pill">
+                    <input
+                      type="checkbox"
+                      checked={includeTopHits}
+                      onChange={(e) => setIncludeTopHits(e.target.checked)}
+                    />
+                    {" "}Top Hits
+                  </label>
+                </div>
+              </div>
 
-                <button
-                  type="button"
-                  className="create-btn"
-                  onClick={handleGeneratePlaylist}
-                >
+              <form
+                className="host-form"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  handleGeneratePlaylist();
+                }}
+              >
+                <button type="submit" className="create-btn">
                   Create
                 </button>
-                </div>
 
                 <div className="host-message">
                   Be the blueprint, then invite others to mix the rest.
@@ -363,6 +369,7 @@ const filteredGenres = genres.filter(
             </>
           )}
         </section>
+
         {/* //info section for guest role view */}
         <section className="info-section">
           {isGuest ? (
@@ -370,21 +377,24 @@ const filteredGenres = genres.filter(
               <div className="info-card">
                 <h3>Waiting Room</h3>
                 <p>
-                  You are connected to the room and waiting for the host to finish setting the vibe.
+                  You are connected to the room and waiting for the host to
+                  finish setting the vibe.
                 </p>
               </div>
 
               <div className="info-card">
                 <h3>Host is Mixing</h3>
                 <p>
-                  The host is choosing the mood, genre, or overall sound for this session.
+                  The host is choosing the mood, genre, or overall sound for
+                  this session.
                 </p>
               </div>
 
               <div className="info-card">
                 <h3>Get Ready to Join</h3>
                 <p>
-                  Once the session starts, everyone in the room can build the mix together.
+                  Once the session starts, everyone in the room can build the
+                  mix together.
                 </p>
               </div>
             </>
@@ -394,7 +404,8 @@ const filteredGenres = genres.filter(
               <div className="info-card">
                 <h3>Choose the Vibe</h3>
                 <p>
-                  Set the tone with a genre, mood, or overall sound for the room.
+                  Set the tone with a genre, mood, or overall sound for the
+                  room.
                 </p>
               </div>
 
@@ -408,7 +419,8 @@ const filteredGenres = genres.filter(
               <div className="info-card">
                 <h3>Invite Others</h3>
                 <p>
-                  Share the room code or QR code so everyone can add their taste.
+                  Share the room code or QR code so everyone can add their
+                  taste.
                 </p>
               </div>
             </>
