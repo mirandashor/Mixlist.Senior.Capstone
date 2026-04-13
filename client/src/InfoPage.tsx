@@ -75,6 +75,7 @@ const InfoPage = () => {
 
 
         </div>
+
     );
 };
 

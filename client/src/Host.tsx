@@ -1,6 +1,6 @@
 //use state for room code and users
 //use effect for reading query param and fetch users when the room exists
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "./host.css";
 import logo from "./assets/logo.png";
@@ -175,18 +175,17 @@ const Host = () => {
   return (
     <>
       <nav className="navbar">
-        <a href="/" className="logo">
-          <img src={logo} alt="Mixlist logo" />
-          <span>Mixlist</span>
-        </a>
+          <Link to="/" className="logo">
+              <img src={logo} alt="Mixlist logo" />
+              <span>Mixlist</span>
+          </Link>
 
-        <div className="nav-links">
-          <a href="/">Home</a>
-          <a href="/#flow">How it works</a>
-          <a href="/#features">FAQ</a>
-          <a href="/#about">About Us</a>
-          <a href="/#support">Support</a>
-        </div>
+          <div className="nav-links">
+              <Link to="/info#how-it-works">How it works</Link>
+              <Link to="/info#faq">FAQ</Link>
+              <Link to="/info#about">About Us</Link>
+              <Link to="/info#support">Support</Link>
+          </div>
       </nav>
 
       <main className="page-wrapper">
@@ -427,6 +426,18 @@ const Host = () => {
           )}
         </section>
       </main>
+      
+        <footer className="footer">
+        <div className="footer-content">
+          <p>© 2026 Mixlist. All rights reserved.</p>
+
+          <div className="footer-links">
+            <a href="/#about">Privacy</a>
+            <a href="/#about">Terms</a>
+            <a href="/#about">Contact</a>
+          </div>
+        </div>
+      </footer>
     </>
   );
 };

@@ -11,13 +11,13 @@ const Landing: React.FC = () => {
 
     return (
         <div className="landing-page">
-            <nav className="landing-navbar">
-                <div className="landing-logo">
+            <nav className="navbar">
+                <Link to="/" className="logo">
                     <img src={logo} alt="Mixlist logo" />
                     <span>Mixlist</span>
-                </div>
+                </Link>
 
-                <div className="landing-nav-links">
+                <div className="nav-links">
                     <Link to="/info#how-it-works">How it works</Link>
                     <Link to="/info#faq">FAQ</Link>
                     <Link to="/info#about">About Us</Link>
@@ -88,10 +88,17 @@ const Landing: React.FC = () => {
                     </div>
                 </section>
             </main>
+      <footer className="footer">
+        <div className="footer-content">
+          <p>© 2026 Mixlist. All rights reserved.</p>
 
-            <footer className="landing-footer">
-                <p>© 2026 Mixlist. Built for better group listening.</p>
-            </footer>
+          <div className="footer-links">
+            <a href="/#about">Privacy</a>
+            <a href="/#about">Terms</a>
+            <a href="/#about">Contact</a>
+          </div>
+        </div>
+      </footer>
         </div>
     );
 };
