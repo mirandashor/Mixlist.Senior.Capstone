@@ -139,6 +139,8 @@ npm run dev
 ## Follow-on Project Instructions for future contributors
 - Real-time updates
   - The host to creates a session. Users can join any time and the playlist will refresh with the new taste profile in the mix
+- Persistent database
+  - Switch from SQLite to PostgreSQL. Compatible with Render and fits the project. Data can still be wiped after sessions, but if the site goes down, current data will not be lost. 
 - User Profiles
 - Host can delete a session & User can delete a session
   - Instead of just closing the browser to end a session
