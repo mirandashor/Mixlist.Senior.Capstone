@@ -561,6 +561,11 @@ body {
         width: 100%;
     }
 
+    .create-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
     .host-form {
         align-items: stretch;
     }

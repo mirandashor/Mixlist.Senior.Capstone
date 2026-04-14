@@ -30,6 +30,9 @@ const Host = () => {
   //roles state, set if user or guest
   const [role, setRole] = useState("");
 
+  //Loading Icon
+  const [isLoading, setIsLoading] = useState(false);
+
   //get room code from URL,runs when page loads to get the url then extract the room code
   //then save it to the state. this lets the page know which session it is in
   //same with role-let page know if the role is hosst or guest
@@ -104,17 +107,23 @@ const Host = () => {
   }, [role, roomCode, navigate]);
 
   const handleGeneratePlaylist = async () => {
+
+    //Loading State
+    setIsLoading(true);
+
     try {
       const params = new URLSearchParams(window.location.search);
       const accessToken = params.get("access_token");
 
       if (!accessToken) {
         alert("Missing access token");
+        setIsLoading(false);
         return;
       }
 
       if (selectedGenre.length === 0) {
         alert("Please select at least one genre");
+        setIsLoading(false);
         return;
       }
 
@@ -136,6 +145,7 @@ const Host = () => {
 
       if (!res.ok) {
         alert(data.error || "Failed to generate playlist");
+        setIsLoading(false);
         return;
       }
 
@@ -148,6 +158,7 @@ const Host = () => {
     } catch (err) {
       console.error("generate error:", err);
       alert("Server error");
+      setIsLoading(false);
     }
   };
 
@@ -362,9 +373,13 @@ const Host = () => {
                   handleGeneratePlaylist();
                 }}
               >
-                <button type="submit" className="create-btn">
-                  Create
-                </button>
+              <button 
+                type="submit" 
+                className="create-btn"
+                disabled={isLoading}
+              >
+                {isLoading ? "Creating" : "Create"}
+              </button>
 
               </form>
             </>
