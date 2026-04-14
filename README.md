@@ -1,7 +1,3 @@
-![Node.js](https://img.shields.io/badge/Node.js-18+-green)
-![React](https://img.shields.io/badge/React-Frontend-blue)
-![MySQL](https://img.shields.io/badge/Database-MySQL-orange)
-
 # Mixlist
 Mixlist is a web application that generates collaborative playlists by combining user taste profiles from the Spotify API with genre-based recommendations from the LastFM API.
 
