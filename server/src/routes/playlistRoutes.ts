@@ -58,12 +58,14 @@ console.log("TRACKS FROM DB:", tracks.length);
 // score tracks (count duplicates)
 const trackScores: Record<string, number> = {};
 
+//genre extraction
 for (const track of tracks) {
   const artist = track.artist_name;
 
   const tags = await getArtistTags(artist);
   const tagNames = tags.map((t: any) => t.name.toLowerCase());
 
+//genre filtering
 const isMatch =
   !genre || genre.length === 0
     ? true
@@ -212,7 +214,7 @@ if (includeTopHits && shouldFill) {
 }
 
 
-// Fallback logic for a playlist that isnt 40 tracks with options toggled
+// Fallback logic for a playlist that isnt 40 tracks with options toggled, additional smart recs added
 if (includeSmart && shouldFill && finalTrackIds.length < targetLength) {
   console.log("FALLBACK RECOMMENDATIONS...");
 
@@ -266,8 +268,6 @@ const shuffleFinal = (arr: string[]) => {
 shuffleFinal(finalTrackIds);
 
 const finalUris = finalTrackIds.map(id => `spotify:track:${id}`);
-
-
 
     console.log("TRACK COUNT:", finalUris.length);
 
