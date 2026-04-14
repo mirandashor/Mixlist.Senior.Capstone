@@ -6,14 +6,14 @@ const router = express.Router();
 const { getTracksForSession } = require("../database/statements");
 const { getSessionUsers } = require("../database/statements");
 
-//reccomendation variables
+//smart playlist will always be at least 40 tracks
 const targetLength = 40;
 
 router.post("/generate-playlist", async (req, res) => {
   try {
     const { accessToken, roomCode, genre, includeSmart, includeTopHits } = req.body;
 
-    //  Build playlist name from genres
+    //  build playlist name from genres
     const playlistName =
       genre && genre.length > 0
         ? `${genre.join(" & ")} Mixlist`
@@ -50,12 +50,12 @@ router.post("/generate-playlist", async (req, res) => {
     const userId = meRes.data.id;
     console.log("USER ID:", userId);
 
-// 1. Get all track IDs from session
+//fetch top track IDs from roomCode db table
 const tracks = await getTracksForSession(roomCode);
 
 console.log("TRACKS FROM DB:", tracks.length);
 
-// Score tracks (count duplicates)
+// score tracks (count duplicates)
 const trackScores: Record<string, number> = {};
 
 for (const track of tracks) {
@@ -74,7 +74,7 @@ const isMatch =
           return t.includes(gLower) || gLower.includes(t);
         })
       );
-
+      
   if (isMatch) {
     const id = track.spotify_track_id;
     trackScores[id] = (trackScores[id] || 0) + 1;
@@ -104,10 +104,9 @@ const sortedTracks = Object.keys(grouped)
   .sort((a, b) => Number(b) - Number(a))
   .flatMap(score => grouped[Number(score)]);
 
-
-//genre filtering logic
 let finalTrackIds = [...sortedTracks];
 
+//genre filtering logic
 const shouldFill = includeSmart || includeTopHits;
 
 if (includeSmart && shouldFill && finalTrackIds.length < targetLength) {
@@ -121,6 +120,8 @@ if (includeSmart && shouldFill && finalTrackIds.length < targetLength) {
   ];
 
   for (const artist of uniqueArtists) {
+
+    //if playlist isnt 40 tracks force more tracks
     if (shouldFill && finalTrackIds.length >= targetLength) break;
 
     try {
@@ -140,6 +141,7 @@ if (includeSmart && shouldFill && finalTrackIds.length < targetLength) {
 
       const songs = res.data.tracks?.items || [];
 
+      //only include recommendations that are of the specified genre
       for (const song of songs) {
 
         const tags = await getArtistTags(song.artists[0]?.name);
@@ -154,7 +156,8 @@ if (includeSmart && shouldFill && finalTrackIds.length < targetLength) {
                   g.toLowerCase().includes(tag)
                 )
               );
-
+        
+        //allow genre straying given playlist still isnt 40 tracks
         if (!matchesGenre && Math.random() > 0.4) continue;
 
         if (shouldFill && finalTrackIds.length >= targetLength) break;
@@ -171,7 +174,7 @@ if (includeSmart && shouldFill && finalTrackIds.length < targetLength) {
   }
 }
 
-// Top Hits logic
+// popular rec's logic
 if (includeTopHits && shouldFill) {
   console.log("ADDING TOP HITS...");
 
@@ -209,7 +212,7 @@ if (includeTopHits && shouldFill) {
 }
 
 
-// Filler rec's for genre filters that are not popular for listeners
+// Fallback logic for a playlist that isnt 40 tracks with options toggled
 if (includeSmart && shouldFill && finalTrackIds.length < targetLength) {
   console.log("FALLBACK RECOMMENDATIONS...");
 
@@ -268,7 +271,7 @@ const finalUris = finalTrackIds.map(id => `spotify:track:${id}`);
 
     console.log("TRACK COUNT:", finalUris.length);
 
-    // Create playlist
+    // create playlist
     const playlistRes = await axios.post(
       "https://api.spotify.com/v1/me/playlists",
       {
@@ -286,7 +289,7 @@ const finalUris = finalTrackIds.map(id => `spotify:track:${id}`);
 
     const playlistId = playlistRes.data.id;
 
-    //Playlist state for listener redirect
+    //playlist state for listener redirect
     (globalThis as any).generatedPlaylists =
       (globalThis as any).generatedPlaylists || {};
 
@@ -294,7 +297,7 @@ const finalUris = finalTrackIds.map(id => `spotify:track:${id}`);
 
     console.log("Playlist Created:", playlistId);
 
-    // Add tracks
+    // add tracks to spotify playlist
     await axios.post(
       `https://api.spotify.com/v1/playlists/${playlistId}/items`,
       {
@@ -310,6 +313,7 @@ const finalUris = finalTrackIds.map(id => `spotify:track:${id}`);
 
     console.log("Tracks added");
 
+    //info grabbing for listener dashboard
     res.json({
       message: "Playlist created",
       playlistId: playlistId,
