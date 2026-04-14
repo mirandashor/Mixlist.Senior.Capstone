@@ -139,7 +139,12 @@ const Host = () => {
         return;
       }
 
-      navigate(`/dashboard?playlistId=${data.playlistId}`);
+      navigate(
+        `/dashboard?playlistId=${data.playlistId}` +
+        `&name=${encodeURIComponent(data.playlistName)}` +
+        `&users=${encodeURIComponent(data.users.join(","))}`
+      );
+      
     } catch (err) {
       console.error("generate error:", err);
       alert("Server error");
@@ -361,9 +366,6 @@ const Host = () => {
                   Create
                 </button>
 
-                <div className="host-message">
-                  Be the blueprint, then invite others to mix the rest.
-                </div>
               </form>
             </>
           )}

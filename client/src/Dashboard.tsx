@@ -1,15 +1,32 @@
 import { useNavigate, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import "./dashboard.css";
 import logo from "./assets/logo.png";
 
 const Dashboard = () => {
   const navigate = useNavigate();
 
-  // replace these later with real backend values
-  const playlistName = "Rock Mixlist";
-  const creatorName = "Miranda";
-  const playlistEmbedUrl =
-    "https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M";
+const [playlistId, setPlaylistId] = useState("");
+const [playlistName, setPlaylistName] = useState("");
+const [creatorName, setCreatorName] = useState("");
+
+useEffect(() => {
+  const params = new URLSearchParams(window.location.search);
+
+  const id = params.get("playlistId") || "";
+  const name = params.get("name") || "Mixlist";
+  const users = params.get("users") || "";
+
+  setPlaylistId(id);
+  setPlaylistName(name);
+
+  const formattedUsers = users.split(",").join(" & ");
+  setCreatorName(formattedUsers);
+}, []);
+
+const playlistEmbedUrl = playlistId
+  ? `https://open.spotify.com/embed/playlist/${playlistId}`
+  : "";
 
   return (
     <>
@@ -68,7 +85,9 @@ const Dashboard = () => {
           </div>
 
           <div className="dashboard-spotify-embed-wrap">
-            <iframe
+            
+            {playlistId && (
+              <iframe
               title="Spotify Playlist"
               src={playlistEmbedUrl}
               width="100%"
@@ -77,6 +96,7 @@ const Dashboard = () => {
               allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
               loading="lazy"
             ></iframe>
+            )}
           </div>
         </section>
 

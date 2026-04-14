@@ -312,7 +312,9 @@ const finalUris = finalTrackIds.map(id => `spotify:track:${id}`);
 
     res.json({
       message: "Playlist created",
-      playlistId: playlistId
+      playlistId: playlistId,
+      playlistName: playlistName,
+      users: shortNames
     });
 
   } catch (err: any) {
