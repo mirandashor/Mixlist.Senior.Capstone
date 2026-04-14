@@ -332,7 +332,7 @@ const Host = () => {
               </div>
 
               <div className="options-block">
-                <h3 className="options-label">Options</h3>
+                <h3 className="options-label">Playlist Options</h3>
 
                 <div className="options-row">
                   <label className="option-pill">
@@ -350,7 +350,7 @@ const Host = () => {
                       checked={includeTopHits}
                       onChange={(e) => setIncludeTopHits(e.target.checked)}
                     />
-                    {" "}Top Hits
+                    {" "}Popular Recommendations
                   </label>
                 </div>
               </div>
