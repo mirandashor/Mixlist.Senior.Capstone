@@ -306,12 +306,10 @@ function getSessionUsers(roomCode) {
     });
 }
 
-//delete the data in the database after a session ends
+//delete the data in the database after a session ends (when playlist is created)
 function clearSessionData() {
     db.run(`DELETE FROM session_users`);
     db.run(`DELETE FROM session_room`);
-    db.run(`DELETE FROM top_tracks`);
-    db.run(`DELETE FROM users`);
     console.log("Session data cleared");
 }
 

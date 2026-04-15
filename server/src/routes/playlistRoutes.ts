@@ -5,6 +5,7 @@ import { getArtistTags } from "../services/lastfmService";
 const router = express.Router();
 const { getTracksForSession } = require("../database/statements");
 const { getSessionUsers } = require("../database/statements");
+const { clearSessionData } = require("../database/statements");
 
 //smart playlist will always be at least 40 tracks
 const targetLength = 40;
@@ -312,6 +313,9 @@ const finalUris = finalTrackIds.map(id => `spotify:track:${id}`);
     );
 
     console.log("Tracks added");
+
+    //clear session data so users can make many mixlists
+    clearSessionData();
 
     //info grabbing for listener dashboard
     res.json({
