@@ -1,82 +1,191 @@
-html,
-body {
-  margin: 0;
-  padding: 0;
+/* NAVBAR */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 36px;
+    background: linear-gradient(90deg, #cbb8f7 0%, #b78cf2 55%, #a855f7 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: #2e1065;
+}
+
+.logo-icon {
+    font-size: 1.7rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 10px 16px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.2s ease;
+}
+
+.nav-links a:hover {
+    background: rgba(29, 185, 84, 0.22);
+    border-color: rgba(29, 185, 84, 0.45);
+    transform: translateY(-2px);
+}
+
+/* Page base */
 .info-page {
-  min-height: 100vh;
-  background: #f5f3ff;
+  font-family: system-ui, -apple-system, sans-serif;
+  color: #2f2f2f;
 }
 
-.info-navbar {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 18px 40px;
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(167, 139, 250, 0.2);
-}
-
-.info-logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
-  color: #2d1b4e;
-  font-weight: 800;
-  font-size: 1.8rem;
-}
-
-.info-nav-links {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.info-nav-links a {
-  text-decoration: none;
-  padding: 10px 16px;
-  border-radius: 12px;
-  background: #ddd6fe;
-  color: #2d1b4e;
-  font-weight: 600;
-  transition: 0.2s ease;
-}
-
-.info-nav-links a:hover {
-  background: #a78bfa;
-  color: white;
-}
-
+/* SECTION WRAPPER */
 .info-section {
-  padding: 120px 20px;
   display: flex;
   justify-content: center;
+  padding: 3rem 2rem; 
+  margin-top: 10px;
   scroll-margin-top: 100px;
 }
 
 .info-section.alt {
-  background: #ede9fe;
+  background: linear-gradient(
+    180deg,
+    rgba(193, 161, 244, 0.08),
+    rgba(193, 161, 244, 0.03)
+  );
 }
 
+/* CONTENT CARD */
 .info-content {
-  max-width: 800px;
-  text-align: center;
-}
-
-.info-content h1 {
-  font-size: 2.5rem;
-  color: #2d1b4e;
-  margin-bottom: 20px;
-}
-
-.info-content p {
-  font-size: 1.2rem;
-  color: #5b5675;
+  width: 100%;
+  max-width: 1100px;
+  background: white;
+  border-radius: 18px;
+  padding: 2.2rem 2.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
   line-height: 1.7;
+}
+
+/* HEADINGS */
+.info-content h1 {
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+  color: #2b1f4a;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.7rem;
+  color: #2b1f4a;
+}
+
+/* PARAGRAPHS */
+.info-content p {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #3a3a3a;
+}
+
+/* LIST */
+.info-list {
+  margin: 1.2rem 0 1.8rem 1.2rem;
+  padding-left: 1rem;
+}
+
+.info-list li {
+  margin-bottom: 0.9rem;
+  line-height: 1.6;
+  padding-left: 0.2rem;
+}
+
+.info-list strong {
+  color: #5a3ec8;
+}
+
+/* FAQ CARDS */
+.faq-item {
+  background: #faf9ff;
+  border: 1px solid rgba(90, 62, 200, 0.08);
+  border-radius: 14px;
+  padding: 1.1rem 1.2rem;
+  margin-bottom: 1rem;
+  transition: all 0.2s ease;
+}
+
+.faq-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+.faq-item h3 {
+  font-size: 1.05rem;
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+  color: #2b1f4a;
+}
+
+.faq-item p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #4a4a4a;
+}
+
+/* TEAM GRID */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* TEAM CARD */
+.card {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  padding: 1.2rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+}
+
+.card h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.05rem;
+  color: #2b1f4a;
+}
+
+.card p {
+  margin-bottom: 0.3rem;
+  font-size: 0.95rem;
+  color: #4a4a4a;
+}
+
+/* SMALL POLISH */
+.info-content ul {
+  list-style-type: disc;
 }

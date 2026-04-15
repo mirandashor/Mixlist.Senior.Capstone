@@ -28,7 +28,6 @@ const Landing: React.FC = () => {
             <main className="landing-main-content">
                 <section className="landing-hero-section">
                     <div className="landing-hero-text">
-                        <span className="landing-hero-badge">Collaborative Playlist Generation</span>
                         <h1>Build the perfect playlist with everyone in the room</h1>
                         <p>
                             Mixlist helps groups create playlists together using tailored preferences from your favorites,
@@ -37,8 +36,8 @@ const Landing: React.FC = () => {
 
                         <div className="landing-hero-actions">
                             <button className="landing-spotify-btn" onClick={handleLogin}>
-                                Log in with Spotify
-                            </button>
+                                Get Started
+                            </button> <span className="landing-hero-badge">Log in with Spotify</span>
                         </div>
 
                         <div className="landing-hero-stats">
