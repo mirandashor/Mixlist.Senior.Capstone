@@ -182,12 +182,13 @@ const Host = () => {
     "Dubstep",
   ].sort();
 
-  const filteredGenres = genres.filter(
-    (g) =>
-      g.toLowerCase().includes(search.toLowerCase()) &&
-      !selectedGenre.includes(g)
-  );
-
+const filteredGenres = search
+  ? genres.filter(
+      (g) =>
+        g.toLowerCase().includes(search.toLowerCase()) &&
+        !selectedGenre.includes(g)
+    )
+  : genres.filter(g => !selectedGenre.includes(g));
   return (
     <>
       <nav className="navbar">
@@ -317,9 +318,21 @@ const Host = () => {
                   }}
                   onFocus={() => setShowDropdown(true)}
                 />
+                  <span
+                    onClick={() => setShowDropdown(prev => !prev)}
+                    style={{
+                      position: "absolute",
+                      right: "15px",
+                      transform: "translateY(90%)",
+                      cursor: "pointer",
+                      fontSize: "12px"
+                    }}
+                  >
+                    ▼
+                  </span>
 
                 {/* Dropdown */}
-                {showDropdown && search && (
+                {showDropdown && (
                   <div className="genre-dropdown">
                     {filteredGenres.length > 0 ? (
                       filteredGenres.map((g) => (
