@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Landing: React.FC = () => {
     const handleLogin = () => {
-        window.location.href = `${import.meta.env.VITE_API_BASE_URL}/auth/login`;
+         window.location.href = `${import.meta.env.VITE_API_BASE_URL}/auth/login`;
     };
 
 
@@ -42,15 +42,15 @@ const Landing: React.FC = () => {
 
                         <div className="landing-hero-stats">
                             <div className="landing-stat-card">
-                                <h3>Fast setup</h3>
+                                <h3>🚀 Fast setup</h3>
                                 <p>Create a session and get people joining in seconds.</p>
                             </div>
                             <div className="landing-stat-card">
-                                <h3>Group-based</h3>
+                                <h3>👥 Group-based</h3>
                                 <p>Built for parties, study groups, hangouts, and events.</p>
                             </div>
                             <div className="landing-stat-card">
-                                <h3>Spotify powered</h3>
+                                <h3>🎧 Spotify powered</h3>
                                 <p>Use real music taste data to generate better playlists.</p>
                             </div>
                         </div>
@@ -86,18 +86,44 @@ const Landing: React.FC = () => {
                         </div>
                     </div>
                 </section>
+
+                <section className="learn-more-section">
+  <h2>Learn More</h2>
+  <p className="learn-subtext">
+    Explore more about Mixlist and how it works
+  </p>
+
+  <div className="learn-links">
+    <a href="https://github.com/mirandashor/Mixlist-Senior-Capstone.git" target="_blank" rel="noreferrer">
+      <span>💻</span> GitHub
+    </a>
+
+    <a href="https://mirandashor.github.io/Mixlist-Senior-Capstone/" target="_blank" rel="noreferrer">
+      <span>🌐</span> Website
+    </a>
+
+    <a href="https://your-poster-link.com" target="_blank" rel="noreferrer">
+      <span>📝</span> Poster
+    </a>
+
+    <a href="https://youtube.com/your-video" target="_blank" rel="noreferrer">
+      <span>🎥</span> Demo Video
+    </a>
+  </div>
+</section>
+
             </main>
       <footer className="footer">
         <div className="footer-content">
           <p>© 2026 Mixlist. All rights reserved.</p>
 
           <div className="footer-links">
-            <a href="/#about">Privacy</a>
-            <a href="/#about">Terms</a>
-            <a href="/#about">Contact</a>
+            
           </div>
         </div>
       </footer>
+
+      
         </div>
     );
 };
