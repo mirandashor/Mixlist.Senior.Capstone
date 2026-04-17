@@ -36,8 +36,8 @@ const Landing: React.FC = () => {
 
                         <div className="landing-hero-actions">
                             <button className="landing-spotify-btn" onClick={handleLogin}>
-                                Get Started
-                            </button> <span className="landing-hero-badge">Log in with Spotify</span>
+                                Login With Spotify to Get Started
+                            </button> 
                         </div>
 
                         <div className="landing-hero-stats">
