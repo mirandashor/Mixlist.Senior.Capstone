@@ -19,7 +19,7 @@ useEffect(() => {
 
     setTimeout(() => {
       window.location.reload();
-    }, 1000);
+    }, 3000);
   }
 }, [playlistId]);
 
