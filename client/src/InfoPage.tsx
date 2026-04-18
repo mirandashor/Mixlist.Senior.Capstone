@@ -183,6 +183,128 @@ const InfoPage = () => {
           </p>
         </div>
       </section>
+
+
+            {/* Documentation */}
+      <section id="about" className="info-section alt">
+        <section id="team" className="section">
+          <h2 className="section-title">Documentation</h2>
+
+          <div className="team-grid">
+
+            <div className="card">
+              <h3>
+                <a 
+                  href="https://mirandashor.github.io/Mixlist-Senior-Capstone/index.html" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                 🌐 Technical Website
+                </a>
+                </h3>
+              <p>The page that presents the project overview, including
+                purpose, documentation, tech stack, user stories, and more.  
+              </p>
+            </div>
+
+            <div className="card">
+              <h3>
+                <a 
+                  href="https://github.com/mirandashor/Mixlist-Senior-Capstone" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                🖥️ Github
+                </a>
+                </h3>
+              <p>The central location where all project code, files, 
+                and version history are stored and managed. It serves 
+                as the single source of truth for the application.</p>
+            </div>
+
+            <div className="card">
+              <h3>
+                <a 
+                  href="https://github.com/mirandashor/Mixlist-Senior-Capstone/blob/main/README.md#install-instructions" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                📚 README
+                </a>
+                </h3>
+              <p>A guide included in the repository that explains how to
+                 install, configure, and run the project, along with key 
+                 details about dependencies and usage.</p>
+            </div>
+
+          </div>
+          <p> </p>
+          <div className="team-grid">
+
+            <div className="card">
+              <h3>
+                <a 
+                  href="https://docs.google.com/document/d/1grGhQ-3INwQ4MRgRBbgLTHG7l3HhXCQo2XrluSKuFT4/edit?usp=sharing" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                📄 Executive Summary
+                </a>
+                </h3>
+              <p>A high-level overview of the project that explains the 
+                problem, solution, and value in a clear, non-technical 
+                way for general audiences.</p>
+            </div>
+
+            <div className="card">
+              <h3>
+                <a 
+                  href="https://docs.google.com/document/d/16MoxbxHkbdMz0w5q7Gw08c5yNA2N0JSNlByHseWWjso/edit?usp=sharing" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                📄 Technical Specification
+                </a>
+                </h3>
+              <p>A detailed breakdown of the systems architecture, 
+                technologies, and components, explaining how the 
+                system is structured and how parts interact.</p>
+            </div>
+
+            <div className="card">
+              <h3>
+                <a 
+                  href="https://docs.google.com/document/d/1yDiz5kcykonaux2JPIubNU8gX34xEaE7P20TrwmP5H0/edit?usp=sharing" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                📄 Product Requirements & Design
+                </a>
+                </h3>
+              <p>A document that defines the products goals, 
+                features, target users, and requirements, 
+                focusing on what the product should do and why.</p>
+            </div>
+
+            <div className="card">
+              <h3>
+                <a 
+                  href="https://docs.google.com/document/d/1b0UdbX_lopTY3qs88QJY8VpDaA0vB4RLu9Irhd1mqmg/edit?usp=sharing" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                📄 Developer Design
+                </a>
+                </h3>
+              <p>A technical document that explains how the system 
+                is implemented at a deeper level, including logic, 
+                workflows, and decisions made for development.</p>
+            </div>
+
+          </div>
+        </section>
+      </section>
+
     </div>
   );
 };
