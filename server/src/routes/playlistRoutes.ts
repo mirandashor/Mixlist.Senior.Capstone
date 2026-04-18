@@ -315,7 +315,9 @@ const finalUris = finalTrackIds.map(id => `spotify:track:${id}`);
     console.log("Tracks added");
 
     //clear session data so users can make many mixlists
-    clearSessionData();
+setTimeout(() => {
+  clearSessionData();
+}, 2000);
 
     //info grabbing for listener dashboard
     res.json({
