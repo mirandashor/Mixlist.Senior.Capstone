@@ -1,4 +1,5 @@
 import { useNavigate, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import "./hostorjoin.css";
 import logo from "./assets/logo.png";
 
@@ -7,15 +8,41 @@ const apiBaseUrl = import.meta.env.VITE_API_BASE_URL;
 const HostOrJoin: React.FC = () => {
     const navigate = useNavigate();
 
-//get logged in user id from URL after spotify auth callback
-const params = new URLSearchParams(window.location.search);
-const userId = params.get("userId");
-const accessToken = params.get("access_token");
+//get logged in user id from URL 
+//store logged in user in local storage for multi-use
+//if nothing in the URL from auth anymore (backed up from playlist gen),
+//get data stored in the browser (temp)
+const [storedUserId, setStoredUserId] = useState<string | null>(null);
+const [storedToken, setStoredToken] = useState<string | null>(null);
+
+useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+
+    const userIdFromUrl = params.get("userId");
+    const tokenFromUrl = params.get("access_token");
+
+    if (userIdFromUrl && tokenFromUrl) {
+        localStorage.setItem("userId", userIdFromUrl);
+        localStorage.setItem("accessToken", tokenFromUrl);
+
+        setStoredUserId(userIdFromUrl);
+        setStoredToken(tokenFromUrl);
+
+        // clean URL
+        window.history.replaceState({}, document.title, "/hostorjoin");
+    } else {
+        const savedUserId = localStorage.getItem("userId");
+        const savedToken = localStorage.getItem("accessToken");
+
+        setStoredUserId(savedUserId);
+        setStoredToken(savedToken);
+    }
+}, []);
 
 //host button creates a session then navigates to join button
 const handleHost = async () => {
     try {
-        if(!userId) {
+        if(!storedUserId) {
             alert("no logged in user found");
             return;
         }
@@ -26,7 +53,7 @@ const handleHost = async () => {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                hostUserId: Number(userId),
+                hostUserId: Number(storedUserId),
             }),
         });
 
@@ -37,10 +64,10 @@ const handleHost = async () => {
             return;
         }
 
-        const accessToken = params.get("access_token");
+        const accessToken = storedToken;
 
         navigate(
-            `/host?roomCode=${data.roomCode}&role=host&userId=${userId}&access_token=${accessToken}`
+            `/host?roomCode=${data.roomCode}&role=host&userId=${storedUserId}&access_token=${accessToken}`
         );
     } catch (err) {
         console.error("error creating session:", err);
@@ -79,7 +106,7 @@ const handleHost = async () => {
                 <button
                     className="hostjoin-big-btn"
                      onClick={() =>
-                        navigate(`/join?userId=${userId}&access_token=${accessToken}`)
+                        navigate(`/join?userId=${storedUserId}&access_token=${storedToken}`)
                 }
                 >
                     🎧 Join a Mixlist
@@ -133,6 +160,9 @@ const handleHost = async () => {
           <p>© 2026 Mixlist. All rights reserved.</p>
 
           <div className="footer-links">
+            <a href="/#about">Privacy</a>
+            <a href="/#about">Terms</a>
+            <a href="/#about">Contact</a>
           </div>
         </div>
       </footer>
