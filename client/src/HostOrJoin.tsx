@@ -18,27 +18,26 @@ const [storedToken, setStoredToken] = useState<string | null>(null);
 useEffect(() => {
     const params = new URLSearchParams(window.location.search);
 
-    const userIdFromUrl = params.get("userId");
-    const tokenFromUrl = params.get("access_token");
+    const userIdFromUrl = params.get("userId"); //db user id
+    const tokenFromUrl = params.get("access_token"); //spotify token
 
-if (userIdFromUrl && tokenFromUrl) {
-    // only set if NOT already set (prevents overwriting with bad data)
-    if (!localStorage.getItem("userId")) {
+    if (userIdFromUrl && tokenFromUrl) {
+        // ALWAYS overwrite with fresh DB values when login
         localStorage.setItem("userId", userIdFromUrl);
-    }
-
-    if (!localStorage.getItem("accessToken")) {
         localStorage.setItem("accessToken", tokenFromUrl);
+        //update state for use inn app
+        setStoredUserId(userIdFromUrl);
+        setStoredToken(tokenFromUrl);
+        //new URL without query params
+        window.history.replaceState({}, document.title, "/hostorjoin");
+    } else {
+        //fallback to load saved user from browser 
+        const savedUserId = localStorage.getItem("userId");
+        const savedToken = localStorage.getItem("accessToken");
+
+        setStoredUserId(savedUserId);
+        setStoredToken(savedToken);
     }
-
-    const finalUserId = localStorage.getItem("userId");
-    const finalToken = localStorage.getItem("accessToken");
-
-    setStoredUserId(finalUserId);
-    setStoredToken(finalToken);
-
-    window.history.replaceState({}, document.title, "/hostorjoin");
-}
 }, []);
 
 //host button creates a session then navigates to join button
