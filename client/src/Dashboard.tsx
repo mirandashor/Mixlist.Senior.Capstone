@@ -10,6 +10,19 @@ const [playlistId, setPlaylistId] = useState("");
 const [playlistName, setPlaylistName] = useState("");
 const [creatorName, setCreatorName] = useState("");
 
+//refresh dashboiard page when loaded
+useEffect(() => {
+  const hasRefreshed = sessionStorage.getItem("dashboardRefreshed");
+
+  if (!playlistId && !hasRefreshed) {
+    sessionStorage.setItem("dashboardRefreshed", "true");
+
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
+  }
+}, [playlistId]);
+
 useEffect(() => {
   const params = new URLSearchParams(window.location.search);
 
