@@ -57,18 +57,29 @@ const handleHost = async () => {
             }),
         });
 
-        const data = await res.json();
+const data = await res.json();
 
-        if (!res.ok) {
-            alert(data.error || "failed to create session");
-            return;
-        }
+if (!res.ok) {
+    alert(data.error || "failed to create session");
+    return;
+}
 
-        const accessToken = storedToken;
+await fetch(`${apiBaseUrl}/api/session/join`, {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+        roomCode: data.roomCode,
+        userId: Number(storedUserId),
+    }),
+});
 
-        navigate(
-            `/host?roomCode=${data.roomCode}&role=host&userId=${storedUserId}&access_token=${accessToken}`
-        );
+const accessToken = storedToken;
+
+navigate(
+    `/host?roomCode=${data.roomCode}&role=host&userId=${storedUserId}&access_token=${accessToken}`
+);
     } catch (err) {
         console.error("error creating session:", err);
         alert("server error");
