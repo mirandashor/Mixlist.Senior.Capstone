@@ -64,11 +64,11 @@ db.serialize(() => { //run in order
 
     //delete data when the server is restarted. no user data saved
     //eventually change to be cleared when session ends
-    db.run(`DELETE FROM session_users`);
-    db.run(`DELETE FROM session_room`);
-    db.run(`DELETE FROM top_tracks`);
-    db.run(`DELETE FROM users`);
-    console.log("Database cleared on startup");
+    // db.run(`DELETE FROM session_users`);
+    // db.run(`DELETE FROM session_room`);
+    // db.run(`DELETE FROM top_tracks`);
+    // db.run(`DELETE FROM users`);
+    // console.log("Database cleared on startup");
 });
 
 //save the user into the user table database dynamically
