@@ -21,22 +21,24 @@ useEffect(() => {
     const userIdFromUrl = params.get("userId");
     const tokenFromUrl = params.get("access_token");
 
-    if (userIdFromUrl && tokenFromUrl) {
+if (userIdFromUrl && tokenFromUrl) {
+    // only set if NOT already set (prevents overwriting with bad data)
+    if (!localStorage.getItem("userId")) {
         localStorage.setItem("userId", userIdFromUrl);
-        localStorage.setItem("accessToken", tokenFromUrl);
-
-        setStoredUserId(userIdFromUrl);
-        setStoredToken(tokenFromUrl);
-
-        // clean URL
-        window.history.replaceState({}, document.title, "/hostorjoin");
-    } else {
-        const savedUserId = localStorage.getItem("userId");
-        const savedToken = localStorage.getItem("accessToken");
-
-        setStoredUserId(savedUserId);
-        setStoredToken(savedToken);
     }
+
+    if (!localStorage.getItem("accessToken")) {
+        localStorage.setItem("accessToken", tokenFromUrl);
+    }
+
+    const finalUserId = localStorage.getItem("userId");
+    const finalToken = localStorage.getItem("accessToken");
+
+    setStoredUserId(finalUserId);
+    setStoredToken(finalToken);
+
+    window.history.replaceState({}, document.title, "/hostorjoin");
+}
 }, []);
 
 //host button creates a session then navigates to join button
