@@ -52,7 +52,7 @@ const Host = () => {
 
     const fetchUsers = async () => {
       try {
-        const res = await fetch(`${apiBaseUrl}/api/session/${roomCode}/users`);
+        const res = await fetch(`${apiBaseUrl}/api/session/users/${roomCode}`);
         const data = await res.json();
 
         if (!res.ok) {
