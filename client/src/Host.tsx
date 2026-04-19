@@ -45,36 +45,43 @@ const Host = () => {
   }, []);
 
   //fetch users. doesnt run until there is a room code
-  //calls backend to get the users in the session with the specific room code
-  //converts the response into useable json data, then stores it in state
-  useEffect(() => {
-    if (!roomCode) return;
+//calls backend to get the users in the session with the specific room code
+//converts the response into useable json data, then stores it in state
+useEffect(() => {
+  if (!roomCode) return;
 
-    const fetchUsers = async () => {
-      try {
-        const res = await fetch(`${apiBaseUrl}/api/session/users/${roomCode}`);
-        const data = await res.json();
+  const fetchUsers = async () => {
+    try {
+      const res = await fetch(`${apiBaseUrl}/api/session/${roomCode}/users`);
+      const data = await res.json();
 
-        if (!res.ok) {
-          console.error(data.error || "failed to get users");
-          return;
-        }
+      console.log("USERS RESPONSE:", data); //debug log
 
-        setUsers(data.users || data || []);
-      } catch (err) {
-        console.error("error getting users:", err);
+      if (!res.ok) {
+        console.error(data.error || "failed to get users");
+        return;
       }
-    };
 
-    //runs when the room code changes
-    fetchUsers();
+      //handles different response shapes (array vs object with users key)
+      if (Array.isArray(data)) {
+        setUsers(data);
+      } else {
+        setUsers(data.users || []);
+      }
 
-    //auto refresh so we can see new users
-    const interval = setInterval(fetchUsers, 3000);
+    } catch (err) {
+      console.error("error getting users:", err);
+    }
+  };
 
-    return () => clearInterval(interval);
-  }, [roomCode]);
+  //runs when the room code changes
+  fetchUsers();
 
+  //auto refresh so we can see new users
+  const interval = setInterval(fetchUsers, 3000);
+
+  return () => clearInterval(interval);
+}, [roomCode]);
   //helper var to check if guest or host for what they see on site
   const isGuest = role === "guest";
 
