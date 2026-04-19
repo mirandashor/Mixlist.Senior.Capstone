@@ -75,7 +75,8 @@ useEffect(() => {
   };
 
   //runs when the room code changes
-  setTimeout(fetchUsers, 500);
+  fetchUsers();
+
   //auto refresh so we can see new users
   const interval = setInterval(fetchUsers, 3000);
 

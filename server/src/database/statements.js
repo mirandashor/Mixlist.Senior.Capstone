@@ -76,7 +76,7 @@ function saveUserAndTracks(user, tracks) {
     return new Promise((resolve, reject) => {
         db.run(
             //insert the info using their spotify ID and display name
-            `INSERT OR IGNORE INTO users (spotify_user_id, display_name)
+            `INSERT OR REPLACE INTO users (spotify_user_id, display_name)
             VALUES (?, ?)`,
             [user.id, user.display_name],
             function(err) {
@@ -99,7 +99,7 @@ db.get(
     }
 
     if (!row) {
-      reject(new Error("user not found after save"));
+      reject(new Error("user not found"));
       return;
     }
 

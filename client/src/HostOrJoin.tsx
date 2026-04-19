@@ -42,6 +42,7 @@ useEffect(() => {
 
 //host button creates a session then navigates to join button
 const handleHost = async () => {
+    
     try {
         if(!storedUserId) {
             alert("no logged in user found");
