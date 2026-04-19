@@ -89,25 +89,26 @@ function saveUserAndTracks(user, tracks) {
 
                 //if user already existed, get their existing database id
                 if (!userId) {
-                    db.get(
-                        `SELECT id FROM users WHERE spotify_user_id = ?`,
-                        [user.id],
-                        (err, row) => {
-                            if (err) {
-                                reject(err);
-                                return;
-                            }
+db.get(
+  `SELECT id FROM users WHERE spotify_user_id = ?`,
+  [user.id],
+  (err, row) => {
+    if (err) {
+      reject(err);
+      return;
+    }
 
-                            if (!row) {
-                                reject(new Error("user not found after save"));
-                                return;
-                            }
+    if (!row) {
+      reject(new Error("user not found after save"));
+      return;
+    }
 
-                            userId = row.id;
-                            insertTracks(userId, tracks);
-                            resolve(userId);
-                        }
-                    );
+    const userId = row.id;
+
+    insertTracks(userId, tracks);
+    resolve(userId);
+  }
+);
                 } else {
                     insertTracks(userId, tracks);
                     resolve(userId);
