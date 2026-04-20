@@ -190,10 +190,11 @@ body{
 }
 
 /* MAIN CONTENT SECTION */
+.hero,
 .content-section{
     max-width:1700px;
-    margin:10px 28px 0 28px;
-    padding:10px 4px 40px 4px;
+    margin: 0 auto;;
+    width: 100%;
 }
 
 .content-section h2{
@@ -706,4 +707,40 @@ p{
 .github-btn:hover{
     background:#1DB954;
     color:white;
+}
+
+.figma-row {
+    display: flex;
+    align-items: center;
+}
+
+.figma-icon {
+    width: 70px;   /* adjust size */
+    height: 70px;
+}
+
+.figma-link {
+    font-weight: 600;
+    color: #1a0837;
+    text-decoration: none;
+}
+
+.figma-link:hover {
+    text-decoration: underline;
+}
+
+.flows {
+    background:white;
+    border-radius:24px;
+    padding:24px;
+    box-shadow:0 10px 24px rgba(0,0,0,0.06);
+    border:1px solid rgba(167,139,250,0.15);
+}
+.flows img {
+    max-width: 1700px;
+    width: 100%;
+}
+.flows p {
+    color: black;
+    font-size: 18px;
 }

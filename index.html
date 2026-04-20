@@ -6,7 +6,6 @@
     <meta charset="UTF-8">
     <title>Mixlist</title>
     <link rel="stylesheet" href="styles.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
@@ -73,9 +72,7 @@
                  <div class="hero-buttons">
 
         
-                     <a href="login.html" class="primary-btn">Get Started</a>
-
-                     <a href="results.html" class="primary-btn">Create Playlist</a>
+                     <a href="https://mixlist.onrender.com/" class="primary-btn">Get Started with Mixlist</a>
 
                     <a href="https://github.com/mirandashor/Mixlist-Senior-Capstone" target="_blank" class="github-btn">
                         View on GitHub
@@ -245,7 +242,22 @@
                     </tr>
 
                     <tr>
-                        <td class="priority high">High<br>P1.5</td>
+                        <td class="priority medium">Medium<br>P2.1</td>
+                        <td>
+                            <strong>Delete Session</strong><br>
+                            As a Mixlist host, I want to delete a Mixlist session.
+                        </td>
+                        <td>
+                            <ul>
+                                <li>Session ends and data is cleared</li>
+                                <li>Participants are removed from session</li>
+                                <li>Music stops</li>
+                            </ul>
+                        </td>
+                    </tr>
+
+                     <tr>
+                        <td class="priority low">Low<br>P3.1</td>
                         <td>
                             <strong>Real-Time Updates</strong><br>
                             As a listener and host, I want to see updates on the music feed that reflects the current
@@ -261,22 +273,7 @@
                     </tr>
 
                     <tr>
-                        <td class="priority medium">Medium<br>P2.1</td>
-                        <td>
-                            <strong>Delete Session</strong><br>
-                            As a Mixlist host, I want to delete a Mixlist session.
-                        </td>
-                        <td>
-                            <ul>
-                                <li>Session ends and data is cleared</li>
-                                <li>Participants are removed from session</li>
-                                <li>Music stops</li>
-                            </ul>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td class="priority low">Low<br>P3.1</td>
+                        <td class="priority low">Low<br>P3.2</td>
                         <td>
                             <strong>Leave Session</strong><br>
                             As a listener, I want to leave a Mixlist session.
@@ -290,7 +287,7 @@
                     </tr>
 
                     <tr>
-                        <td class="priority low">Low<br>P3.2</td>
+                        <td class="priority low">Low<br>P3.3</td>
                         <td>
                             <strong>Remove User</strong><br>
                             As a Mixlist host, I want to remove a user from the session to maintain control.
@@ -302,19 +299,6 @@
                             </ul>
                         </td>
                     </tr>
-
-                    <tr>
-                        <td class="priority low">Low<br>P3.3</td>
-                        <td>
-                            <strong>Profile Creation</strong><br>
-                            As a listener, I want to create a profile.
-                        </td>
-                        <td>
-                            <ul>
-                                <li>User can import data from Spotify and edit Mixlist profile</li>
-                            </ul>
-                        </td>
-                    </tr>
                 </tbody>
             </table>
         </div>
@@ -322,12 +306,19 @@
 
     <section id="flow" class="content-section">
         <h2>User Flow</h2>
+        <div class="figma-row">
+            <img src="./assets/figma.png" class="figma-icon" alt="Figma icon">
         <div class="image-card">
-            <a href="https://www.figma.com/design/6YUN1TS55cY4GSLbt0ZuLY/Mixlist?node-id=0-1&t=TD7KIytFSQ9TVsSS-1">
-                <img class="responsive-image" src=".\assets\userflow.png"
-                    alt="https://www.figma.com/proto/6YUN1TS55cY4GSLbt0ZuLY/Mixlist?node-id=0-1&t=TD7KIytFSQ9TVsSS-1"
-                    style="--img-size:70%;">
+            <a href=https://www.figma.com/design/6YUN1TS55cY4GSLbt0ZuLY/Mixlist?node-id=5-2&t=hCUwP8uJmqyYQpDj-1>
+                View Full User Flow in Figma
             </a>
+        </div>
+        </div>
+        <div class="flows">
+            <p>Host Flow</p>
+        <img src="./assets/host-flow.png" alt="Host Flow">
+            <p>Listener Flow</p>
+        <img src="./assets/listener-flow.png" alt="Listener Flow">
         </div>
     </section>
 
@@ -385,7 +376,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td><strong>“Log in with Spotify” Button</strong></td>
+                        <td><strong>“Log in with Spotify to Get Started” Button</strong></td>
                         <td>User logs into Mixlist</td>
                         <td>Redirect user to Spotify OAuth page</td>
                         <td><span class="api-badge get">GET</span> /auth/login</td>
@@ -403,21 +394,21 @@
                         <td><span class="api-badge none">NONE</span></td>
                     </tr>
                     <tr>
-                        <td><strong>“Mix your mood” Field + “Create” Button</strong></td>
+                        <td><strong>“Choose Your Genres” Field + “Create” Button</strong></td>
                         <td>Host sets parameters and creates a Mixlist</td>
                         <td>Session is created with selected parameters</td>
                         <td><span class="api-badge post">POST</span> /[session]</td>
                     </tr>
                     <tr>
-                        <td><strong>“Join” + “Scan QR Code” Buttons</strong></td>
-                        <td>Listener joins session through QR code or session ID</td>
+                        <td><strong>“Join” Button</strong></td>
+                        <td>Listener joins session through session ID</td>
                         <td>System retrieves session ID</td>
                         <td><span class="api-badge get">GET</span> /[sessionID]</td>
                     </tr>
                     <tr>
-                        <td><strong>Invite Icon</strong></td>
-                        <td>User invites additional listeners</td>
-                        <td>System generates link, code, or QR code</td>
+                        <td><strong>"Room Code" + "Status" Buttons</strong></td>
+                        <td>User invites additional listeners with generated code and can see status of playlist</td>
+                        <td>System generates room code and status of the playlist</td>
                         <td><span class="api-badge get">GET</span> /[sessionID]</td>
                     </tr>
                     <tr>
@@ -427,13 +418,13 @@
                         <td><span class="api-badge spotify">Spotify API</span></td>
                     </tr>
                     <tr>
-                        <td><strong>“Leave Mixlist” Button</strong></td>
+                        <td><strong>“Join a New Session” Button</strong></td>
                         <td>Listener leaves Mixlist</td>
                         <td>Remove listener from session</td>
                         <td><span class="api-badge delete">DELETE</span> /[listenerID]</td>
                     </tr>
                     <tr>
-                        <td><strong>“End Session” in Host Settings</strong></td>
+                        <td><strong>“Create a New Session” in Host Settings</strong></td>
                         <td>Host ends Mixlist</td>
                         <td>Send request to end session and wipe listener data</td>
                         <td><span class="api-badge delete">DELETE</span> /[sessionID]</td>
@@ -480,36 +471,30 @@
                         <td><strong>Session Management</strong></td>
                         <td>Database</td>
                         <td>Create new session and generate session ID</td>
-                        <td><span class="api-badge post">POST</span> /sessionID</td>
+                        <td><span class="api-badge post">POST</span> /session/create</td>
                     </tr>
 
                     <tr>
                         <td><strong>Taste Aggregation</strong></td>
                         <td>Spotify API</td>
                         <td>Combine listener taste profiles and calculate track weights</td>
-                        <td><span class="api-badge get">GET</span> /[sessionID]</td>
+                        <td><span class="api-badge get">GET</span> /session/:roomCode/users</td>
                     </tr>
 
                     <tr>
                         <td><strong>Playlist Generation</strong></td>
                         <td>Spotify API</td>
                         <td>Generate playlist using weighted tracks</td>
-                        <td><span class="api-badge post">POST</span> /[playlist]</td>
+                        <td><span class="api-badge post">POST</span> /playlist/generate-playlist</td>
                     </tr>
 
                     <tr>
                         <td><strong>Session Management</strong></td>
                         <td>Database</td>
-                        <td>Retrieve session ID for invite link, code, or QR code</td>
-                        <td><span class="api-badge get">GET</span> /[sessionID]</td>
+                        <td>Retrieve session ID for room code</td>
+                        <td><span class="api-badge get">GET</span> /session/:roomCode/users</td>
                     </tr>
 
-                    <tr>
-                        <td><strong>Listener Management</strong></td>
-                        <td>Database</td>
-                        <td>Remove listener from Mixlist session</td>
-                        <td><span class="api-badge delete">DELETE</span> /[listenerID]</td>
-                    </tr>
 
                     <tr>
                         <td><strong>Session Management</strong></td>

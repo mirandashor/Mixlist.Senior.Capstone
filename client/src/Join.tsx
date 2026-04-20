@@ -87,7 +87,7 @@ const Join = () => {
       <div className="join-hero-text">
         <h1>Jump into the mix</h1>
         <p>
-          Enter a room code to join an active MixList
+          Enter a room code to join your Mixlist host's waiting room
         </p>
       </div>
 
@@ -98,7 +98,7 @@ const Join = () => {
         <section className="join-card">
           <h2>Join a Mixlist</h2>
           <p className="join-subtext">
-            Ready to add your taste to the playlist?
+            Ready to add your taste to the Mix?
           </p>
 
           <form className="join-form">
@@ -146,6 +146,9 @@ const Join = () => {
           <p>© 2026 Mixlist. All rights reserved.</p>
 
           <div className="footer-links">
+            <a href="/#about">Privacy</a>
+            <a href="/#about">Terms</a>
+            <a href="/#about">Contact</a>
           </div>
         </div>
       </footer>
