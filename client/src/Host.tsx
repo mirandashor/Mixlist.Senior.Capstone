@@ -86,32 +86,39 @@ useEffect(() => {
   const isGuest = role === "guest";
 
   // polling for playlist readiness
-  useEffect(() => {
-    if (role !== "guest" || !roomCode) return;
+useEffect(() => {
+  if (role !== "guest" || !roomCode) return;
 
-    const checkStatus = async () => {
-      try {
-        const res = await fetch(`${apiBaseUrl}/api/spotify/status/${roomCode}`);
-        const data = await res.json();
+  let interval: any;
 
-        console.log("STATUS CHECK:", data);
+  const checkStatus = async () => {
+    try {
+      const res = await fetch(`${apiBaseUrl}/api/spotify/status/${roomCode}`);
+      const data = await res.json();
 
-        if (data.ready && data.playlistId) {
-          navigate(`/dashboard?playlistId=${data.playlistId}`);
-        }
-      } catch (err) {
-        console.error("status check error:", err);
+      console.log("STATUS CHECK:", data);
+
+const playlistId = data.playlistId || data.session?.playlistId;
+
+if (data.ready && playlistId) {
+        clearInterval(interval); 
+
+navigate(
+  `/dashboard?playlistId=${playlistId}` +
+  `&name=${encodeURIComponent(data.playlistName || data.session?.playlistName || "Mixlist")}` +
+  `&users=${encodeURIComponent((data.users || data.session?.users || []).join(","))}`
+);
       }
-    };
-
-    // run immediately
-    checkStatus();
-
-    // then poll every 2 seconds
-    const interval = setInterval(checkStatus, 2000);
-
-    return () => clearInterval(interval);
-  }, [role, roomCode, navigate]);
+    } catch (err) {
+      console.error("status check error:", err);
+    }
+  };
+//run immediately
+  checkStatus();
+  interval = setInterval(checkStatus, 2000);
+//poll every 2 seconds
+  return () => clearInterval(interval);
+}, [role, roomCode, navigate]);
 
   const handleGeneratePlaylist = async () => {
 

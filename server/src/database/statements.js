@@ -123,7 +123,7 @@ db.get(
 function insertTracks(userId, tracks) {
     tracks.forEach((track, index) => {
         db.run(
-            `INSERT OR IGNORE INTO top_tracks
+            `INSERT OR REPLACE INTO top_tracks
             (user_id, spotify_track_id, track_name, artist_name, rank)
             VALUES (?, ?, ?, ?, ?)`,
             [userId, track.id, track.name, track.artist, index]

@@ -294,7 +294,11 @@ const finalUris = finalTrackIds.map(id => `spotify:track:${id}`);
     (globalThis as any).generatedPlaylists =
       (globalThis as any).generatedPlaylists || {};
 
-    (globalThis as any).generatedPlaylists[roomCode] = playlistId;
+  (globalThis as any).generatedPlaylists[roomCode] = {
+  playlistId,
+  playlistName,
+  users: shortNames
+};
 
     console.log("Playlist Created:", playlistId);
 
@@ -317,7 +321,7 @@ const finalUris = finalTrackIds.map(id => `spotify:track:${id}`);
     //clear session data so users can make many mixlists
 setTimeout(() => {
   clearSessionData();
-}, 2000);
+}, 5000);
 
     //info grabbing for listener dashboard
     res.json({
@@ -341,16 +345,16 @@ setTimeout(() => {
 router.get("/status/:roomCode", (req, res) => {
   const { roomCode } = req.params;
 
-  const playlistId =
+  const session =
     (globalThis as any).generatedPlaylists?.[roomCode];
 
-  if (!playlistId) {
+  if (!session) {
     return res.json({ ready: false });
   }
 
   res.json({
     ready: true,
-    playlistId
+    session
   });
 });
 
