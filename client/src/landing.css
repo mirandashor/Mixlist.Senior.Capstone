@@ -84,7 +84,7 @@ body {
 .landing-main-content {
     flex: 1;
     width: 100%;
-    margin-top: -25px;
+    margin-top: 0px;
 }
 
 /* HERO */
@@ -117,9 +117,10 @@ body {
 }
 
 .landing-hero-text h1 {
-    font-size: 60px;
+    font-size: 51px;
     line-height: 1.05;
     margin: 0;
+    padding: 8px;
     color: #24123f;
     max-width: 700px;
 }
@@ -129,7 +130,8 @@ body {
     line-height: 1.7;
     color: #5c5470;
     max-width: 640px;
-    margin: 0;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
 }
 
 .landing-hero-actions {
@@ -285,7 +287,7 @@ body {
 
 .landing-section-heading h2 {
     margin: 5px 0 0px;
-    font-size: 50px;
+    font-size: 40px;
     max-width: 800px;
     color: #24123f;
 }
@@ -327,12 +329,12 @@ body {
 .learn-more-section {
     width: 100%;
     max-width: 1400px;
-    margin: 60px auto 0;
+    margin: 30px auto 0;
     padding: 0 64px 80px;
 }
 
 .learn-more-section h2 {
-    font-size: 42px;
+    font-size: 39px;
     margin-bottom: 8px;
     color: #24123f;
 }
@@ -357,7 +359,7 @@ body {
     background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(10px);
 
-    padding: 28px 24px;
+    padding: 34px 24px;
     border-radius: 20px;
 
     text-decoration: none;
