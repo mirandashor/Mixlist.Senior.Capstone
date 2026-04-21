@@ -414,10 +414,10 @@ const filteredGenres = search
         </section>
 
         {/* //info section for guest role view */}
-        <section className="info-section">
+        <section className="host-info-section">
           {isGuest ? (
             <>
-              <div className="info-card">
+              <div className="host-info-card">
                 <h3>Waiting Room</h3>
                 <p>
                   You are connected to the room and waiting for the host to
@@ -425,7 +425,7 @@ const filteredGenres = search
                 </p>
               </div>
 
-              <div className="info-card">
+              <div className="host-info-card">
                 <h3>Host is Mixing</h3>
                 <p>
                   The host is choosing the mood, genre, or overall sound for
@@ -433,7 +433,7 @@ const filteredGenres = search
                 </p>
               </div>
 
-              <div className="info-card">
+              <div className="host-info-card">
                 <h3>Get Ready to Join</h3>
                 <p>
                   Once the session starts, everyone in the room can build the
@@ -444,7 +444,7 @@ const filteredGenres = search
           ) : (
             //else, info section for host view
             <>
-              <div className="info-card">
+              <div className="host-info-card">
                 <h3>Invite others</h3>
                 <p>
                   Share the room code with your friends and 
@@ -452,14 +452,14 @@ const filteredGenres = search
                 </p>
               </div>
 
-              <div className="info-card">
+              <div className="host-info-card">
                 <h3>Choose the Vibe</h3>
                 <p>
                   Set the tone by picking from the provided genres
                 </p>
               </div>
 
-              <div className="info-card">
+              <div className="host-info-card">
                 <h3>Create the Session</h3>
                 <p>
                   Click "Create" and launch your Mixlist..

@@ -449,38 +449,37 @@ body {
 }
 
 /* INFO CARDS */
-.info-section {
+.host-info-section {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 22px;
-    margin-top: -70px;
-    align-items: stretch; /* 🔥 makes them same height */
+    margin-top: 40px;
+    align-items: stretch; 
 }
 
-.info-card {
+.host-info-card {
     background: white;
     border-radius: 24px;
     padding: 20px;
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.05);
     border: 1px solid rgba(29, 185, 84, 0.12);
     transition: all 0.2s ease;
-
-    height: 100%;        
-    min-height: 150px;  
+    height: auto;
+    min-height: auto; 
 }
-.info-card:hover {
+.host-info-card:hover {
     transform: translateY(-4px);
     border-color: rgba(29, 185, 84, 0.35);
     box-shadow: 0 16px 32px rgba(29, 185, 84, 0.10);
 }
 
-.info-card h3 {
+.host-info-card h3 {
     color: var(--purple-dark);
     font-size: 1.25rem;
     margin-bottom: 12px;
 }
 
-.info-card p {
+.host-info-card p {
     color: var(--text-medium);
     line-height: 1.7;
     font-size: 1rem;
@@ -505,22 +504,6 @@ body {
 .footer p {
     color: white;
     font-weight: 500;
-}
-
-.footer-links {
-    display: flex;
-    gap: 18px;
-    flex-wrap: wrap;
-}
-
-.footer-links a {
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.footer-links a:hover {
-    text-decoration: underline;
 }
 
 /* MOBILE */
@@ -561,11 +544,11 @@ body {
     padding: 40px 20px 60px;
   }
 
-  .join-card {
+  .host-card {
     padding: 28px 22px;
   }
 
-  .info-section {
+  .host-info-section {
     display: grid;
     grid-template-columns: 1fr !important;
     gap: 16px;
@@ -573,7 +556,7 @@ body {
     margin: 0 auto;
   }
 
-  .info-card {
+  .host-info-card {
     padding: 18px 16px;
     height: auto;        
     min-height: unset;   
@@ -594,11 +577,22 @@ body {
   .host-hero-text h1 {
     font-size: 2.2rem;
   }
+.host-info-section {
+    margin-top: 40px;   
+}
 
-    .meta-box,
-    .options-block,
-    .info-card {
-        border-radius: 18px;
-    }
+.host-meta {
+    grid-template-columns: 1fr;   
+    gap: 12px;
+}
+
+.meta-box {
+    padding: 14px 16px;         
+}
+
+.meta-value {
+    font-size: 1rem;           
+    word-break: break-word;      
+}
     
 }
