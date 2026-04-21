@@ -284,82 +284,6 @@ body {
     font-weight: 500;
 }
 
-.footer-links {
-    display: flex;
-    gap: 18px;
-    flex-wrap: wrap;
-}
-
-.footer-links a {
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.footer-links a:hover {
-    text-decoration: underline;
-}
-
-/* RESPONSIVE
-@media (max-width: 900px) {
-    .dashboard-navbar {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 14px;
-        padding: 18px 20px;
-    }
-
-    .dashboard-page-wrapper {
-        padding: 28px 20px 60px;
-    }
-
-    .dashboard-playlist-card {
-        padding: 10px;
-    }
-
-    .dashboard-info-section {
-        grid-template-columns: 1fr;
-    }
-
-    .dashboard-playlist-header {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .dashboard-playlist-actions {
-        width: 100%;
-    }
-
-    .dashboard-spotify-btn,
-    .dashboard-secondary-btn {
-        width: 100%;
-        text-align: center;
-    }
-}
-
-@media (max-width: 600px) {
-    .dashboard-logo {
-        font-size: 1.5rem;
-    }
-
-    .dashboard-logo img {
-        height: 34px;
-    }
-
-    .dashboard-hero-text h1 {
-        font-size: 2.2rem;
-    }
-
-    .dashboard-nav-links {
-        gap: 10px;
-    }
-
-    .dashboard-nav-links a {
-        font-size: 0.95rem;
-        padding: 9px 12px;
-    }
-} */
-
 /* MOBILE */
 @media (max-width: 768px) {
 
@@ -388,27 +312,81 @@ body {
   .nav-links a {
     flex: 1;
     text-align: center;
-    font-size: 0.75rem;
+    font-size: .8rem;
     padding: 8px 4px;
     border-radius: 10px;
   }
 
- .info-section {
-    display: grid;
-    grid-template-columns: 1fr !important;
+.dashboard-info-section {
+    grid-template-columns: 1fr;
     gap: 16px;
-    max-width: 420px;
-    margin: 0 auto;
-  }
+    margin-top: 40px;
+}
 
-  .info-card {
+.dashboard-info-card {
     padding: 18px 16px;
-    height: auto;        
-    min-height: unset;   
-  }
+}
+
+.dashboard-hero {
+    margin-bottom: 32px;
+}
+
+.dashboard-playlist-card {
+    margin-top: 28px;
+}
+
+.dashboard-info-section {
+    margin-top: 50px;
+}
 
   .input-row {
     flex-direction: column;
   }
-
+.dashboard-playlist-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: nowrap; 
 }
+.dashboard-spotify-btn {
+    padding: 9px 10px;
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+}
+.dashboard-playlist-header-text {
+    min-width: 0;
+}
+.dashboard-badge-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 18px;
+    flex-wrap: nowrap;   
+}
+.dashboard-back-btn,
+.dashboard-hero-badge {
+    padding: 6px 12px;    
+    font-size: 0.85rem;   
+    border-radius: 999px;
+     white-space: nowrap;
+}
+.dashboard-hero-text h1 {
+    font-size: 2.0rem;
+}
+.dashboard-hero-text p {
+    font-size: 1.0rem;
+}
+.dashboard-playlist-header-text h2 {
+    font-size: 1.3rem; 
+}
+.dashboard-playlist-meta {
+    font-size: 0.8rem; 
+}
+.dashboard-spotify-embed-wrap {
+    max-height: 620px;
+    overflow: hidden;
+    border-radius: 24px;
+}
+

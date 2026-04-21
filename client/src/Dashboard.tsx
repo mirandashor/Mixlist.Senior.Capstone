@@ -140,9 +140,6 @@ const playlistEmbedUrl = playlistId
       <footer className="footer">
         <div className="footer-content">
           <p>© 2026 Mixlist. All rights reserved.</p>
-
-          <div className="footer-links">
-          </div>
         </div>
       </footer>
     </>
