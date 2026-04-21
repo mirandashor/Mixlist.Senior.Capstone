@@ -523,58 +523,82 @@ body {
     text-decoration: underline;
 }
 
+/* MOBILE */
 @media (max-width: 768px) {
 
+  /* NAVBAR */
   .navbar {
+    display: flex;
     flex-direction: column;
     align-items: center;
     padding: 16px 10px;
     gap: 10px;
   }
 
+  .logo {
+    display: flex;
+    justify-content: center;
+    font-size: 1.6rem;
+  }
+
   .nav-links {
+    display: flex;
     width: 100%;
     justify-content: space-between;
-    gap: 4px;
-    flex-wrap: nowrap;
+    gap: 6px;
   }
 
   .nav-links a {
     flex: 1;
-    min-width: 0;
     text-align: center;
-
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     padding: 8px 4px;
-
-    white-space: nowrap;
+    border-radius: 10px;
   }
-      .hostjoin-dashboard-container {
-        grid-template-columns: 1fr;
-        margin: 40px auto;
-        gap: 20px;
+
+  /* PAGE */
+  .page-wrapper {
+    padding: 40px 20px 60px;
+  }
+
+  .join-card {
+    padding: 28px 22px;
+  }
+
+  .info-section {
+    display: grid;
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .info-card {
+    padding: 18px 16px;
+    height: auto;        
+    min-height: unset;   
+  }
+
+  .input-row {
+    flex-direction: column;
+  }
+
+    .host-card {
+        border-radius: 22px;
     }
 
-    .hostjoin-big-btn {
-        font-size: 1.7rem;
-        padding: 24px 20px;
-    }
+  .host-btn {
+    width: 100%;
+  }
 
-    .hostjoin-info-box {
-        font-size: 1.05rem;
-        min-height: auto;
-    }
+  .host-hero-text h1 {
+    font-size: 2.2rem;
+  }
 
-    .hostjoin-steps {
-        grid-template-columns: 1fr;
+    .meta-box,
+    .options-block,
+    .info-card {
+        border-radius: 18px;
     }
-
-    .hostjoin-hero-text h1 {
-        font-size: 2.2rem;
-    }
-
-    .hostjoin-footer-content {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+    
 }

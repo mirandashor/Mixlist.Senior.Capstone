@@ -121,18 +121,18 @@ const Join = () => {
           </form>
         </section>
 
-        <section className="info-section">
-          <div className="info-card">
+        <section className="join-info-section">
+          <div className="join-info-card">
             <h3>Quick Join</h3>
             <p>Enter the room code from your host and join in seconds.</p>
           </div>
 
-          <div className="info-card">
+          <div className="join-info-card">
             <h3>Wait For the Host</h3>
             <p>The host will choose parameters and start the session once everyone is in.</p>
           </div>
 
-          <div className="info-card">
+          <div className="join-info-card">
             <h3>Live Playlist</h3>
             <p>
               Once you are in, your music taste can help shape the mix in real
@@ -144,12 +144,6 @@ const Join = () => {
       <footer className="footer">
         <div className="footer-content">
           <p>© 2026 Mixlist. All rights reserved.</p>
-
-          <div className="footer-links">
-            <a href="/#about">Privacy</a>
-            <a href="/#about">Terms</a>
-            <a href="/#about">Contact</a>
-          </div>
         </div>
       </footer>
     </>

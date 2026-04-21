@@ -260,15 +260,15 @@ body {
 }
 
 /* INFO CARDS */
-.info-section {
+.join-info-section {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 22px;
-    margin-top: -70px;
+    margin-top: 40px;
     align-items: stretch; /* 🔥 makes them same height */
 }
 
-.info-card {
+.join-info-card {
     background: white;
     border-radius: 24px;
     padding: 20px;
@@ -280,19 +280,19 @@ body {
     min-height: 150px;   /* 🔥 optional: forces minimum size */
 }
 
-.info-card:hover {
+.join-info-card:hover {
     transform: translateY(-4px);
     border-color: rgba(29, 185, 84, 0.35);
     box-shadow: 0 16px 32px rgba(29, 185, 84, 0.10);
 }
 
-.info-card h3 {
+.join-info-card h3 {
     color: var(--purple-dark);
     font-size: 1.25rem;
     margin-bottom: 12px;
 }
 
-.info-card p {
+.join-info-card p {
     color: var(--text-medium);
     line-height: 1.7;
     font-size: 1rem;
@@ -335,58 +335,72 @@ body {
     text-decoration: underline;
 }
 
+/* MOBILE */
 @media (max-width: 768px) {
 
+  /* NAVBAR */
   .navbar {
+    display: flex;
     flex-direction: column;
     align-items: center;
     padding: 16px 10px;
     gap: 10px;
   }
 
+  .logo {
+    display: flex;
+    justify-content: center;
+    font-size: 1.6rem;
+  }
+
   .nav-links {
+    display: flex;
     width: 100%;
     justify-content: space-between;
-    gap: 4px;
-    flex-wrap: nowrap;
+    gap: 6px;
   }
 
   .nav-links a {
     flex: 1;
-    min-width: 0;
     text-align: center;
-
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     padding: 8px 4px;
-
-    white-space: nowrap;
+    border-radius: 10px;
   }
-      .hostjoin-dashboard-container {
-        grid-template-columns: 1fr;
-        margin: 40px auto;
-        gap: 20px;
-    }
 
-    .hostjoin-big-btn {
-        font-size: 1.7rem;
-        padding: 24px 20px;
-    }
+  /* PAGE */
+  .page-wrapper {
+    padding: 40px 20px 60px;
+  }
 
-    .hostjoin-info-box {
-        font-size: 1.05rem;
-        min-height: auto;
-    }
+  .join-card {
+    padding: 28px 22px;
+  }
 
-    .hostjoin-steps {
-        grid-template-columns: 1fr;
-    }
+  .join-info-section {
+    grid-template-columns: 1fr;
+    max-width: 500px;     
+    margin: 40px auto 0;   
+    padding: 0 12px;       
+    gap: 16px;
+}
 
-    .hostjoin-hero-text h1 {
-        font-size: 2.2rem;
-    }
+  .join-info-card {
+    padding: 18px 16px;
+    height: auto;        
+    min-height: unset;   
+  }
 
-    .hostjoin-footer-content {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+  .input-row {
+    flex-direction: column;
+  }
+
+  .join-btn {
+    width: 100%;
+  }
+
+  .join-hero-text h1 {
+    font-size: 2.2rem;
+  }
+
 }

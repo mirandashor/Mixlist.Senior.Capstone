@@ -405,7 +405,7 @@ const filteredGenres = search
                 className="create-btn"
                 disabled={isLoading}
               >
-                {isLoading ? "Creating" : "Create"}
+                {isLoading ? "Mixing" : "Create"}
               </button>
 
               </form>
@@ -473,9 +473,6 @@ const filteredGenres = search
         <footer className="footer">
         <div className="footer-content">
           <p>© 2026 Mixlist. All rights reserved.</p>
-
-          <div className="footer-links">
-          </div>
         </div>
       </footer>
     </>
