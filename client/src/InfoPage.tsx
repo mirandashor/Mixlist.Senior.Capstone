@@ -23,11 +23,12 @@ const InfoPage = () => {
                     <span>Mixlist</span>
                 </Link>
 
-                <div className="nav-links">
+                <div className="info-nav-links">
                     <Link to="/info#how-it-works">How it works</Link>
                     <Link to="/info#faq">FAQ</Link>
                     <Link to="/info#about">About Us</Link>
                     <Link to="/info#support">Support</Link>
+                    <Link to="/info#bts">Extra</Link>
                 </div>
             </nav>
 
@@ -186,11 +187,11 @@ const InfoPage = () => {
 
 
             {/* Documentation */}
-      <section id="about" className="info-section alt">
-        <section id="team" className="section">
-          <h2 className="section-title">Documentation</h2>
+      <section id="bts" className="info-section alt">
+        <section id="bts" className="section">
+          <h2 className="section-title">Behind the Scenes</h2>
 
-          <div className="team-grid">
+          <div className="sites-grid">
 
             <div className="card">
               <h3>
@@ -238,9 +239,9 @@ const InfoPage = () => {
             </div>
 
           </div>
-          <p> </p>
-          <div className="team-grid">
 
+          <h2 className="section-title">Documentation</h2>
+          <div className="docs-grid">
             <div className="card">
               <h3>
                 <a 
@@ -300,13 +301,28 @@ const InfoPage = () => {
                 is implemented at a deeper level, including logic, 
                 workflows, and decisions made for development.</p>
             </div>
-
           </div>
         </section>
       </section>
+<button
+  className="back-to-top"
+  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+>
+  ↑ Back to Top
+</button>
 
+      <footer className="footer">
+        <div className="footer-content">
+          <p>© 2026 Mixlist. All rights reserved.</p>
+
+          <div className="footer-links">
+            
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
+
 
 export default InfoPage;

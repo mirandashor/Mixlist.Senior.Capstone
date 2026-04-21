@@ -56,25 +56,20 @@ body {
 
 .nav-links {
     display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
+    gap: 16px;
 }
 
 .nav-links a {
-    text-decoration: none;
+    background: rgba(255, 255, 255, 0.16);
     color: white;
-    font-weight: 600;
-    font-size: 1rem;
-    padding: 10px 16px;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    padding: 12px 20px;
     border-radius: 14px;
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    transition: all 0.2s ease;
+    font-weight: 600;
+    text-decoration: none;
 }
-
 .nav-links a:hover {
-    background: rgba(29, 185, 84, 0.22);
-    border-color: rgba(29, 185, 84, 0.45);
+    background: rgba(255, 255, 255, 0.24);
     transform: translateY(-2px);
 }
 
@@ -343,6 +338,7 @@ body {
     justify-content: space-between;
     gap: 6px;
   }
+
 
   .nav-links a {
     flex: 1;

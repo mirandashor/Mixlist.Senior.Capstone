@@ -66,18 +66,6 @@ if (!res.ok) {
     return;
 }
 
-
-// await fetch(`${apiBaseUrl}/api/session/join`, {
-//     method: "POST",
-//     headers: {
-//         "Content-Type": "application/json",
-//     },
-//     body: JSON.stringify({
-//         roomCode: data.roomCode,
-//         userId: Number(storedUserId),
-//     }),
-// });
-
 const accessToken = storedToken;
 
 navigate(
