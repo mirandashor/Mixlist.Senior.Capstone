@@ -88,6 +88,7 @@ const Landing: React.FC = () => {
                 </section>
 
                 <section className="learn-more-section">
+                    <div className="learn-container">
   <h2>Learn More</h2>
   <p className="learn-subtext">
     Explore more about Mixlist and how it works
@@ -109,6 +110,7 @@ const Landing: React.FC = () => {
     <a href="https://youtube.com/your-video" target="_blank" rel="noreferrer">
       <span>🎥</span> Demo Video
     </a>
+  </div>
   </div>
 </section>
 

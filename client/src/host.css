@@ -523,84 +523,58 @@ body {
     text-decoration: underline;
 }
 
-/* RESPONSIVE */
-@media (max-width: 900px) {
-    .navbar {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 14px;
-        padding: 18px 20px;
+@media (max-width: 768px) {
+
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    padding: 16px 10px;
+    gap: 10px;
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: space-between;
+    gap: 4px;
+    flex-wrap: nowrap;
+  }
+
+  .nav-links a {
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+
+    font-size: 0.7rem;
+    padding: 8px 4px;
+
+    white-space: nowrap;
+  }
+      .hostjoin-dashboard-container {
+        grid-template-columns: 1fr;
+        margin: 40px auto;
+        gap: 20px;
     }
 
-    .page-wrapper {
-        padding: 24px 20px 60px;
+    .hostjoin-big-btn {
+        font-size: 1.7rem;
+        padding: 24px 20px;
     }
 
-    .host-card {
-        padding: 28px 22px;
+    .hostjoin-info-box {
+        font-size: 1.05rem;
+        min-height: auto;
     }
 
-    .host-meta {
+    .hostjoin-steps {
         grid-template-columns: 1fr;
     }
 
-    .info-section {
-        grid-template-columns: 1fr;
-    }
-
-    .options-row {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .option-pill {
-        width: 100%;
-    }
-
-    .create-btn {
-        width: 100%;
-    }
-
-    .create-btn:disabled {
-    opacity: 0.7;
-    cursor: not-allowed;
-}
-
-    .host-form {
-        align-items: stretch;
-    }
-}
-
-@media (max-width: 600px) {
-    .logo {
-        font-size: 1.5rem;
-    }
-
-    .logo img {
-        height: 38px;
-    }
-
-    .host-hero-text h1 {
+    .hostjoin-hero-text h1 {
         font-size: 2.2rem;
     }
 
-    .nav-links {
-        gap: 10px;
+    .hostjoin-footer-content {
+        flex-direction: column;
+        align-items: flex-start;
     }
-
-    .nav-links a {
-        font-size: 0.95rem;
-        padding: 9px 12px;
-    }
-
-    .host-card {
-        border-radius: 22px;
-    }
-
-    .meta-box,
-    .options-block,
-    .info-card {
-        border-radius: 18px;
-    }
-    
 }

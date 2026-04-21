@@ -172,12 +172,6 @@ navigate(
       <footer className="footer">
         <div className="footer-content">
           <p>© 2026 Mixlist. All rights reserved.</p>
-
-          <div className="footer-links">
-            <a href="/#about">Privacy</a>
-            <a href="/#about">Terms</a>
-            <a href="/#about">Contact</a>
-          </div>
         </div>
       </footer>
     </>

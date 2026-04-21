@@ -17,7 +17,7 @@ body {
 }
 
 /* NAVBAR */
-.hostjoin-navbar {
+.navbar {
     position: sticky;
     top: 0;
     z-index: 1000;
@@ -30,44 +30,38 @@ body {
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
-.hostjoin-logo {
-    font-size: 2rem;
-    font-weight: 800;
-    color: #2e1065;
-    letter-spacing: -0.5px;
+.logo {
     display: flex;
     align-items: center;
     gap: 10px;
     text-decoration: none;
 }
 
-.hostjoin-logo img {
+.logo img {
     height: 36px;
-    width: auto;
-    object-fit: contain;
 }
 
-.hostjoin-nav-links {
+.logo span {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #2e1065;
+}
+
+.nav-links {
     display: flex;
     gap: 16px;
-    flex-wrap: wrap;
 }
 
-.hostjoin-nav-links a {
+.nav-links a {
     background: rgba(255, 255, 255, 0.16);
     color: white;
     border: 1px solid rgba(255, 255, 255, 0.28);
     padding: 12px 20px;
     border-radius: 14px;
-    font-size: 1rem;
     font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    backdrop-filter: blur(8px);
     text-decoration: none;
 }
-
-.hostjoin-nav-links a:hover {
+.nav-links a:hover {
     background: rgba(255, 255, 255, 0.24);
     transform: translateY(-2px);
 }
@@ -287,20 +281,34 @@ body {
     text-decoration: underline;
 }
 
-@media (max-width: 900px) {
-    .hostjoin-navbar {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
-        padding: 18px 20px;
-    }
 
-    .hostjoin-nav-links {
-        width: 100%;
-        gap: 12px;
-    }
+@media (max-width: 768px) {
 
-    .hostjoin-dashboard-container {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    padding: 16px 10px;
+    gap: 10px;
+  }
+
+  .nav-links {
+    width: 100%;
+    justify-content: space-between;
+    gap: 4px;
+    flex-wrap: nowrap;
+  }
+
+  .nav-links a {
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+
+    font-size: 0.7rem;
+    padding: 8px 4px;
+
+    white-space: nowrap;
+  }
+      .hostjoin-dashboard-container {
         grid-template-columns: 1fr;
         margin: 40px auto;
         gap: 20px;
@@ -330,16 +338,3 @@ body {
     }
 }
 
-@media (max-width: 600px) {
-    .hostjoin-logo {
-        font-size: 1.6rem;
-    }
-
-    .hostjoin-big-btn {
-        font-size: 1.45rem;
-    }
-
-    .hostjoin-info-box {
-        padding: 22px;
-    }
-}
