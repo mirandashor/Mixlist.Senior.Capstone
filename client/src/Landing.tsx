@@ -103,12 +103,12 @@ const Landing: React.FC = () => {
       <span>🌐</span> Website
     </a>
 
-    <a href="https://your-poster-link.com" target="_blank" rel="noreferrer">
+    <a href="/Mixlist-Academic-Poster" target="_blank" rel="noopener noreferrer">
       <span>📝</span> Poster
     </a>
 
     <a href="https://youtube.com/your-video" target="_blank" rel="noreferrer">
-      <span>🎥</span> Demo Video
+      <span>🎥</span> Promo Video
     </a>
   </div>
   </div>
