@@ -141,8 +141,11 @@ const InfoPage = () => {
 
             <div className="card">
               <h3>Miranda Secaur</h3>
-              <p>Major: Information Technology</p>
-              <p>Backend</p>
+              I am an Information Technology student with a focus in Artificial Intelligence at Oakland University. 
+              I have a strong foundation in software development, cloud technologies, and data-driven applications, 
+              with hands-on experience building full-stack systems using tools like React, Node.js, and cloud platforms. 
+              As a core contributor to Mixlist, my main role was designing and developing the logic behind the collaborative 
+              playlist tool, including implementing the algorithm and weighted recommendation system.
               <p>Contact: mirandasecaur@gmail.com</p>
             </div>
 
