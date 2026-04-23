@@ -95,11 +95,11 @@ const Landing: React.FC = () => {
   </p>
 
   <div className="learn-links">
-    <a href="https://github.com/mirandashor/Mixlist-Senior-Capstone.git" target="_blank" rel="noreferrer">
+    <a href="https://github.com/mirandashor/Mixlist-Senior-Capstone.git" target="_blank" rel="noopener noreferrer">
       <span>💻</span> GitHub
     </a>
 
-    <a href="https://mirandashor.github.io/Mixlist-Senior-Capstone/" target="_blank" rel="noreferrer">
+    <a href="https://mirandashor.github.io/Mixlist-Senior-Capstone/" target="_blank" rel="noopener noreferrer">
       <span>🌐</span> Website
     </a>
 
@@ -107,8 +107,8 @@ const Landing: React.FC = () => {
       <span>📝</span> Poster
     </a>
 
-    <a href="https://youtube.com/your-video" target="_blank" rel="noreferrer">
-      <span>🎥</span> Promo Video
+    <a href="https://youtu.be/73ncWA0c4Bo" target="_blank" rel="noopener noreferrer">
+      <span>🎥</span> Project Showcase
     </a>
   </div>
   </div>
