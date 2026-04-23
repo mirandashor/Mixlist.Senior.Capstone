@@ -140,4 +140,6 @@ npm run dev
 - User Profiles
 - Host can delete a session & User can delete a session
   - Instead of just closing the browser to end a session
-- Host can remove a user 
+- Host can remove a user
+- Update database to handle users leaving a session/room
+- Muli-playlist creation at the same time
