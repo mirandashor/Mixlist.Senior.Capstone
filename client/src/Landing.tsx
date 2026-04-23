@@ -100,10 +100,10 @@ const Landing: React.FC = () => {
     </a>
 
     <a href="https://mirandashor.github.io/Mixlist-Senior-Capstone/" target="_blank" rel="noopener noreferrer">
-      <span>🌐</span> Website
+      <span>🌐</span> Technical Website
     </a>
 
-    <a href="/Mixlist-Academic-Poster" target="_blank" rel="noopener noreferrer">
+    <a href="/Mixlist-Academic-Poster.pdf" target="_blank" rel="noopener noreferrer">
       <span>📝</span> Poster
     </a>
 
