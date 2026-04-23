@@ -143,28 +143,33 @@ const InfoPage = () => {
               <h3>Miranda Secaur</h3>
               <p>Major: Information Technology</p>
               <p>Backend</p>
-              <p>mirandasecaur@gmail.com</p>
+              <p>Contact: mirandasecaur@gmail.com</p>
             </div>
 
             <div className="card">
               <h3>Miranda Shoraji</h3>
-              <p>Major: Computer Science</p>
-              <p>Backend</p>
-              <p>mirandashoraji@gmail.com</p>
+              <p>I am a Computer Science major at Oakland University with a passion for web development.
+                  Throughout my experience, I have enjoyed building responsive and user-friendly websites
+                  using technologies like HTML, CSS, and JavaScript. While building Mixlist, I was able to 
+                  branch out and build my first real-time integrated database with SQLite, and also learn 
+                  new frameworks and libraries. I am excited to apply the skills i've gained to real-world 
+                  challenges and look forward to continuing to grow as a developer after graduation.
+              </p>
+              <p>Contact: mirandashoraji@gmail.com</p>
             </div>
 
             <div className="card">
               <h3>Judy Nashwati</h3>
               <p>Major: Computer Science</p>
               <p>Frontend</p>
-              <p>jnashwati@gmail.com</p>
+              <p>Contact: jnashwati@gmail.com</p>
             </div>
 
             <div className="card">
               <h3>Mariam Yassa</h3>
               <p>Major: Computer Science</p>
               <p>Frontend</p>
-              <p>myassa5345@gmail.com</p>
+              <p>Contact: myassa5345@gmail.com</p>
             </div>
 
           </div>
