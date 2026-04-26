@@ -111,7 +111,7 @@ const Landing: React.FC = () => {
       <span>🎥</span> Project Showcase Video
     </a>
 
-    <a href="https://youtu.be/73ncWA0c4Bo" target="_blank" rel="noopener noreferrer">
+    <a href="https://www.youtube.com/watch?v=Up5_3mpSf7c" target="_blank" rel="noopener noreferrer">
       <span>🎥</span> Technical Breakdown Video
     </a>
   </div>
