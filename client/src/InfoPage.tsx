@@ -163,15 +163,23 @@ const InfoPage = () => {
 
             <div className="card">
               <h3>Judy Nashwati</h3>
-              <p>Major: Computer Science</p>
-              <p>Frontend</p>
-              <p>Contact: jnashwati@gmail.com</p>
+              <p>I am a Computer Science student with a strong interest in front end development. Through my 
+                coursework and personal projects, I discovered how much I enjoy designing and building user 
+                interfaces that are both visually appealing and easy to use. I have experience working with HTML, 
+                CSS, and JavaScript to create responsive and interactive websites. As I developed my skills, I 
+                found satisfaction in turning ideas into real, functional designs and improving the overall user 
+                experience. This journey has helped me realize my passion for front-end development, and I am excited 
+                to continue growing my skills and applying them to real world projects in the future.
+              </p>
             </div>
 
             <div className="card">
               <h3>Mariam Yassa</h3>
-              <p>Major: Computer Science</p>
-              <p>Frontend</p>
+              <p>Hi, my name is Mariam Yassa. I am a senior at Oakland University majoring in Computer Science. 
+                I am passionate about UX/UI design. I enjoy front end development that allows applications to become 
+                intuitive as well as aesthetically pleasing. I believe that the accessibility  of a application is 
+                fundamental to a positive user experience.
+              </p>
               <p>Contact: myassa5345@gmail.com</p>
             </div>
 
