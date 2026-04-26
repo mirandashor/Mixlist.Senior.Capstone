@@ -318,6 +318,46 @@ const InfoPage = () => {
                 workflows, and decisions made for development.</p>
             </div>
           </div>
+
+                    <h2 className="section-title">Media</h2>
+          <div className="docs-grid">
+            <div className="card">
+              <h3>
+                <a 
+                  href="/Mixlist-Academic-Poster.pdf" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                📝 Project Poster
+                </a>
+                </h3>
+            </div>
+
+            <div className="card">
+              <h3>
+                <a 
+                  href="https://youtu.be/73ncWA0c4Bo" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                🎥 Project Showcase Video 
+                </a>
+                </h3>
+            </div>
+
+            <div className="card">
+              <h3>
+                <a 
+                  href="https://www.youtube.com/watch?v=Up5_3mpSf7c" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                🎥 Technical Breakdown Video
+                </a>
+                </h3>
+            </div>
+          </div>
+
         </section>
       </section>
 <button
